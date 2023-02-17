@@ -23,7 +23,7 @@
 | Chris Farnsworth     | cfarnsworth@sfsu.edu  |   Anaxibias     | Back-end Lead  |
 | Abdul Barrie         | abarrie@sfsu.edu      |   Abdulbarrie   | Front-end Lead |
 | Preet Dhaliwal       | gdhaliwal@sfsu.edu    |   Preetd0529    | Github Master  |
-| Nathan Loo           | nloo2@sfsu.edu        |   NathanLoo4042 |                |
+| Nathan Loo           | nloo2@sfsu.edu        |   NathanLoo4042 | Front-end      |
 
 **NO code should be stored in the root of your repository. You may rename the
 `application/` folder to your team's application name if you'd like, but all the
