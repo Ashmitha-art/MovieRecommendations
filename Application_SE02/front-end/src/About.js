@@ -4,7 +4,7 @@ import steve_photo from './photos/photo.jpg';
 import preet_photo from './photos/photo.jpg';
 import chris_photo from './photos/photo.jpg';
 import abdul_photo from './photos/photo.jpg';
-import nathan_photo from './photos/photo.jpg';
+import nathan_photo from './photos/nathan.jpg';
 
 import { useNavigate } from 'react-router-dom';
 

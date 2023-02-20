@@ -4,7 +4,7 @@ import steve_photo from './photos/photo.jpg';
 import preet_photo from './photos/photo.jpg';
 import chris_photo from './photos/photo.jpg';
 import abdul_photo from './photos/photo.jpg';
-import nathan_photo from './photos/photo.jpg';
+import nathan_photo from './photos/nathan.jpg';
 
 import Navbar from './Navbar.js';
 import About from './About.js';
@@ -18,7 +18,7 @@ function App() {
     let preet_text = "test3";
     let chris_text = "test4";
     let abdul_text = "test5";
-    let nathan_text = "test6";
+    let nathan_text = "Hi, my name is Nathan Loo. I'm a Computer Science student at San Francisco State University currently studying for a Bachelor's degree. I was born and raised in San Francisco and from a young age I was fascinated with technology. I've been using computers my whole life so the computer science track seemed right for me. I hope to be able to become a software engineer in the future after completing my degree.";
 
     return (
         <Router>
