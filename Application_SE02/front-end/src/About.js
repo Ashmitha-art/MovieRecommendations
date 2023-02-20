@@ -1,4 +1,7 @@
-import photo from './photo.jpg';
+/* WRITE YOUR PHOTO PATH HERE vvv */
+import steve_photo from './photos/steve.png';
+
+
 import { useNavigate } from 'react-router-dom';
 
 function About(){

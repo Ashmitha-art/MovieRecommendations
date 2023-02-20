@@ -1,4 +1,5 @@
-import photo from './photo.jpg';
+/* WRITE YOUR PHOTO PATH HERE vvv */
+import steve_photo from './photos/steve.png';
 
 import Navbar from './Navbar.js';
 import About from './About.js';
@@ -6,6 +7,13 @@ import Member from './Member.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
+    let ashmitha_text = "test1";
+    let steve_text = "I work in both client-facing and product roles for technology companies. I specialize in leveraging my software background, passion for technology, and empathy for customers to build loyal relationships and deliver meaningful products. Strong affinity for lean environments and iterating products.";
+    let preet_text = "test3";
+    let chris_text = "test4";
+    let abdul_text = "test5";
+    let nathan_text = "test6";
+
     return (
         <Router>
             <div className="App"> 
