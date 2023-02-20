@@ -1,7 +1,7 @@
 /* WRITE YOUR PHOTO PATH HERE vvv */
 import ashmitha_photo from './photos/photo.jpg';
 import steve_photo from './photos/photo.jpg';
-import preet_photo from './photos/photo.jpg';
+import preet_photo from './photos/preet.jpg';
 import chris_photo from './photos/photo.jpg';
 import abdul_photo from './photos/photo.jpg';
 import nathan_photo from './photos/photo.jpg';
@@ -15,7 +15,9 @@ function App() {
 
     let ashmitha_text = "test1";
     let steve_text = "test2";
-    let preet_text = "test3";
+    let preet_text = "Hi, my name is Preet Dhaliwal. I am a Computer Science Student at SFSU " + 
+                "pursuing my Bachelor's Degree. I also help manage service location data as a SWE Intern at TDS Telecom." +
+                "I enjoy learning about new tech and endlessly watching youtube videos.";
     let chris_text = "test4";
     let abdul_text = "test5";
     let nathan_text = "test6";
