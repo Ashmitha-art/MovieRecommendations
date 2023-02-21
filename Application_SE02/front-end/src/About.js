@@ -1,7 +1,7 @@
 /* WRITE YOUR PHOTO PATH HERE vvv */
-import ashmitha_photo from './photos/photo.jpg';
-import steve_photo from './photos/photo.jpg';
-import preet_photo from './photos/photo.jpg';
+import ashmitha_photo from './photos/ashmitha.jpg';
+import steve_photo from './photos/steve.png';
+import preet_photo from './photos/preet.jpg';
 import chris_photo from './photos/photo.jpg';
 import abdul_photo from './photos/photo.jpg';
 import nathan_photo from './photos/nathan.jpg';
@@ -9,13 +9,13 @@ import nathan_photo from './photos/nathan.jpg';
 import { useNavigate } from 'react-router-dom';
 
 function About(){
-    
+
     let navigate = useNavigate();
-    
+
     const routeChange = (name) => {
         let path = '/' + name;
         navigate(path);
-    } 
+    }
 
     // List of all current members
     const members = ["Ashmitha Pais", "Steve Betts", "Preet Dhaliwal", "Chris Farnsworth", "Abdul Barrie", "Nathan Loo"];
@@ -28,7 +28,7 @@ function About(){
             <h1 class="heading">CSC 648 - Software Engineering</h1>
             <h2 class="heading">Section 4</h2>
             <h3 class="heading">Team 02</h3>
-            
+
             <div className='member-container'>
                 {members.map((member, index) => (
                     <div class='member' onClick={() => {routeChange(routes[index])}}>
