@@ -1,6 +1,6 @@
 /* WRITE YOUR PHOTO PATH HERE vvv */
 import ashmitha_photo from './photos/ashmitha.jpg';
-import steve_photo from './photos/photo.jpg';
+import steve_photo from './photos/steve.png';
 import preet_photo from './photos/preet.jpg';
 import chris_photo from './photos/photo.jpg';
 import abdul_photo from './photos/photo.jpg';
