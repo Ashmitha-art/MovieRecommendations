@@ -1,5 +1,5 @@
 /* WRITE YOUR PHOTO PATH HERE vvv */
-import ashmitha_photo from './photos/photo.jpg';
+import ashmitha_photo from './photos/ashmitha.jpg';
 import steve_photo from './photos/photo.jpg';
 import preet_photo from './photos/preet.jpg';
 import chris_photo from './photos/photo.jpg';
@@ -13,7 +13,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
 
-    let ashmitha_text = "test1";
+    let ashmitha_text = "I am Ashmitha Dale Pais, a computer science graduate with a Bachelor's degree from The Oxford College of Engineering in Bangalore, India. Currently, I am pursuing a Master's degree in Computer Science at San Francisco State University. In terms of my academic projects, I have worked on a Blood and Organ Donation Management System using HTML, CSS, PL/SQL, and Apache Tomcat, as well as a Grocery Management System utilizing NodeJS, React frameworks, and Postgres DB.\n" +
+        "\n" +
+        "My technical skills include proficiency in Java, Python, C, PL/SQL, and JavaScript, as well as experience with tools such as Git, Docker, Jira, and Splunk. I have also utilized various libraries such as pandas, numpy, matplotlib, sklearn, seaborn, and scikit for machine learning projects.\n" ;
     let steve_text = "test2";
     let preet_text = "Hi, my name is Preet Dhaliwal. I am a Computer Science Student at SFSU " + 
                 "pursuing my Bachelor's Degree. I also help manage service location data as a SWE Intern at TDS Telecom." +
@@ -24,10 +26,10 @@ function App() {
 
     return (
         <Router>
-            <div className="App"> 
-                
+            <div className="App">
+
                 <Navbar/>
-                
+
                 <div className='content'>
                     <Routes>
                         <Route path='/' element={<About/>}></Route>
