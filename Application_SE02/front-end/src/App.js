@@ -12,8 +12,6 @@ import Member from './Member.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
-
-
     let ashmitha_text = "I am Ashmitha Dale Pais, a computer science graduate with a Bachelor's degree from The Oxford College of Engineering in Bangalore, India. Currently, I am pursuing a Master's degree in Computer Science at San Francisco State University. In terms of my academic projects, I have worked on a Blood and Organ Donation Management System using HTML, CSS, PL/SQL, and Apache Tomcat, as well as a Grocery Management System utilizing NodeJS, React frameworks, and Postgres DB.\n" +
         "\n" +
         "My technical skills include proficiency in Java, Python, C, PL/SQL, and JavaScript, as well as experience with tools such as Git, Docker, Jira, and Splunk. I have also utilized various libraries such as pandas, numpy, matplotlib, sklearn, seaborn, and scikit for machine learning projects.\n" ;
