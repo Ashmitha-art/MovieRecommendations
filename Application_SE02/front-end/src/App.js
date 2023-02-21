@@ -1,5 +1,7 @@
 import photo from './photo.jpg';
 
+import AbdulPhoto from './AbdulImage.JPG';
+
 import Navbar from './Navbar.js';
 import About from './About.js';
 import Member from './Member.js';
@@ -20,7 +22,7 @@ function App() {
                         <Route path='/steve' element={<Member name="Steve Betts" photo={photo}/>}></Route>
                         <Route path='/preet' element={<Member name="Preet Dhaliwal" photo={photo}/>}></Route>
                         <Route path='/chris' element={<Member name="Chris Farnsworth" photo={photo}/>}></Route>
-                        <Route path='/abdul' element={<Member name="Abdul Barrie" photo={photo}/>}></Route>
+                        <Route path='/abdul' element={<Member name="Abdul Barrie" photo={AbdulPhoto}/>}></Route>
                         <Route path='/nathan' element={<Member name="Nathan Loo" photo={photo}/>}></Route>
                     </Routes>
                 </div>

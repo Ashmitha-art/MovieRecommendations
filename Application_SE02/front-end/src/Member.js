@@ -6,16 +6,11 @@ function Member({name, photo}){
             <h3 class="heading"> {name} </h3> 
             
             <p class="info-text"> 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas egestas ante nulla. 
-                Duis feugiat dolor eu dui elementum mollis. Vestibulum vitae erat enim. 
-                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-                Morbi quis tincidunt ante. In sollicitudin eu urna sed dignissim. Curabitur id diam ut 
-                arcu malesuada elementum ac eu enim. Nunc feugiat elit sit amet dui euismod, sit amet mollis lacus volutpat. 
-                Donec fermentum sem quis ex maximus pharetra. Vivamus porttitor dapibus mauris at viverra. 
-                Nullam finibus sapien suscipit nibh gravida, sit amet imperdiet elit mattis. 
-                Morbi turpis neque, pulvinar ut convallis nec, fringilla quis ligula. Vivamus ut tempor dolor. 
-                Aliquam scelerisque lacinia pretium. Aenean et tellus quis arcu pharetra fringilla. 
-                Phasellus dictum metus quis eros blandit commodo.  
+                Hi, I'm Abdul Barrie, a Computer Science major currently attending San Francisco State University. 
+                I used to read and write a lot as a child, then I discovered computers and video games and my life went downhill from there.
+                …JK! Jokes aside, I've been interested in computers ever since I was young, which was what led me to want to join the CS 
+                field when I grew up. Outside of coding, I enjoy literature, writing short stories and listening to music.
+ 
             </p>
         </div>
     );
