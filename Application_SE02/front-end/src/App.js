@@ -1,7 +1,7 @@
 /* WRITE YOUR PHOTO PATH HERE vvv */
 import ashmitha_photo from './photos/ashmitha.jpg';
 import steve_photo from './photos/photo.jpg';
-import preet_photo from './photos/photo.jpg';
+import preet_photo from './photos/preet.jpg';
 import chris_photo from './photos/photo.jpg';
 import abdul_photo from './photos/photo.jpg';
 import nathan_photo from './photos/nathan.jpg';
@@ -17,7 +17,9 @@ function App() {
         "\n" +
         "My technical skills include proficiency in Java, Python, C, PL/SQL, and JavaScript, as well as experience with tools such as Git, Docker, Jira, and Splunk. I have also utilized various libraries such as pandas, numpy, matplotlib, sklearn, seaborn, and scikit for machine learning projects.\n" ;
     let steve_text = "test2";
-    let preet_text = "test3";
+    let preet_text = "Hi, my name is Preet Dhaliwal. I am a Computer Science Student at SFSU " + 
+                "pursuing my Bachelor's Degree. I also help manage service location data as a SWE Intern at TDS Telecom." +
+                "I enjoy learning about new tech and endlessly watching youtube videos.";
     let chris_text = "test4";
     let abdul_text = "test5";
     let nathan_text = "Hi, my name is Nathan Loo. I'm a Computer Science student at San Francisco State University currently studying for a Bachelor's degree. I was born and raised in San Francisco and from a young age I was fascinated with technology. I've been using computers my whole life so the computer science track seemed right for me. I hope to be able to become a software engineer in the future after completing my degree.";
