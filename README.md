@@ -1,6 +1,6 @@
-# CSC648-spring23-04-team02 Repository
+CSC648-spring23-04-team02 Repository
 
-**Application URL: <https://example.com>**
+Application URL: http://13.52.61.95/
 
 
 | Student Name         | Student Email         | GitHub Username | Student's role |
