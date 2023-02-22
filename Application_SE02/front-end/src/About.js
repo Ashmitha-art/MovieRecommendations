@@ -18,7 +18,7 @@ function About(){
     }
 
     // List of all current members
-    const members = ["Ashmitha Pais", "Steve Betts", "Preet Dhaliwal", "Chris Farnsworth", "Abdul Barrie", "Nathan Loo"];
+    const members = ["Ashmitha Pais: Team Lead", "Steve Betts: Scrum Master", "Preet Dhaliwal: Github Master", "Chris Farnsworth: Back-End Lead", "Abdul Barrie: Front-End Lead", "Nathan Loo: Product Owner"];
     const member_photos = [ashmitha_photo, steve_photo, preet_photo, chris_photo, abdul_photo, nathan_photo];
     const routes = ["ashmitha", "steve", "preet", "chris", "abdul", "nathan"];
 
