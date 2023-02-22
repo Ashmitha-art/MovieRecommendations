@@ -2,7 +2,7 @@
 import ashmitha_photo from './photos/ashmitha.jpg';
 import steve_photo from './photos/steve.png';
 import preet_photo from './photos/preet.jpg';
-import chris_photo from './photos/photo.jpg';
+import chris_photo from './photos/chris.jpg';
 import abdul_photo from './photos/abdul.jpg';
 import nathan_photo from './photos/nathan.jpg';
 
