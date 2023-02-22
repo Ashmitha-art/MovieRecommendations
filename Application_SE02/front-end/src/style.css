@@ -30,14 +30,13 @@ code {
     font-size: 16px;
     padding: 5px 20px 5px 20px;
     margin: 1px;
-    background-color: dodgerblue;
+    background-color: white;
     border: 2px solid black;
     border-radius: 10px;
 }
 .navbar-button:hover{
-    background-color: steelblue;
+    background-color: lightgrey;
 }
-
 /* Heading */
 .heading{
     margin: 20px auto 20px auto;
@@ -64,12 +63,38 @@ code {
 .member-photo{
     margin: 10px auto 10px auto;
     display: block;
-    width: 30%;
+    /*width: 200px;*/
+    height: 200px;
+    object-fit: cover;
     outline: black solid 3px;
 }
 
 .member-title{
     text-align: center;
+}
+
+/* Weekly Schedule + Study Plan */
+.weekly-schedule{
+    margin: 10px auto 10px auto;
+    border: dodgerblue solid 1px;
+}
+
+.weekly-schedule-title{
+    margin-top: 50px;
+    text-align: center;
+}
+
+th{
+    text-align: center;
+    border: dodgerblue solid 1px;
+    background-color: skyblue;
+    padding: 0px 10px 0px 10px;
+}
+
+td{
+    text-align: center;
+    border: dodgerblue solid 1px;
+    padding: 20px;
 }
 
 /* Individual Member Pages*/

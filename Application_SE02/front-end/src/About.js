@@ -37,7 +37,49 @@ function About(){
                     </div>
                 ))}
             </div>
+
+            <p class='weekly-schedule-title'><b>Weekly Schedule</b></p>
+            <table class='weekly-schedule'>
+                <tr>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td>Group Meeting <br/> In class</td>
+                    <td>Group Meeting <br/> 3:30 PM to 4:30 PM</td>
+                    <td> </td>
+                </tr>
+            </table>
+
+            <p class='weekly-schedule-title'><b>Study Plan</b></p>
+            <table class='weekly-schedule'>
+                <tr>
+                    <th>Ashmitha</th>
+                    <th>Steve</th>
+                    <th>Preet</th>
+                    <th>Chris</th>
+                    <th>Abdul</th>
+                    <th>Nathan</th>
+                </tr>
+                <tr>
+                    <td>Amazon AWS</td>
+                    <td>Django<br/>Python<br/>SQL</td>
+                    <td>Django<br/>Python<br/>SQL</td>
+                    <td>Django<br/>Python<br/>SQL<br/>Git<br/>Databases</td>
+                    <td>React<br/>SQL</td>
+                    <td>React<br/>SQL</td>
+                </tr>
+            </table>
+
         </div>
+
+        
+
     );
 
 }
