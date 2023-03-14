@@ -21,22 +21,29 @@ code {
   
 /* Navbar */
 .navbar{
-    width: 100%;
+    width: 99.8%;
     padding: 2px;
     background-color:dodgerblue;
 }
 
 .navbar-button{
     font-size: 16px;
+    font-style: white;
     padding: 5px 20px 5px 20px;
     margin: 1px;
     background-color: white;
     border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 .navbar-button:hover{
-    background-color: lightgrey;
+    background-color:lightgrey;
+    cursor: pointer;
 }
+
+#about{
+    float: right;
+}
+
 /* Heading */
 .heading{
     margin: 20px auto 20px auto;
@@ -63,8 +70,8 @@ code {
 .member-photo{
     margin: 10px auto 10px auto;
     display: block;
-    width: 100px;
-    height:100px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     outline: black solid 3px;
 }
@@ -114,7 +121,7 @@ td{
 }
 
 .info-text{
-
+    white-space: pre-line;
     max-width: 75%;
     margin: 10px auto 10px auto;
     text-align: center;

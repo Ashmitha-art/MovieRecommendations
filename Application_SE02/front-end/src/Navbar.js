@@ -10,9 +10,9 @@ function Navbar(){
     } 
 
     return (
-        <nav class='navbar'>
-            <button onClick={() => {routeChange('')}} class='navbar-button'>Home</button>
-            <button onClick={() => {routeChange('')}} class='navbar-button'>About</button>
+        <nav className='navbar'>
+            <button onClick={() => {routeChange('')}} className='navbar-button'>Home</button>
+            <button onClick={() => {routeChange('about')}} className='navbar-button' id='about'>About</button>
         </nav>
     );
 }
