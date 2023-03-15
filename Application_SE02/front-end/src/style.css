@@ -15,8 +15,7 @@ body {
 }
   
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
   
 /* Navbar */
@@ -26,7 +25,7 @@ code {
     background-color:dodgerblue;
 }
 
-.navbar-button{
+.navbar-button, .theme-toggle{
     font-size: 16px;
     font-style: white;
     padding: 5px 20px 5px 20px;
@@ -35,12 +34,28 @@ code {
     border: 2px solid black;
     border-radius: 20px;
 }
-.navbar-button:hover{
+.navbar-button:hover, .theme-toggle:hover{
     background-color:lightgrey;
     cursor: pointer;
 }
 
 #about{
+    float: right;
+}
+
+/* THEME TOGGLE */
+
+.dark{
+    background-color: #333;
+    color: #fff;
+}
+
+.light{
+    background-color: #fff;
+    color: black;
+}
+
+.theme-toggle{
     float: right;
 }
 
@@ -54,6 +69,18 @@ code {
 /* Home */
 .error, data{
     text-align: center;
+}
+
+.home-page-search{
+    display: block;
+    width: fit-content;
+    margin: 5px auto 5px auto;
+}
+
+.home-page-search-input, .home-page-submit, .test-query{
+    margin: auto;
+    width: fit-content;
+    min-height: 20px;
 }
 
 /* About Page */
