@@ -49,7 +49,7 @@ function About(){
                 <tr>
                     <td> </td>
                     <td> </td>
-                    <td>Group Meeting <br/> In className</td>
+                    <td>Group Meeting <br/> In class</td>
                     <td>Group Meeting <br/> 3:30 PM to 4:30 PM</td>
                     <td> </td>
                 </tr>

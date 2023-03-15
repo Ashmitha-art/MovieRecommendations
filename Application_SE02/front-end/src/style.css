@@ -51,6 +51,11 @@ code {
     text-align: center;
 }
 
+/* Home */
+.error, data{
+    text-align: center;
+}
+
 /* About Page */
 .member-container{
     display: grid;
