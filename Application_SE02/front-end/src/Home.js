@@ -23,7 +23,7 @@ function Home(){
             <div className='test-query'>{query}</div>
             
             { data && <div className='data'>{ data }</div>}
-            { error && <div className='error'>Error: { error }<br/>Couldn't fetch data!</div>}
+            { error && <div className='error'>Error: "{ error }"<br/>Couldn't fetch data!</div>}
         </div>
     );
 

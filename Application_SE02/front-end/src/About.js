@@ -30,7 +30,7 @@ function About(){
 
             <div className='member-container'>
                 {member_titles.map((member, index) => (
-                    <div className='member' onClick={() => {routeChange(routes[index])}}>
+                    <div key={member} className='member' onClick={() => {routeChange(routes[index])}}>
                         <img className='member-photo' src={member_photos[index]} alt={member}/>
                         <p className='member-title'>{member}</p>
                     </div>
@@ -39,40 +39,44 @@ function About(){
             
             <p className='weekly-schedule-title'><b>Weekly Schedule</b></p>
             <table className='weekly-schedule'>
-                <tr>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td>Group Meeting <br/> In class</td>
-                    <td>Group Meeting <br/> 3:30 PM to 4:30 PM</td>
-                    <td> </td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th className='weekly-schedule_entry-heading'>Monday</th>
+                        <th className='weekly-schedule_entry-heading'>Tuesday</th>
+                        <th className='weekly-schedule_entry-heading'>Wednesday</th>
+                        <th className='weekly-schedule_entry-heading'>Thursday</th>
+                        <th className='weekly-schedule_entry-heading'>Friday</th>
+                    </tr>
+                    <tr>
+                        <td className='weekly-schedule_entry'> </td>
+                        <td className='weekly-schedule_entry'> </td>
+                        <td className='weekly-schedule_entry'>Group Meeting <br/> In class</td>
+                        <td className='weekly-schedule_entry'>Group Meeting <br/> 3:30 PM to 4:30 PM</td>
+                        <td className='weekly-schedule_entry'> </td>
+                    </tr>
+                </tbody>
             </table>
 
             <p className='weekly-schedule-title'><b>Study Plan</b></p>
             <table className='weekly-schedule'>
-                <tr>
-                    <th>Ashmitha</th>
-                    <th>Steve</th>
-                    <th>Preet</th>
-                    <th>Chris</th>
-                    <th>Abdul</th>
-                    <th>Nathan</th>
-                </tr>
-                <tr>
-                    <td>Amazon AWS</td>
-                    <td>Django<br/>Python<br/>SQL</td>
-                    <td>Django<br/>Python<br/>SQL</td>
-                    <td>Django<br/>Python<br/>SQL<br/>Git<br/>Databases</td>
-                    <td>React<br/>SQL</td>
-                    <td>React<br/>SQL</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th className='weekly-schedule_entry-heading'>Ashmitha</th>
+                        <th className='weekly-schedule_entry-heading'>Steve</th>
+                        <th className='weekly-schedule_entry-heading'>Preet</th>
+                        <th className='weekly-schedule_entry-heading'>Chris</th>
+                        <th className='weekly-schedule_entry-heading'>Abdul</th>
+                        <th className='weekly-schedule_entry-heading'>Nathan</th>
+                    </tr>
+                    <tr>
+                        <td className='weekly-schedule_entry'>Amazon AWS</td>
+                        <td className='weekly-schedule_entry'>Django<br/>Python<br/>SQL</td>
+                        <td className='weekly-schedule_entry'>Django<br/>Python<br/>SQL</td>
+                        <td className='weekly-schedule_entry'>Django<br/>Python<br/>SQL<br/>Git<br/>Databases</td>
+                        <td className='weekly-schedule_entry'>React<br/>SQL</td>
+                        <td className='weekly-schedule_entry'>React<br/>SQL</td>
+                    </tr>
+                </tbody>
             </table>
 
         </div>
