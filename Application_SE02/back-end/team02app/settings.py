@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'back-end.team02app.urls'
+ROOT_URLCONF = 'team02app.urls'
 
 TEMPLATES = [
     {
@@ -86,7 +88,10 @@ DATABASES = {
         'PORT': 3306,
         'USER': 'admin',
         'PASSWORD': 'rainbow77',
-        'NAME': 'Team0402'
+        'NAME': 'Team0402',
+        'OPTIONS': {
+            'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
 }
 }
 
