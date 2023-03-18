@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Fetch from "./Fetch.js";
+import VerticalSlice from './VerticalSlice.js';
 
 function Home(){
 
-    const {data, error} = Fetch("test");
     const [query, setQuery] = useState('');
 
     return(
@@ -22,8 +22,14 @@ function Home(){
 
             <div className='test-query'>{query}</div>
             
-            { data && <div className='data'>{ data }</div>}
-            { error && <div className='error'>Error: "{ error }"<br/>Couldn't fetch data!</div>}
+            <VerticalSlice url='/api/users/' contents='users'/>
+            <VerticalSlice url='/api/movies/' contents='movies'/>
+            <VerticalSlice url='/api/usermovies/' contents='usermovies'/>
+            <VerticalSlice url='/api/userrecs/' contents='userrecs'/>
+            <VerticalSlice url='/api/genres/' contents='genres'/>
+            <VerticalSlice url='/api/moviegenres/' contents='moviegenres'/>
+
+
         </div>
     );
 
