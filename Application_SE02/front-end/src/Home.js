@@ -19,7 +19,6 @@ function Home(){
                 />
                 <button className='home-page-submit'>Submit</button>
             </div>
-
             <div className='test-query'>{query}</div>
             
             <VerticalSlice url='/api/users/' contents='users'/>

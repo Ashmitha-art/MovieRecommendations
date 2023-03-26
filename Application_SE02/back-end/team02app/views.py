@@ -2,14 +2,14 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import render
 from django.contrib.auth.models import User
-#from .models import *
+from .models import *
 from .serializers import *
 
 
 def index(request):
     return render(request, 'index.html')
 
-""" @api_view(['GET'])
+@api_view(['GET'])
 def users_list(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
@@ -43,5 +43,5 @@ def genres_list(request):
 def moviegenres_list(request):
     moviegenres = MovieGenre.objects.all()
     serializer = MovieGenreSerializer(moviegenres, many=True)
-    return Response(serializer.data) """
+    return Response(serializer.data)
 
