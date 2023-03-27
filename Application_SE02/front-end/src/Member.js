@@ -7,14 +7,9 @@ import nathan_photo from './photos/nathan.jpg';
  
 function Member({name}){
     
-    let ashmitha_text = "Hi, I'm Ashmitha Dale Pais, a computer science graduate with a Bachelor's degree from The Oxford College of Engineering in Bangalore, India. " +
-        "Currently, I am pursuing a Master's degree in Computer Science at San Francisco State University. " + 
-        "\n\n" +
-        "In terms of my academic projects, I have worked on a Blood and Organ Donation Management System using HTML, CSS, PL/SQL, and Apache Tomcat, as well as a Grocery Management System utilizing NodeJS, React frameworks, and Postgres DB. " +
-        "\n\n" +
-        "My technical skills include proficiency in Java, Python, C, PL/SQL, and JavaScript, as well as experience with tools such as Git, Docker, Jira, and Splunk. " + 
-        "I have also utilized various libraries such as pandas, numpy, matplotlib, sklearn, seaborn, and scikit for machine learning projects.";
-    let steve_text = "I work in both client-facing and product roles for technology companies. " + 
+    let ashmitha_text = "Hey! I'm Ashmitha Pais, an MS student at SFSU. I've always been fascinated by computers, data and their intricacy. I enjoy reading and fixing problems. \n In my free time, I listen to a lot of music. I would like to work on real issues and help develop products that make people's lives easier."+
+         " Working with diverse talented individuals helps me grow, challenges me and evolves my perspective." ;
+    let steve_text = "I work in both client-facing and product roles for technology companies. " +
         "I specialize in leveraging my software background, passion for technology, and empathy for customers to build loyal relationships and deliver meaningful products. " + 
         "Strong affinity for lean environments and iterating products.";
     let preet_text = "Hi, my name is Preet Dhaliwal. I am a Computer Science Student at SFSU " + 
