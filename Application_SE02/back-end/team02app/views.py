@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import *
 from .serializers import *
+import openai
+from settings import OPENAI_API_KEY
 
 
 def index(request):
@@ -44,4 +46,37 @@ def moviegenres_list(request):
     moviegenres = MovieGenre.objects.all()
     serializer = MovieGenreSerializer(moviegenres, many=True)
     return Response(serializer.data)
+
+#Internal functions for creating/parsing GPT output
+def query_gpt(genres, years, runtime, rating, likes, dislikes):
+    genres_str = ', '.join(genres)
+    years_str = ', '.join(years)
+    runtimes_str = ', '.join(runtime)
+    ratings_str = ', '.join(rating)
+    likes_str = ', '.join(likes)
+    dislikes_str = ', '.join(dislikes)
+
+    prompt = (f"A table listing 10 movie recommendations based on the following preferences:\n\n"
+              f"Genres: {genres_str}\n"
+              f"Years: {years_str}\n"
+              f"Runtimes: {runtimes_str}\n"
+              f"Age Ratings: {ratings_str}\n"
+              f"Liked movies: {likes_str}\n"
+              f"Disliked movies: {dislikes_str}\n\n"
+              f"| Movie Title | Year | Age Rating |\n"
+              f"| ----------- | ---- | ---------- |")
+
+    api_key = OPENAI_API_KEY
+
+    openai.api_key = api_key
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=prompt,
+        temperature=0.8,
+        max_tokens=1500,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0)
+
+    return response.choices[0].text
 
