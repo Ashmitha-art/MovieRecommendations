@@ -197,6 +197,7 @@ code {
     text-align: center;
 }
 
+/* Select Genre */
 .genre-button-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -230,4 +231,5 @@ code {
 
 .genre-button-text{
     margin: auto;
+    color: black;
 }
