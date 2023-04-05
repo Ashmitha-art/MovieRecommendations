@@ -1,18 +1,21 @@
 import { useState } from 'react'
-import VerticalSlice from './VerticalSlice.js';
+import PickGenre from './PickGenre';
 
 function Home(){
 
+    const [genre, setGenre] = useState([]);
+    const [year, setYear] = useState('');
+    const [runtime, setRuntime] = useState('');
+    const [age, setAge] = useState(''); 
+
     return(
         <div>
-            <h1 className='heading'>This is the home page!</h1>
+            <h1 className='heading'>Welcome to MovAI</h1>
+
+            <PickGenre element={genre} setElement={setGenre}/> 
+
+            <p>{ genre }</p>
             
-            <VerticalSlice url='/api/movies/' contents='movies'/>
-            <VerticalSlice url='/api/users/' contents='users'/>
-            <VerticalSlice url='/api/usermovies/' contents='usermovies'/>
-            <VerticalSlice url='/api/userrecs/' contents='userrecs'/>
-            <VerticalSlice url='/api/genres/' contents='genres'/>
-            <VerticalSlice url='/api/moviegenres/' contents='moviegenres'/>
 
         </div>
     );
