@@ -1,5 +1,5 @@
 import Fetch from "./Fetch.js";
-import {useEffect, useState } from 'react';
+import {useState } from 'react';
 
 function VerticalSlice({url, contents}){
 
