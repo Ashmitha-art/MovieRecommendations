@@ -2,6 +2,7 @@ import Home from './Home.js';
 import About from './About.js';
 import Navbar from './Navbar.js';
 import Member from './Member.js';
+import SelectionSequence from './SelectionSequence.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
                 <div className='content'>
                     <Routes>
                         <Route path='/' element={<Home/>}></Route>
+                        <Route path='/recommend' element={<SelectionSequence/>}></Route>
                         <Route path='/about' element={<About/>}></Route>
 
                         <Route path='/ashmitha' element={<Member name="Ashmitha Pais"/>}></Route>

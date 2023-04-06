@@ -9,7 +9,6 @@ import SelectAge from './SelectAge';
 function SelectionSequence(){
 
     const [current, setCurrent] = useState('genre');
-    const [next, toggleNext] = useState(false);
 
     const [genre, setGenre] = useState([]);
     const [year, setYear] = useState('');
@@ -19,10 +18,14 @@ function SelectionSequence(){
     return (
         <div>
             { (current === 'genre') && <SelectGenre element={genre} setElement={setGenre}/>}
+            { (current === 'year') && <SelectYear setElement={setYear}/>}            
 
-            <p>{ genre }</p>
+            { (genre.length != 0) && (current ==='genre') && <button className='next-button' onClick={()=>{setCurrent('year')}}>Next</button>}
+            { (year != '') && (current ==='year') && <button className='next-button' onClick={()=>{setCurrent('runtime')}}>Next</button>}
 
-            { (next || genre.length != 0) && <button>Next</button>}
+            <p className='test'>{ genre }</p>
+            <p className='test'>{ year }</p>
+
 
         </div>
         

@@ -1,15 +1,22 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import SelectionSequence from './SelectionSequence';
 
 
 function Home(){
 
+    let navigate = useNavigate();
+
+    const routeChange = (route) => {
+        let path = '/' + route;
+        navigate(path);
+    } 
 
     return(
         <div>
             <h1 className='heading'>Welcome to MovAI!</h1>
 
-            <SelectionSequence/>
+            <button className='get-started' onClick={() => {routeChange('recommend')}}>Get Started!</button>
             
         </div>
     );
