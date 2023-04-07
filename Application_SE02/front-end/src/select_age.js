@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function SelectAge(element, setElement){
+function SelectAge(element, set_element){
 
 }
 

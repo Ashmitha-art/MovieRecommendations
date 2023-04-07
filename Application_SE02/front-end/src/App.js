@@ -1,8 +1,8 @@
-import Home from './Home.js';
-import About from './About.js';
-import Navbar from './Navbar.js';
-import Member from './Member.js';
-import SelectionSequence from './SelectionSequence.js';
+import Home from './Home';
+import About from './About';
+import Navbar from './Navbar';
+import Member from './Member';
+import SelectionSequence from './selection_sequence';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {

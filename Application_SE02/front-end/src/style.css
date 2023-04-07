@@ -311,3 +311,52 @@ code {
     color: black;
     text-align: center;
 }
+
+/* Select Runtime */
+.runtime-button-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 80%;
+    margin: auto;
+}
+
+.runtime-button-on, .runtime-button-off{
+    padding: 80px 20px 80px 20px;
+    font-size: 24px;
+    border: 1px black solid;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.runtime-button-checkbox{
+    display: none;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+}
+
+.runtime-button-off{
+    background-color: white;
+}
+
+.runtime-button-off:hover{
+    background-color: lightgrey;
+    cursor: pointer;
+
+}
+
+.runtime-button-on{
+    background-color: lightgrey;
+}
+
+.runtime-button-on:hover{
+    background-color: grey;
+    cursor: pointer;
+
+}
+
+.runtime-button-text{
+    margin: auto;
+    color: black;
+    text-align: center;
+}
