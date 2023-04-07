@@ -224,6 +224,15 @@ code {
     filter: drop-shadow(0 0 1px rgb(0, 0, 0));
 }
 
+
+.ErrorMessage {
+    display: block;
+    text-align: center;
+    max-width: fit-content;
+    color: red;
+    font-size: 15px;
+  }
+
 .Login_Button:hover, .SignUp_Button:hover {
     animation: ButtonFade 1s  infinite ;
   }
