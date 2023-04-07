@@ -79,7 +79,7 @@ function SelectGenre({element, set_element}){
 
     return (
         <div>
-            <h2 className='home-page-picker-title'>1: Pick a genre</h2>
+            <h2 className='home-page-picker-title'>1: Pick a genre (Up to {genre_limit})</h2>
             <div className='genre-button-container'>
                 {genres.map((element, index) => (
                     <label key={index} className={`genre-button-${element.state ? 'on' : 'off'}`}>

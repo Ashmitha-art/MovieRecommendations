@@ -30,16 +30,16 @@ function SelectRuntime({element, set_element}){
 
     function handle_click(runtime){
  
+        function add_runtime(x){
+            set_element(element => [...element, x]);
+            set_runtime_num(runtime_num + 1);
+        }
+
         function remove_runtime(x){
             set_element(element.filter((runtime)=>{return runtime != x}))
             set_runtime_num(runtime_num - 1);
         }
 
-        function add_runtime(x){
-            set_element(element => [...element, x]);
-            set_runtime_num(runtime_num + 1);
-        }
-        
         const new_runtimes = runtimes.map((x) => {
             if(x.runtime === runtime){
                 if(x.state){
@@ -51,19 +51,19 @@ function SelectRuntime({element, set_element}){
                         return { ...x, state: true }
                     }
                     return x;
-                    
                 }
             } else {
                 return x;
             }
         })
+        
         set_runtimes(new_runtimes);
         
     }
 
     return (
         <div>
-            <h2 className='home-page-picker-title'>3: Pick a runtime range</h2>
+            <h2 className='home-page-picker-title'>3: Pick a runtime range (Up to {runtime_limit})</h2>
             <div className='runtime-button-container'>
                 {runtimes.map((element, index) => (
                     <label key={index} className={`runtime-button-${element.state ? 'on' : 'off'}`}>

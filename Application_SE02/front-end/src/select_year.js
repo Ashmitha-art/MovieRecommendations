@@ -63,7 +63,7 @@ function SelectYear({element, set_element}){
 
     return (
         <div>
-            <h2 className='home-page-picker-title'>2: Pick a year range</h2>
+            <h2 className='home-page-picker-title'>2: Pick a year range (Up to {year_limit})</h2>
             <div className='year-button-container'>
                 {years.map((element, index) => (
                     <label key={index} className={`year-button-${element.state ? 'on' : 'off'}`}>

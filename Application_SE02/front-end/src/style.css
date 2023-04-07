@@ -264,14 +264,14 @@ code {
 }
 
 /* Select Year */
-.year-button-container{
+.year-button-container, .runtime-button-container, .age-button-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     width: 80%;
     margin: auto;
 }
 
-.year-button-on, .year-button-off{
+.year-button-on, .year-button-off, .runtime-button-on, .runtime-button-off, .age-button-on, .age-button-off{
     padding: 80px 20px 80px 20px;
     font-size: 24px;
     border: 1px black solid;
@@ -279,83 +279,33 @@ code {
     margin: 5px;
 }
 
-.year-button-checkbox{
+.year-button-checkbox, .runtime-button-checkbox, .age-button-checkbox{
     display: none;
     opacity: 0;
     width: 0px;
     height: 0px;
 }
 
-.year-button-off{
+.year-button-off, .runtime-button-off, .age-button-off{
     background-color: white;
 }
 
-.year-button-off:hover{
+.year-button-off:hover, .runtime-button-off:hover, .age-button-off:hover{
     background-color: lightgrey;
     cursor: pointer;
 
 }
 
-.year-button-on{
+.year-button-on, .runtime-button-on, .age-button-on{
     background-color: lightgrey;
 }
 
-.year-button-on:hover{
+.year-button-on:hover, .runtime-button-on:hover, .age-button-on:hover{
     background-color: grey;
     cursor: pointer;
-
 }
 
-.year-button-text{
-    margin: auto;
-    color: black;
-    text-align: center;
-}
-
-/* Select Runtime */
-.runtime-button-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    width: 80%;
-    margin: auto;
-}
-
-.runtime-button-on, .runtime-button-off{
-    padding: 80px 20px 80px 20px;
-    font-size: 24px;
-    border: 1px black solid;
-    border-radius: 10px;
-    margin: 5px;
-}
-
-.runtime-button-checkbox{
-    display: none;
-    opacity: 0;
-    width: 0px;
-    height: 0px;
-}
-
-.runtime-button-off{
-    background-color: white;
-}
-
-.runtime-button-off:hover{
-    background-color: lightgrey;
-    cursor: pointer;
-
-}
-
-.runtime-button-on{
-    background-color: lightgrey;
-}
-
-.runtime-button-on:hover{
-    background-color: grey;
-    cursor: pointer;
-
-}
-
-.runtime-button-text{
+.year-button-text, .runtime-button-text, .age-button-text{
     margin: auto;
     color: black;
     text-align: center;
