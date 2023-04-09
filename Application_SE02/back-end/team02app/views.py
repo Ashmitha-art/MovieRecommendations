@@ -45,3 +45,11 @@ def moviegenres_list(request):
     serializer = MovieGenreSerializer(moviegenres, many=True)
     return Response(serializer.data)
 
+@api_view(['POST'])
+def movielikesdislikes_list(request):
+    movieliked = UserMovie.objects.filter(user_id=request.data['user_id'], rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
+    moviedisliked = UserMovie.objects.filter(user_id=request.data['user_id'], rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
+
+    response = {'likedMovies': movieliked, 'dislikedMovies': moviedisliked}
+
+    return Response(response)
