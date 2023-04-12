@@ -63,12 +63,13 @@ function SelectRuntime({element, set_element}){
 
     return (
         <div>
-            <h2 className='home-page-picker-title'>3: Pick a runtime range (Up to {runtime_limit})</h2>
+            <h2 className='heading'>3: Select a Runtime Range (Up to {runtime_limit})</h2>
             <div className='runtime-button-container'>
                 {runtimes.map((element, index) => (
                     <label key={index} className={`runtime-button-${element.state ? 'on' : 'off'}`}>
                         <input className='runtime-button-checkbox' type='checkbox' onClick={() => {handle_click(element.runtime)}}/>
-                        <p className='runtime-button-text'>{element.runtime}<br/>{element.desc}</p>
+                        <p className='runtime-button-text'>{element.runtime}<br/></p>
+                        <p className='runtime-button-desc-text'>{element.desc}</p>
                     </label>
                 ))}
             </div>

@@ -63,12 +63,13 @@ function SelectAge({element, set_element}){
 
     return (
         <div>
-            <h2 className='home-page-picker-title'>4: Pick an age range (Up to {age_limit})</h2>
+            <h2 className='heading'>4: Select an Age Range (Up to {age_limit})</h2>
             <div className='age-button-container'>
                 {ages.map((element, index) => (
                     <label key={index} className={`age-button-${element.state ? 'on' : 'off'}`}>
                         <input className='age-button-checkbox' type='checkbox' onClick={() => {handle_click(element.age)}}/>
-                        <p className='age-button-text'>({element.age})<br/>{element.desc}</p>
+                        <p className='age-button-text'>({element.age})<br/></p>
+                        <p className='age-button-desc-text'>{element.desc}</p>
                     </label>
                 ))}
             </div>

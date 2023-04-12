@@ -63,12 +63,13 @@ function SelectYear({element, set_element}){
 
     return (
         <div>
-            <h2 className='home-page-picker-title'>2: Pick a year range (Up to {year_limit})</h2>
+            <h2 className='heading'>2: Select a Year Range (Up to {year_limit})</h2>
             <div className='year-button-container'>
                 {years.map((element, index) => (
                     <label key={index} className={`year-button-${element.state ? 'on' : 'off'}`}>
                         <input className='year-button-checkbox' type='checkbox' onClick={() => {handle_click(element.year)}}/>
-                        <p className='year-button-text'>{element.year}!<br/>{element.desc}</p>
+                        <p className='year-button-text'>{element.year}!<br/></p>
+                        <p className='year-button-desc-text'>{element.desc}</p>
                     </label>
                 ))}
             </div>

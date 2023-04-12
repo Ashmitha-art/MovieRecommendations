@@ -12,59 +12,41 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(30,30,30);
+    color: white;
+
 }
   
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
-
-/* Theme toggle */
-.dark{
-    background-color: #2c2c2c;
-    color: #fff;
-}
-
-.light{
-    background-color: #fff;
-    color: black;
-}
   
 /* Navbar */
-.navbar-light, .navbar-dark{
-    width: 99.8%;
-    padding: 2px;
+.navbar{
+    background-color:rgb(165, 42, 42);
+    width: 99%;
+    padding: 10px;
 }
 
-.navbar-light{
-    background-color: dodgerblue;
-}
-
-.navbar-dark{
-    background-color: darkred;
-}
-
-.navbar-button, .theme-toggle{
+.navbar-button{
     font-size: 16px;
-    font-style: white;
-    padding: 5px 20px 5px 20px;
-    margin: 1px;
-    background-color: white;
-    border: 2px solid black;
+    padding: 10px 20px 10px 20px;
+    margin: 5px;
+    color: white;
+    background-color: rgb(165, 42, 42);
+    border: none;
     border-radius: 20px;
+    transition-duration: 0.2s;
 }
-.navbar-button:hover, .theme-toggle:hover{
-    background-color:lightgrey;
+.navbar-button:hover{
+    background-color:rgb(125, 31, 31);
     cursor: pointer;
-}
-
-#about, #theme-toggle{
-    float: right;
 }
 
 /* Heading */
 .heading{
-    margin: 20px auto 20px auto;
-    width: 50%;
+    margin: 25px auto 25px auto;
+    font-size: 36px;
     text-align: center;
 }
 
@@ -100,6 +82,7 @@ code {
     background-color: white;
     margin-left: 5px;
 }
+
 .home-page-submit:hover{
     background-color: lightgrey;
     cursor: pointer;
@@ -107,37 +90,51 @@ code {
 }
 
 .get-started{
+    font-size: 36px;
     display: grid;
-    font-size: 24px;
     margin: auto;
-    padding: 20px;
+    padding: 30px;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    background-color: rgb(165, 42, 42);
+    transition-duration: 0.2s;
+}
+
+.get-started:hover{
+    cursor: pointer;
+    background-color: rgb(125, 31, 31);
 }
 
 /* About Page */
 .member-container{
     display: grid;
+    border: white 1px solid;
+    border-radius: 50px;
     grid-template-columns: 1fr 1fr 1fr;
-    margin: 20px auto 20px auto;
+    margin: 25px auto 75px auto;
     width: 75%
 }
 
 .member{
     display: block;
+    padding: 20px;
     margin: 20px;
+    transition-duration: 0.1s;
+    border-radius: 50px;
 }
 .member:hover{
-    box-shadow: 1px 1px 3px black;
+    background-color: rgb(45, 45, 45);
     cursor: pointer;
-
 }
 
 .member-photo{
     margin: 10px auto 10px auto;
     display: block;
-    width: 150px;
-    height: 150px;
+    width: 175px;
+    height: 175px;
     object-fit: cover;
-    outline: black solid 3px;
+    outline: white solid 2px;
 }
 
 .member-title{
@@ -146,23 +143,24 @@ code {
 
 /* Weekly Schedule + Study Plan */
 .weekly-schedule{
-    margin: 10px auto 10px auto;
-    border: dodgerblue solid 2px;
+    margin: 25px auto 75px auto;
+    border: rgb(165, 42, 42) solid 2px;
 }
 
 .weekly-schedule-title{
     margin-top: 50px;
+    font-size: 24px;
     text-align: center;
 }
 
 .weekly-schedule_entry-heading, .weekly-schedule_entry{
     text-align: center;
     padding: 15px;
-    border: dodgerblue solid 1px;
+    border: rgb(165, 42, 42) solid 1px;
 }
 
 .weekly-schedule_entry-heading{
-    background-color: cornflowerblue;
+    background-color: rgb(165, 42, 42);
 }
 
 /* Individual Member Pages*/
@@ -189,26 +187,22 @@ code {
     
 }
 
-/* Vertical Slice */
-.vertical-slice{
-    margin: 20px auto 20px auto;
-    padding: 20px;
-    border: 1px black solid;
-    width: fit-content;
-    text-align: center;
-}
-
 /* Selection Pages */
-.home-page-picker-title{
-    margin: 50px auto 25px auto;
-    text-align: center;
+.next-button{
+    display: grid;
+    padding: 30px 50px 30px 50px;
+    margin: 25px auto 25px auto;
+    font-size: 36px;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    background-color: rgb(165, 42, 42);
+    transition-duration: 0.2s;
 }
 
-.next-button{
-    padding: 20px;
-    display: grid;
-    margin: 20px auto 20px auto;
-    font-size: 24px
+.next-button:hover{
+    cursor: pointer;
+    background-color: rgb(125, 31, 31);
 }
 
 .test{
@@ -219,34 +213,37 @@ code {
 .genre-button-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    width: 50%;
+    width: 60%;
     margin: auto;
+    border: 1px white solid;
+    border-radius: 30px;
+    padding: 20px;
 }
 
 .genre-button-off, .genre-button-on{
-    padding: 20px;
+    transition-duration: 0.2s;
+    padding: 40px 20px 40px 20px;
     font-size: 24px;
-    border: 1px black solid;
-    border-radius: 10px;
+    border-radius: 30px;
     margin: 5px;
 }
 
 .genre-button-off{
-    background-color: white;
+    background-color: rgb(30,30,30);
 }
 
 .genre-button-off:hover{
-    background-color: lightgrey;
+    background-color: rgb(45, 45, 45);
     cursor: pointer;
 
 }
 
 .genre-button-on{
-    background-color: lightgrey;
+    background-color: rgb(45, 45, 45);
 }
 
 .genre-button-on:hover{
-    background-color: grey;
+    background-color: rgb(60, 60, 60);
     cursor: pointer;
 
 }
@@ -260,22 +257,27 @@ code {
 
 .genre-button-text{
     margin: auto;
-    color: black;
+    color: white;
+    text-align: center;
 }
 
 /* Select Year */
 .year-button-container, .runtime-button-container, .age-button-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    width: 80%;
+    width: 60%;
     margin: auto;
+    border: 1px white solid;
+    border-radius: 30px;
+    padding: 20px;
 }
 
 .year-button-on, .year-button-off, .runtime-button-on, .runtime-button-off, .age-button-on, .age-button-off{
-    padding: 80px 20px 80px 20px;
+    transition-duration: 0.2s;
+    padding-top: 100px;
+    padding-bottom: 100px;
     font-size: 24px;
-    border: 1px black solid;
-    border-radius: 10px;
+    border-radius: 30px;
     margin: 5px;
 }
 
@@ -287,26 +289,31 @@ code {
 }
 
 .year-button-off, .runtime-button-off, .age-button-off{
-    background-color: white;
+    background-color: rgb(30,30,30);
 }
 
 .year-button-off:hover, .runtime-button-off:hover, .age-button-off:hover{
-    background-color: lightgrey;
+    background-color: rgb(45,45,45);
     cursor: pointer;
 
 }
 
 .year-button-on, .runtime-button-on, .age-button-on{
-    background-color: lightgrey;
+    background-color: rgb(45,45,45);
 }
 
 .year-button-on:hover, .runtime-button-on:hover, .age-button-on:hover{
-    background-color: grey;
+    background-color: rgb(60,60,60);
     cursor: pointer;
 }
 
 .year-button-text, .runtime-button-text, .age-button-text{
     margin: auto;
-    color: black;
+    color: white;
+    text-align: center;
+}
+
+.year-button-desc-text, .runtime-button-desc-text, .age-button-desc-text{
+    font-size: 20px;
     text-align: center;
 }

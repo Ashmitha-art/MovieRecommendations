@@ -25,8 +25,7 @@ function About(){
     return (
         <div>
             <h1 className="heading">CSC 648 - Software Engineering</h1>
-            <h2 className="heading">Section 4</h2>
-            <h3 className="heading">Team 02</h3>
+            <h2 className="heading">Section 4 | Team 2</h2>
 
             <div className='member-container'>
                 {member_titles.map((member, index) => (
@@ -70,11 +69,11 @@ function About(){
                     </tr>
                     <tr>
                         <td className='weekly-schedule_entry'>Amazon AWS</td>
-                        <td className='weekly-schedule_entry'>Django<br/>Python<br/>SQL</td>
-                        <td className='weekly-schedule_entry'>Django<br/>Python<br/>SQL</td>
-                        <td className='weekly-schedule_entry'>Django<br/>Python<br/>SQL<br/>Git<br/>Databases</td>
-                        <td className='weekly-schedule_entry'>React<br/>SQL</td>
-                        <td className='weekly-schedule_entry'>React<br/>SQL</td>
+                        <td className='weekly-schedule_entry'>Django<br/>Python</td>
+                        <td className='weekly-schedule_entry'>Django<br/>Python<br/>Git</td>
+                        <td className='weekly-schedule_entry'>Django<br/>Python<br/>SQL<br/>Databases</td>
+                        <td className='weekly-schedule_entry'>React<br/>Javascript</td>
+                        <td className='weekly-schedule_entry'>React<br/>Javascript</td>
                     </tr>
                 </tbody>
             </table>
