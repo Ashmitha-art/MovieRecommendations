@@ -81,8 +81,8 @@ def get_movie_recommendations(request):
         #user_id = request.user.id
         #likes = UserMovie.objects.filter(user_id=user_id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
         #dislikes = UserMovie.objects.filter(user_id=user_id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
-        likes = "The Matrix"
-        dislikes = "Beautiful Mind"
+        likes = "Wife Number Two"
+        dislikes = "King of the Circus"
 
         gpt_response = query_gpt(genres, years, runtime, rating, likes, dislikes)
         parsed_results = parse_gpt_output(gpt_response)
@@ -93,22 +93,17 @@ def get_movie_recommendations(request):
 
 #Internal functions for creating/parsing GPT output
 def query_gpt(genres, years, runtime, rating, likes, dislikes):
-    genres_str = ', '.join(genres)
-    years_str = ', '.join(years)
-    runtimes_str = ', '.join(runtime)
-    ratings_str = ', '.join(rating)
-    likes_str = ', '.join(likes)
-    dislikes_str = ', '.join(dislikes)
 
     prompt = (f"A table listing 10 movie recommendations based on the following preferences:\n\n"
-              f"Genres: {genres_str}\n"
-              f"Years: {years_str}\n"
-              f"Runtimes: {runtimes_str}\n"
-              f"Age Ratings: {ratings_str}\n"
-              f"Liked movies: {likes_str}\n"
-              f"Disliked movies: {dislikes_str}\n\n"
-              f"| Movie Title | Age Rating |\n"
-              f"| ----------- | ---------- |")
+              f"Genres: {genres}\n"
+              f"Years: {years}\n"
+              f"Runtimes: {runtime}\n"
+              f"Age Ratings: {rating}\n"
+              f"Liked movies: {likes}\n"
+              f"Disliked movies: {dislikes}\n\n"
+              f"Ensure that the movies fall within the specified preferences and that the movies are not in the list of liked or disliked movies.\n"
+              f"| Movie Title | Year | Age Rating |\n"
+              f"| ----------- | ---- | ---------- |")
 
     api_key = OPENAI_API_KEY
 
@@ -116,7 +111,7 @@ def query_gpt(genres, years, runtime, rating, likes, dislikes):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
-        temperature=0.8,
+        temperature=0.7,
         max_tokens=1500,
         top_p=1,
         frequency_penalty=0,
@@ -140,14 +135,15 @@ def parse_gpt_output(gpt_output):
 
         # Extract movie title and age rating from the columns
         movie_title = columns[0]
-        age_rating = columns[1]
+        movie_year = int(columns[1])
+        age_rating = columns[2]
 
         # Query the database for the movie information
-        """ try:
-            movie = Movie.objects.get(title=movie_title)
+        try:
+            movie = Movie.objects.get(title=movie_title, year=movie_year)
             year = movie.year
             runtime = movie.runtime
-            genres = [mg.genre.genre for mg in MovieGenre.objects.filter(movie=movie)]
+            #genres = [mg.genre.genre for mg in MovieGenre.objects.filter(movie=movie)]
 
             # Add the movie to the list
             movies.append({
@@ -155,14 +151,11 @@ def parse_gpt_output(gpt_output):
                 'year': year,
                 'runtime': runtime,
                 'age_rating': age_rating,
-                'genres': genres
+                #'genres': genres
             })
         except Movie.DoesNotExist:
-            print(f"Movie '{movie_title}' not found in the database.") """
-        movies.append({
-            'movie_title': movie_title,
-            'age_rating': age_rating
-            })
+            print(f"Movie '{movie_title} {movie_year}' not found in the database.")
+
 
     return movies
 
