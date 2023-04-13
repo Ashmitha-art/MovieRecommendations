@@ -22,11 +22,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name = 'index'),
-    path('api/users/', views.users_list, name = 'users_list'),
     path('api/movies/', views.movies_list, name = 'movies_list'),
     path('api/usermovies/', views.usermovies_list, name = 'usermovies_list'),
     path('api/userrecs/', views.userrecs_list, name = 'userrecs_list'),
     path('api/genres/', views.genres_list, name = 'genres_list'),
     path('api/moviegenres/', views.moviegenres_list, name = 'moviegenres_list'),
-    path('api/get_movie_recommendations/', views.get_movie_recommendations, name = 'get_movie_recommendations'),
+    path('api/get_movie_recommendations/', views.get_movie_recommendations, name = 'get_movie_recommendations')
 ]

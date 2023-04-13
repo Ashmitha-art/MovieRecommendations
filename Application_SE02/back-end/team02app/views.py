@@ -4,6 +4,9 @@ from django.utils.decorators import method_decorator
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework import generics
+from rest_framework import views
+from rest_framework import permissions
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import *
@@ -16,12 +19,13 @@ from .settings import OPENAI_API_KEY
 @ensure_csrf_cookie
 def index(request):
     return render(request, 'index.html')
-
+"""
 @api_view(['GET'])
 def users_list(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
+"""
 
 @api_view(['GET'])
 def movies_list(request):
@@ -52,7 +56,18 @@ def moviegenres_list(request):
     moviegenres = MovieGenre.objects.all()
     serializer = MovieGenreSerializer(moviegenres, many=True)
     return Response(serializer.data)
+"""
+class LoginView(views.APIView):
+    permission_classes = (permissions.AllowAny,)
 
+    def post(self, request, format=None):
+        serializer = serializers.LoginSerializer(data=self.request.data,
+            context={'request': self.request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        login(request, user)
+        return Response(None, status=status.HTTP_202_ACCEPTED)
+"""
 @api_view(['POST'])
 @csrf_exempt
 #@permission_classes([IsAuthenticated])
