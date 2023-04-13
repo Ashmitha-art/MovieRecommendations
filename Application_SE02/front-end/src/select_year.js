@@ -68,7 +68,7 @@ function SelectYear({element, set_element}){
                 {years.map((element, index) => (
                     <label key={index} className={`year-button-${element.state ? 'on' : 'off'}`}>
                         <input className='year-button-checkbox' type='checkbox' onClick={() => {handle_click(element.year)}}/>
-                        <p className='year-button-text'>{element.year}!<br/></p>
+                        <p className='year-button-text'>{element.year}<br/></p>
                         <p className='year-button-desc-text'>{element.desc}</p>
                     </label>
                 ))}

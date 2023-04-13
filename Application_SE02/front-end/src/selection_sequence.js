@@ -3,6 +3,7 @@ import SelectGenre from './select_genre';
 import SelectYear from './select_year';
 import SelectRuntime from './select_runtime';
 import SelectAge from './select_age';
+import Results from './results';
 
 function SelectionSequence(){
 

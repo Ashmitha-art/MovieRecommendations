@@ -24,7 +24,7 @@ code {
 /* Navbar */
 .navbar{
     background-color:rgb(165, 42, 42);
-    width: 99%;
+    width: 98.4%;
     padding: 10px;
 }
 
@@ -76,7 +76,7 @@ code {
 
 .home-page-submit{
     font-size: 16px;
-    padding: 5px;
+    padding: 15px;
     border: black 2px solid;
     border-radius: 20px;
     background-color: white;
@@ -90,10 +90,10 @@ code {
 }
 
 .get-started{
-    font-size: 36px;
+    font-size: 24px;
     display: grid;
     margin: auto;
-    padding: 30px;
+    padding: 15px;
     border: none;
     border-radius: 50px;
     color: white;
@@ -118,8 +118,8 @@ code {
 
 .member{
     display: block;
-    padding: 20px;
-    margin: 20px;
+    padding: 10px;
+    margin: 10px;
     transition-duration: 0.1s;
     border-radius: 50px;
 }
@@ -131,8 +131,8 @@ code {
 .member-photo{
     margin: 10px auto 10px auto;
     display: block;
-    width: 175px;
-    height: 175px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     outline: white solid 2px;
 }
@@ -190,9 +190,9 @@ code {
 /* Selection Pages */
 .next-button{
     display: grid;
-    padding: 30px 50px 30px 50px;
-    margin: 25px auto 25px auto;
-    font-size: 36px;
+    padding: 15px;
+    margin: 20px auto 20px auto;
+    font-size: 20px;
     border: none;
     border-radius: 50px;
     color: white;
@@ -213,17 +213,17 @@ code {
 .genre-button-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    width: 60%;
+    width: 50%;
     margin: auto;
     border: 1px white solid;
     border-radius: 30px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .genre-button-off, .genre-button-on{
     transition-duration: 0.2s;
-    padding: 40px 20px 40px 20px;
-    font-size: 24px;
+    padding: 20px 10px 20px 10px;
+    font-size: 20px;
     border-radius: 30px;
     margin: 5px;
 }
@@ -274,9 +274,8 @@ code {
 
 .year-button-on, .year-button-off, .runtime-button-on, .runtime-button-off, .age-button-on, .age-button-off{
     transition-duration: 0.2s;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    font-size: 24px;
+    padding: 50px 10px 50px 10px;
+    font-size: 20px;
     border-radius: 30px;
     margin: 5px;
 }
@@ -314,6 +313,6 @@ code {
 }
 
 .year-button-desc-text, .runtime-button-desc-text, .age-button-desc-text{
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
 }
