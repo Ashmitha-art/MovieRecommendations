@@ -3,7 +3,8 @@ import SelectGenre from "./select_genre";
 import SelectYear from "./select_year";
 import SelectRuntime from "./select_runtime";
 import SelectAge from "./select_age";
-import Results from "./results";
+
+import { useNavigate } from "react-router-dom";
 
 function SelectionSequence() {
   const [current, set_current] = useState("genre");
@@ -13,8 +14,23 @@ function SelectionSequence() {
   const [runtime, set_runtime] = useState([]);
   const [age, set_age] = useState([]);
 
+  let navigate = useNavigate();
+
+  const generate_results = () => {
+    const preferences = { genre, year, runtime, age };
+
+    fetch("", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(preferences),
+    }).then(() => {
+      navigate("/results");
+    });
+  };
+
   return (
     <div>
+      {/* Selection Pages */}
       {current === "genre" && (
         <SelectGenre element={genre} set_element={set_genre} />
       )}
@@ -26,6 +42,7 @@ function SelectionSequence() {
       )}
       {current === "age" && <SelectAge element={age} set_element={set_age} />}
 
+      {/* Next Buttons */}
       {genre.length != 0 && current === "genre" && (
         <button
           className="next-button"
@@ -60,12 +77,14 @@ function SelectionSequence() {
         <button
           className="next-button"
           onClick={() => {
-            set_current("results");
+            generate_results();
           }}
         >
-          Next
+          Generate Recommendations
         </button>
       )}
+
+      {/* Testing... */}
 
       <p className="test">{genre}</p>
       <p className="test">{year}</p>

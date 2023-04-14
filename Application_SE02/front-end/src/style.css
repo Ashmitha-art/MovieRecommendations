@@ -281,6 +281,7 @@ code {
 .movie-container{
   display: flex;
   margin: 1em auto 1em auto;
+  padding: 0.5em;
   border: 1px white solid;
   border-radius: 25px;
   width: 50%;
