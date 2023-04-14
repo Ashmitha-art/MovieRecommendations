@@ -272,3 +272,59 @@ code {
     font-size: 0.75em;
     text-align: center;
 }
+
+
+/* Signup/Login CSS */
+.Login_Container, .SignUp_Container {
+    display: block;
+    margin: 20px auto;
+    padding: 20px 0px 20px 0px;
+    position: relative;
+    max-width: 300px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 50px;
+    filter: drop-shadow(0 0 2px rgb(0, 0, 0));
+    background-color: lightgray;
+}
+
+.Login_Container_Border, .SignUp_Container_Border {
+    display: flex;
+    position: static;
+    margin: 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Login_Button, .SignUp_Button {
+    border-radius: 15px;
+    text-align: center;
+    border-width: 1px;
+    color: #ffff;
+    background-color: dodgerblue;
+    filter: drop-shadow(0 0 1px rgb(0, 0, 0));
+}
+
+
+.ErrorMessage {
+    display: block;
+    text-align: center;
+    max-width: fit-content;
+    color: red;
+    font-size: 15px;
+  }
+
+.Login_Button:hover, .SignUp_Button:hover {
+    animation: ButtonFade 1s  infinite ;
+  }
+
+  
+  @keyframes ButtonFade {
+    from {
+        filter: drop-shadow(0 0 0px darkblue);
+    }
+    to {
+        filter: drop-shadow(0 0 5px darkblue);
+    }
+}

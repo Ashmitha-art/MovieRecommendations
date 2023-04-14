@@ -3,6 +3,9 @@ import About from './About';
 import Navbar from './Navbar';
 import Member from './Member';
 import SelectionSequence from './selection_sequence';
+import Login from '../src/Login';
+import SignUp from '../src/Signup';
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -16,6 +19,11 @@ function App() {
                         <Route path='/' element={<Home/>}></Route>
                         <Route path='/recommend' element={<SelectionSequence/>}></Route>
                         <Route path='/about' element={<About/>}></Route>
+
+                        
+                        <Route path="/login" element={<Login/>}></Route>  
+                        <Route path="/signup" element={<SignUp/>}></Route>
+
 
                         <Route path='/ashmitha' element={<Member name="Ashmitha Pais"/>}></Route>
                         <Route path='/steve' element={<Member name="Steve Betts"/>}></Route>

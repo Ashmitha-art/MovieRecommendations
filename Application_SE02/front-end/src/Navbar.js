@@ -13,6 +13,10 @@ function Navbar(){
         <nav className='navbar'>
             <button onClick={() => {routeChange('')}} className='navbar-button'>Home</button>
             <button onClick={() => {routeChange('about')}} className='navbar-button' id='about'>About</button>
+            <button onClick={() => {routeChange('login')}} className='navbar-button' id='login'>Login</button>
+            <button onClick={() => {routeChange('signup')}} className='navbar-button' id='signup'>Sign Up</button>
+
+            <button onClick={ toggleTheme } className='navbar-button' id='theme-toggle'>Change Theme!</button>
 
         </nav>
     );
