@@ -36,6 +36,15 @@ function Navbar() {
       </button>
       <button
         onClick={() => {
+          routeChange("my-list");
+        }}
+        className="navbar-button"
+      >
+        My List
+      </button>
+
+      <button
+        onClick={() => {
           routeChange("about");
         }}
         className="navbar-button"

@@ -5,10 +5,14 @@ import Member from "./member";
 import Login from "./login";
 import SignUp from "./signup";
 import Recommend from "./recommend";
+import MyList from "./my-list";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
+  const [is_logged_in, set_is_logged_in] = useState(false);
+
   return (
     <Router>
       <div className="App">
@@ -20,6 +24,7 @@ function App() {
             <Route path="/about" element={<About />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/my-list" element={<MyList />}></Route>
             <Route
               path="/ashmitha"
               element={<Member name="Ashmitha Pais" />}
