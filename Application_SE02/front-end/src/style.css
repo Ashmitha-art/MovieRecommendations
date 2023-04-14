@@ -42,6 +42,10 @@ code {
     cursor: pointer;
 }
 
+#about{
+    float: right;
+}
+
 /* Heading */
 .heading{
     margin: 2rem auto 2rem auto;
@@ -118,8 +122,8 @@ code {
     text-align: center;
     padding: 1em;
     border: rgb(196,30,58) solid 1px;
-}
-
+}   
+    
 .weekly-schedule_entry-heading{
     background-color: rgb(196,30,58);
 }

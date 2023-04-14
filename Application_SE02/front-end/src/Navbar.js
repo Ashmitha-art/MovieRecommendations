@@ -1,25 +1,50 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-function Navbar(){
+function Navbar() {
+  let navigate = useNavigate();
 
-    let navigate = useNavigate();
-    
-    const routeChange = (route) => {
-        let path = '/' + route;
-        navigate(path);
-    } 
+  const routeChange = (route) => {
+    let path = "/" + route;
+    navigate(path);
+  };
 
-    return (
-        <nav className='navbar'>
-            <button onClick={() => {routeChange('')}} className='navbar-button'>Home</button>
-            <button onClick={() => {routeChange('about')}} className='navbar-button' id='about'>About</button>
-            <button onClick={() => {routeChange('login')}} className='navbar-button' id='login'>Login</button>
-            <button onClick={() => {routeChange('signup')}} className='navbar-button' id='signup'>Sign Up</button>
-
-            <button onClick={ toggleTheme } className='navbar-button' id='theme-toggle'>Change Theme!</button>
-
-        </nav>
-    );
+  return (
+    <nav className="navbar">
+      <button
+        onClick={() => {
+          routeChange("");
+        }}
+        className="navbar-button"
+      >
+        Home
+      </button>
+      <button
+        onClick={() => {
+          routeChange("login");
+        }}
+        className="navbar-button"
+      >
+        Login
+      </button>
+      <button
+        onClick={() => {
+          routeChange("signup");
+        }}
+        className="navbar-button"
+      >
+        Sign Up
+      </button>
+      <button
+        onClick={() => {
+          routeChange("about");
+        }}
+        className="navbar-button"
+        id="about"
+      >
+        About
+      </button>
+    </nav>
+  );
 }
 
 export default Navbar;
