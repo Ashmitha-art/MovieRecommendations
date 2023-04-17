@@ -41,7 +41,10 @@ class LoginForm extends Component {
       })
         .then((res) => {
           if (!res.ok) throw Error("Could not fetch data.");
-          res.json();
+          return res.json();
+        })
+        .then((data) => {
+          localStorage.setItem("token", data.token);
         })
         .catch((err) => {
           console.log(err.message);

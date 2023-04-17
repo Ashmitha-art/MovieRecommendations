@@ -8,7 +8,6 @@ import Recommend from "./recommend";
 import MyList from "./my-list";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState } from "react";
 
 function App() {
   return (

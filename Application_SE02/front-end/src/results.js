@@ -24,7 +24,7 @@ const Results = ({ data, error }) => {
             <div key={movie.movie_title} className="movie-container">
               <p className="movie-title">{movie.movie_title}</p>
               <p className="movie-desc">
-                {movie.year} | {movie.runtime} | {movie.age_rating}
+                {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
               </p>
             </div>
           ))}

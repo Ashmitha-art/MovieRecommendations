@@ -18,14 +18,28 @@ function Navbar() {
       >
         Home
       </button>
-      <button
-        onClick={() => {
-          routeChange("login");
-        }}
-        className="navbar-button"
-      >
-        Login
-      </button>
+      {!localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            routeChange("login");
+            routeChange("/");
+          }}
+          className="navbar-button"
+        >
+          Login
+        </button>
+      )}
+      {localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            window.location.reload();
+          }}
+          className="navbar-button"
+        >
+          Logout
+        </button>
+      )}
       <button
         onClick={() => {
           routeChange("signup");
