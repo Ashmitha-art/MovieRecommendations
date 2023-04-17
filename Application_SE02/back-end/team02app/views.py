@@ -144,6 +144,7 @@ def parse_gpt_output(gpt_output, user):
             year = movie.year
             runtime = movie.runtime
             genres = [mg.genre.genre for mg in MovieGenre.objects.filter(movie=movie)]
+            movie_id = movie.id
 
             # Add the movie to the list
             movies.append({
@@ -151,7 +152,8 @@ def parse_gpt_output(gpt_output, user):
                 'year': year,
                 'runtime': runtime,
                 'age_rating': age_rating,
-                'genres': genres
+                'genres': genres,
+                'movie_id': movie_id
             })
 
             #Create user rec entry and save to database
@@ -162,7 +164,28 @@ def parse_gpt_output(gpt_output, user):
 
 
     return movies
-#END Internal utility functions
+
+#Helper function for updating user movie ratings with like or dislike
+def update_user_movie_rating(user, movie_id, rating):
+    # Create or update the UserMovie entry
+    user_movie, created = UserMovie.objects.update_or_create(
+        user=user, movie_id=movie_id, defaults={'rating': rating}
+    )
+
+    # Remove the corresponding entry in the UserRec table
+    UserRec.objects.filter(user=user, movie_id=movie_id).delete()
+
+    return JsonResponse({"status": "success"}, status=200)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def like_movie(request, movie_id):
+    return update_user_movie_rating(request.user, movie_id, 1)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def dislike_movie(request, movie_id):
+    return update_user_movie_rating(request.user, movie_id, 0)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
