@@ -18,6 +18,8 @@ from django.urls import path
 from . import views
 from django.contrib import admin
 from django.urls import path, include
+from knox import views as knox_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +28,9 @@ urlpatterns = [
     path('api/usermovies/', views.usermovies_list, name = 'usermovies_list'),
     path('api/userrecs/', views.userrecs_list, name = 'userrecs_list'),
     path('api/genres/', views.genres_list, name = 'genres_list'),
-    path('api/moviegenres/', views.moviegenres_list, name = 'moviegenres_list')
+    path('api/moviegenres/', views.moviegenres_list, name = 'moviegenres_list'),
+    path('api/register/', views.RegisterAPI.as_view(), name='register'),
+    path('api/login/', views.LoginAPI.as_view(), name='login'),
+    path('api/logout/', knox_views.LogoutView.as_view(), name='logout'),
+    path('api/logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
 ]
