@@ -70,7 +70,7 @@ class LoginView(views.APIView):
 """
 @api_view(['POST'])
 @csrf_exempt
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def get_movie_recommendations(request):
     if request.method == 'POST':
         data = request.data
@@ -78,14 +78,14 @@ def get_movie_recommendations(request):
         years = data['years']
         runtime = data['runtime']
         rating = data['rating']
-        #user_id = request.user.id
-        #likes = UserMovie.objects.filter(user_id=user_id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
-        #dislikes = UserMovie.objects.filter(user_id=user_id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
-        likes = "Wife Number Two"
-        dislikes = "King of the Circus"
+        user = request.user
+        likes = UserMovie.objects.filter(user_id=user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
+        dislikes = UserMovie.objects.filter(user_id=user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
+        #likes = "Wife Number Two"
+        #dislikes = "King of the Circus"
 
         gpt_response = query_gpt(genres, years, runtime, rating, likes, dislikes)
-        parsed_results = parse_gpt_output(gpt_response)
+        parsed_results = parse_gpt_output(gpt_response, user)
 
         return JsonResponse(parsed_results, safe=False)
     else:
@@ -119,7 +119,7 @@ def query_gpt(genres, years, runtime, rating, likes, dislikes):
 
     return response.choices[0].text
 
-def parse_gpt_output(gpt_output):
+def parse_gpt_output(gpt_output, user):
     # Split the response into lines
     lines = gpt_output.strip().split('\n')
 
@@ -143,7 +143,7 @@ def parse_gpt_output(gpt_output):
             movie = Movie.objects.get(title=movie_title, year=movie_year)
             year = movie.year
             runtime = movie.runtime
-            #genres = [mg.genre.genre for mg in MovieGenre.objects.filter(movie=movie)]
+            genres = [mg.genre.genre for mg in MovieGenre.objects.filter(movie=movie)]
 
             # Add the movie to the list
             movies.append({
@@ -151,19 +151,24 @@ def parse_gpt_output(gpt_output):
                 'year': year,
                 'runtime': runtime,
                 'age_rating': age_rating,
-                #'genres': genres
+                'genres': genres
             })
+
+            #Create user rec entry and save to database
+            user_rec = UserRec(user=user, movie=movie)
+            user_rec.save()
         except Movie.DoesNotExist:
             print(f"Movie '{movie_title} {movie_year}' not found in the database.")
 
 
     return movies
-
+#END Internal utility functions
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def movielikesdislikes_list(request):
-    movieliked = UserMovie.objects.filter(user_id=request.data['user_id'], rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
-    moviedisliked = UserMovie.objects.filter(user_id=request.data['user_id'], rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
+    movieliked = UserMovie.objects.filter(user_id=request.user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
+    moviedisliked = UserMovie.objects.filter(user_id=request.user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
 
     response = {'likedMovies': movieliked, 'dislikedMovies': moviedisliked}
 
