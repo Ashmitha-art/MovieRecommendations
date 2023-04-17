@@ -1,22 +1,27 @@
-import { useState } from 'react'
-import VerticalSlice from './VerticalSlice.js';
+import { useNavigate } from "react-router-dom";
 
-function Home(){
+function Home() {
+  let navigate = useNavigate();
 
-    return(
-        <div>
-            <h1 className='heading'>This is the home page!</h1>
-            
-            <VerticalSlice url='/api/movies/' contents='movies'/>
-            <VerticalSlice url='/api/users/' contents='users'/>
-            <VerticalSlice url='/api/usermovies/' contents='usermovies'/>
-            <VerticalSlice url='/api/userrecs/' contents='userrecs'/>
-            <VerticalSlice url='/api/genres/' contents='genres'/>
-            <VerticalSlice url='/api/moviegenres/' contents='moviegenres'/>
+  const routeChange = (route) => {
+    let path = "/" + route;
+    navigate(path);
+  };
 
-        </div>
-    );
+  return (
+    <div>
+      <h1 className="heading">Welcome to MovAI!</h1>
 
+      <button
+        className="get-started"
+        onClick={() => {
+          routeChange("recommend");
+        }}
+      >
+        Get Started!
+      </button>
+    </div>
+  );
 }
 
 export default Home;

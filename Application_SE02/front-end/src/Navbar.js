@@ -1,40 +1,73 @@
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, useRef} from 'react';
+import { useNavigate } from "react-router-dom";
 
-function Navbar(){
+function Navbar() {
+  let navigate = useNavigate();
 
-    const [theme, setTheme] = useState('light');
-    const [navbarTheme, setNavbarTheme] = useState('navbar-light');
+  const routeChange = (route) => {
+    let path = "/" + route;
+    navigate(path);
+  };
 
-    function toggleTheme(){
-        if(theme === 'light'){
-            setTheme('dark');
-            setNavbarTheme('navbar-dark')
-        } else {
-            setTheme('light'); 
-            setNavbarTheme('navbar-light');
-        }
-    }
+  return (
+    <nav className="navbar">
+      <button
+        onClick={() => {
+          routeChange("");
+        }}
+        className="navbar-button"
+      >
+        Home
+      </button>
+      {!localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            routeChange("login");
+            routeChange("/");
+          }}
+          className="navbar-button"
+        >
+          Login
+        </button>
+      )}
+      {localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            window.location.reload();
+          }}
+          className="navbar-button"
+        >
+          Logout
+        </button>
+      )}
+      <button
+        onClick={() => {
+          routeChange("signup");
+        }}
+        className="navbar-button"
+      >
+        Sign Up
+      </button>
+      <button
+        onClick={() => {
+          routeChange("my-list");
+        }}
+        className="navbar-button"
+      >
+        My List
+      </button>
 
-    useEffect(() => {
-        document.body.className=theme;
-    }, [theme]);
-
-    let navigate = useNavigate();
-    
-    const routeChange = (route) => {
-        let path = '/' + route;
-        navigate(path);
-    } 
-
-    return (
-        <nav className={navbarTheme}>
-            <button onClick={() => {routeChange('')}} className='navbar-button'>Home</button>
-            <button onClick={() => {routeChange('about')}} className='navbar-button' id='about'>About</button>
-            <button onClick={ toggleTheme } className='navbar-button' id='theme-toggle'>Change Theme!</button>
-
-        </nav>
-    );
+      <button
+        onClick={() => {
+          routeChange("about");
+        }}
+        className="navbar-button"
+        id="about"
+      >
+        About
+      </button>
+    </nav>
+  );
 }
 
 export default Navbar;
