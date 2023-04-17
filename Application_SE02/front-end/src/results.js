@@ -16,7 +16,9 @@ const Results = ({ data, error }) => {
         Based on your preferences, OpenAI recommended the following movies:
       </h2>
       <div className="results-list-container">
-        {error && <div className="error">{error.message}</div>}
+        {error && (
+          <div className="error">Uh Oh! An Error Occured: {error.message}</div>
+        )}
         {data &&
           data.map((movie) => (
             <div key={movie.movie_title} className="movie-container">

@@ -11,8 +11,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  const [is_logged_in, set_is_logged_in] = useState(false);
-
   return (
     <Router>
       <div className="App">

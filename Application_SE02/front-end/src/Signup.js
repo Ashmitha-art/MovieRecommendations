@@ -1,7 +1,4 @@
-//import {useState} from 'react';
 import React, { Component } from "react";
-
-//const { username, email, password, confirmpassword } = this.state;
 
 class SignUpForm extends Component {
   state = {
@@ -11,8 +8,6 @@ class SignUpForm extends Component {
     confirmpassword: "",
     InfoErrors: {},
   };
-
-  //const { username, email, password, confirmpassword } = this.state;
 
   //EEj23`~ull1
 
@@ -26,11 +21,13 @@ class SignUpForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.SignupValidation()) {
-      console.log(this.state.email);
-      console.log(this.state.username);
-      console.log(this.state.password);
-      console.log(this.state.confirmpassword);
+      let form_data = new FormData();
 
+      form_data.append("email", this.state.email);
+      form_data.append("username", this.state.username);
+      form_data.append("password", this.state.password);
+
+      /*
       const userInfo = {
         email: this.state.email,
         username: this.state.username,
@@ -42,12 +39,21 @@ class SignUpForm extends Component {
         method: "POST",
         body: JSON.stringify(userInfo),
       };
+      */
 
-      fetch("/signup", userPost)
-        .then((res) => res.json())
-        .catch((event) => console.log(event));
+      fetch("api/register", {
+        method: "POST",
+        body: form_data,
+      })
+        .then((res) => {
+          if (!res.ok) throw Error("Could not fetch data.");
+          res.json();
+        })
+        .then((data) => {})
+        .catch((err) => console.log(err.message));
     }
   };
+
   SignupValidation = () => {
     let InfoErrors = {};
     let ValidAccountInfo = true;
@@ -113,75 +119,69 @@ class SignUpForm extends Component {
   render() {
     const { username, email, password, confirmpassword } = this.state;
 
-    //console.log(InfoErrors);
     return (
       <div className="SignUp_Main_Div">
+        <h1 className="heading">Register</h1>
         <form name="Signup_Form" onSubmit={this.handleSubmit}>
           <div className="SignUp_Container">
-            <div className="SignUp_Container_Border">
-              <label className="SignUp_Email">Email</label>
-              <input
-                className="LoginRegisterInputFields"
-                type="email"
-                id="email"
-                placeholder="Email"
-                required
-                name="email"
-                value={email}
-                onChange={this.handleChange}
-              />
-              <div className="ErrorMessage">{this.state.InfoErrors.email}</div>
-              <br />
+            <label className="SignUp_Email">Email</label>
+            <input
+              className="LoginRegisterInputFields"
+              type="email"
+              id="email"
+              placeholder="Email"
+              required
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+            />
+            <div className="ErrorMessage">{this.state.InfoErrors.email}</div>
+            <br />
 
-              <label className="SignUp_Username">Username</label>
-              <input
-                className="LoginRegisterInputFields"
-                type="text"
-                id="Username"
-                placeholder="Username"
-                required
-                name="username"
-                value={username}
-                onChange={this.handleChange}
-              />
-              <div className="ErrorMessage">
-                {this.state.InfoErrors.username}
-              </div>
-              <br />
+            <label className="SignUp_Username">Username</label>
+            <input
+              className="LoginRegisterInputFields"
+              type="text"
+              id="Username"
+              placeholder="Username"
+              required
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            />
+            <div className="ErrorMessage">{this.state.InfoErrors.username}</div>
+            <br />
 
-              <label className="SignUp_Password">Password</label>
-              <input
-                className="LoginRegisterInputFields"
-                type="password"
-                id="Password"
-                placeholder="Password"
-                required
-                name="password"
-                value={password}
-                onChange={this.handleChange}
-              />
-              <div className="ErrorMessage">
-                {this.state.InfoErrors.password}
-              </div>
-              <br />
+            <label className="SignUp_Password">Password</label>
+            <input
+              className="LoginRegisterInputFields"
+              type="password"
+              id="Password"
+              placeholder="Password"
+              required
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            <div className="ErrorMessage">{this.state.InfoErrors.password}</div>
+            <br />
 
-              <label className="SignUp_ConfirmPassword">Confirm Password</label>
-              <input
-                className="LoginRegisterInputFields"
-                type="password"
-                id="ConfirmPassword"
-                placeholder="Confirm Password"
-                required
-                name="confirmpassword"
-                value={confirmpassword}
-                onChange={this.handleChange}
-              />
-              <div className="ErrorMessage">
-                {this.state.InfoErrors.confirmpassword}
-              </div>
-              <br />
-              <input type="submit" className="SignUp_Button" value="Sign Up" />
+            <label className="SignUp_ConfirmPassword">Confirm Password</label>
+            <input
+              className="LoginRegisterInputFields"
+              type="password"
+              id="ConfirmPassword"
+              placeholder="Confirm Password"
+              required
+              name="confirmpassword"
+              value={confirmpassword}
+              onChange={this.handleChange}
+            />
+            <div className="ErrorMessage">
+              {this.state.InfoErrors.confirmpassword}
             </div>
+            <br />
+            <input type="submit" className="SignUp_Button" value="Sign Up" />
           </div>
         </form>
       </div>

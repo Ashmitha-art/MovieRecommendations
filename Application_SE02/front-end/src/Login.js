@@ -15,7 +15,8 @@ class LoginForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.SignupValidation()) {
+    if (this.LoginValidation()) {
+      /*
       console.log(this.state.username);
       console.log(this.state.password);
 
@@ -28,14 +29,27 @@ class LoginForm extends Component {
         method: "POST",
         body: JSON.stringify(userInfo),
       };
+      */
 
-      fetch("/login", userPost)
-        .then((res) => res.json())
-        .catch((event) => console.log(event));
+      let form_data = new FormData();
+      form_data.append("username", this.state.username);
+      form_data.append("password", this.state.password);
+
+      fetch("api/login", {
+        method: "POST",
+        body: form_data,
+      })
+        .then((res) => {
+          if (!res.ok) throw Error("Could not fetch data.");
+          res.json();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     }
   };
 
-  SignupValidation = () => {
+  LoginValidation = () => {
     let InfoErrors = {};
     let ValidCredentials = true;
 
@@ -75,45 +89,38 @@ class LoginForm extends Component {
 
     return (
       <div className="Login_Main_Div">
+        <h1 className="heading">Login</h1>
         <form name="Login_Form" onSubmit={this.handleSubmit}>
           <div className="Login_Container">
-            <div className="Login_Container_Border">
-              <label className="Login_Username">Username</label>
-              <input
-                className="LoginRegisterInputFields"
-                type="text"
-                id="username"
-                placeholder="Username"
-                name="username"
-                value={username}
-                onChange={this.handleChange}
-              />
-              <div className="ErrorMessage">
-                {this.state.InfoErrors.username}
-              </div>
-              <br />
+            <label className="Login_Username">Username</label>
+            <input
+              className="LoginRegisterInputFields"
+              type="text"
+              id="username"
+              placeholder="Username"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            />
+            <div className="ErrorMessage">{this.state.InfoErrors.username}</div>
 
-              <label className="Login_Password">Password</label>
-              <input
-                className="LoginRegisterInputFields"
-                type="password"
-                id="password"
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={this.handleChange}
-              />
-              <div className="ErrorMessage">
-                {this.state.InfoErrors.password}
-              </div>
-              <br />
-
-              <a className="Forgot_Password" href="/">
-                Forgot Password?
-              </a>
-              <br />
-              <input type="submit" className="Login_Button" value="Log In" />
-            </div>
+            <label className="Login_Password">Password</label>
+            <input
+              className="LoginRegisterInputFields"
+              type="password"
+              id="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            <div className="ErrorMessage">{this.state.InfoErrors.password}</div>
+            {/*
+            <a className="Forgot_Password" href="/">
+              Forgot Password?
+            </a>
+            */}
+            <input type="submit" className="Login_Button" value="Log In" />
           </div>
         </form>
       </div>
