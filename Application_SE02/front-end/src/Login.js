@@ -15,7 +15,7 @@ class LoginForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.LoginValidation()) {
+    if (true) {
       /*
       console.log(this.state.username);
       console.log(this.state.password);
@@ -35,7 +35,7 @@ class LoginForm extends Component {
       form_data.append("username", this.state.username);
       form_data.append("password", this.state.password);
 
-      fetch("api/login", {
+      fetch("api/login/", {
         method: "POST",
         body: form_data,
       })
