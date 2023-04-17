@@ -10,9 +10,9 @@ from rest_framework import permissions
 from django.shortcuts import render
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.db.models import Q
 from .models import *
 from .serializers import *
-from django.shortcuts import render
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from knox.models import AuthToken
@@ -153,7 +153,7 @@ def parse_gpt_output(gpt_output, user):
 
         # Query the database for the movie information
         try:
-            movie = Movie.objects.get(title=movie_title, year=movie_year)
+            movie = Movie.objects.get(Q(title=movie_title) | Q(alt_title=movie_title), year=movie_year)
             year = movie.year
             runtime = movie.runtime
             genres = [mg.genre.genre for mg in MovieGenre.objects.filter(movie=movie)]
