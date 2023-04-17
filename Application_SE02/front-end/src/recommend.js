@@ -3,8 +3,7 @@ import SelectGenre from "./select_genre";
 import SelectYear from "./select_year";
 import SelectRuntime from "./select_runtime";
 import SelectAge from "./select_age";
-
-import { useNavigate } from "react-router-dom";
+import Results from "./results";
 
 function SelectionSequence() {
   const [current, set_current] = useState("genre");
@@ -14,18 +13,29 @@ function SelectionSequence() {
   const [runtime, set_runtime] = useState([]);
   const [age, set_age] = useState([]);
 
-  let navigate = useNavigate();
+  const [results, set_results] = useState([]);
+  const [error, set_error] = useState("");
 
   const generate_results = () => {
     const preferences = { genre, year, runtime, age };
+    console.log(preferences);
 
-    fetch("", {
+    fetch("api/get_movie_recommendations", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(preferences),
-    }).then(() => {
-      navigate("/results");
-    });
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        set_results(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        set_error(err);
+      });
+    set_current("results");
   };
 
   return (
@@ -41,6 +51,8 @@ function SelectionSequence() {
         <SelectRuntime element={runtime} set_element={set_runtime} />
       )}
       {current === "age" && <SelectAge element={age} set_element={set_age} />}
+
+      {current === "results" && <Results data={results} error={error} />}
 
       {/* Next Buttons */}
       {genre.length != 0 && current === "genre" && (

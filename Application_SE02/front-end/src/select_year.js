@@ -47,7 +47,7 @@ function SelectYear({ element, set_element }) {
     }
 
     const new_years = years.map((x) => {
-      if (x.year === year) {
+      if (x.desc === year) {
         if (x.state) {
           remove_year(year);
           return { ...x, state: false };
@@ -79,7 +79,7 @@ function SelectYear({ element, set_element }) {
               className="year-button-checkbox"
               type="checkbox"
               onClick={() => {
-                handle_click(element.year);
+                handle_click(element.desc);
               }}
             />
             <p className="year-button-text">

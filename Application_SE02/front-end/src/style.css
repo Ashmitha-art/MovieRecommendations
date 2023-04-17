@@ -53,6 +53,12 @@ code {
   text-align: center;
 }
 
+.heading-2{
+  margin: 2rem auto 2rem auto;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
 /* Home */
 .get-started{
   font-size: 1.5rem;
@@ -278,6 +284,11 @@ code {
 }
 
 /* My List */
+.error{
+  margin: 1em auto 1em auto;
+  text-align: center;
+}
+
 .movie-container{
   display: flex;
   margin: 1em auto 1em auto;

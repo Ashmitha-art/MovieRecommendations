@@ -6,27 +6,27 @@ function SelectRuntime({ element, set_element }) {
   const [runtimes, set_runtimes] = useState([
     {
       runtime: "Short",
-      desc: "Under 90 Minutes",
+      desc: "Under 90",
       state: false,
     },
     {
       runtime: "Reasonable",
-      desc: "90 to 120 Minutes",
+      desc: "90 to 120",
       state: false,
     },
     {
       runtime: "Long",
-      desc: "120 to 150 Minutes",
+      desc: "120 to 150",
       state: false,
     },
     {
       runtime: "Epic",
-      desc: "150 to 180 Minutes",
+      desc: "150 to 180",
       state: false,
     },
     {
       runtime: "Eternity",
-      desc: "Over 180 Minutes",
+      desc: "Over 180",
       state: false,
     },
   ]);
@@ -47,7 +47,7 @@ function SelectRuntime({ element, set_element }) {
     }
 
     const new_runtimes = runtimes.map((x) => {
-      if (x.runtime === runtime) {
+      if (x.desc === runtime) {
         if (x.state) {
           remove_runtime(runtime);
           return { ...x, state: false };
@@ -81,14 +81,14 @@ function SelectRuntime({ element, set_element }) {
               className="runtime-button-checkbox"
               type="checkbox"
               onClick={() => {
-                handle_click(element.runtime);
+                handle_click(element.desc);
               }}
             />
             <p className="runtime-button-text">
               {element.runtime}
               <br />
             </p>
-            <p className="runtime-button-desc-text">{element.desc}</p>
+            <p className="runtime-button-desc-text">{element.desc} Minutes</p>
           </label>
         ))}
       </div>

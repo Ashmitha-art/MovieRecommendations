@@ -6,7 +6,6 @@ import Login from "./login";
 import SignUp from "./signup";
 import Recommend from "./recommend";
 import MyList from "./my-list";
-import Results from "./results";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
@@ -22,7 +21,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/recommend" element={<Recommend />}></Route>
-            <Route path="/results" element={<Results />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
