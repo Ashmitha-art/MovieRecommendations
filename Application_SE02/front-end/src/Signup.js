@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useNavigate } from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
@@ -19,6 +20,7 @@ class SignUpForm extends Component {
 
   // Post Request
   handleSubmit = (event) => {
+    let navigate = useNavigate();
     event.preventDefault();
     if (this.SignupValidation()) {
       let form_data = new FormData();
@@ -26,20 +28,6 @@ class SignUpForm extends Component {
       form_data.append("email", this.state.email);
       form_data.append("username", this.state.username);
       form_data.append("password", this.state.password);
-
-      /*
-      const userInfo = {
-        email: this.state.email,
-        username: this.state.username,
-        password: this.state.password,
-        confirmpassword: this.state.confirmpassword,
-      };
-
-      const userPost = {
-        method: "POST",
-        body: JSON.stringify(userInfo),
-      };
-      */
 
       fetch("api/register/", {
         method: "POST",
@@ -51,6 +39,7 @@ class SignUpForm extends Component {
         })
         .then((data) => {
           localStorage.setItem("token", data.token);
+          navigate("/");
         })
         .catch((err) => {
           console.log(err.message);

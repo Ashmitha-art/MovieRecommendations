@@ -16,21 +16,6 @@ class LoginForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (true) {
-      /*
-      console.log(this.state.username);
-      console.log(this.state.password);
-
-      const userInfo = {
-        username: this.state.username,
-        password: this.state.password,
-      };
-
-      const userPost = {
-        method: "POST",
-        body: JSON.stringify(userInfo),
-      };
-      */
-
       let form_data = new FormData();
       form_data.append("username", this.state.username);
       form_data.append("password", this.state.password);
