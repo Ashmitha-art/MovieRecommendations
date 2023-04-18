@@ -33,4 +33,8 @@ urlpatterns = [
     path('api/login/', views.LoginAPI.as_view(), name='login'),
     path('api/logout/', knox_views.LogoutView.as_view(), name='logout'),
     path('api/logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
+    path('api/likeAnddislike/', views.movielikesdislikes_list, name='movielikesdislikes_list'),
+    path('api/get_movie_recommendations/', views.get_movie_recommendations, name = 'get_movie_recommendations'),
+    path('api/movies/<int:movie_id>/like/', views.like_movie, name='like_movie'),
+    path('api/movies/<int:movie_id>/dislike/', views.dislike_movie, name='dislike_movie')
 ]

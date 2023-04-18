@@ -1,4 +1,8 @@
-from rest_framework.decorators import api_view
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
+from django.utils.decorators import method_decorator
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import views
@@ -15,9 +19,12 @@ from rest_framework.authentication import TokenAuthentication
 from knox.models import AuthToken
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
+import openai
+from .settings import OPENAI_API_KEY
+    
 
 
-
+@ensure_csrf_cookie
 def index(request):
     return render(request, 'index.html')
 
@@ -72,3 +79,132 @@ class LoginAPI(KnoxLoginView):
         user = serializer.validated_data['user']
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)
+"""
+@api_view(['POST'])
+@csrf_exempt
+@permission_classes([IsAuthenticated])
+def get_movie_recommendations(request):
+    if request.method == 'POST':
+        data = request.data
+        genres = data['genres']
+        years = data['years']
+        runtime = data['runtime']
+        rating = data['rating']
+        user = request.user
+        likes = UserMovie.objects.filter(user_id=user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
+        dislikes = UserMovie.objects.filter(user_id=user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
+        #likes = "Wife Number Two"
+        #dislikes = "King of the Circus"
+
+        gpt_response = query_gpt(genres, years, runtime, rating, likes, dislikes)
+        parsed_results = parse_gpt_output(gpt_response, user)
+
+        return JsonResponse(parsed_results, safe=False)
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=400)
+
+#Internal functions for creating/parsing GPT output
+def query_gpt(genres, years, runtime, rating, likes, dislikes):
+
+    prompt = (f"A table listing 10 movie recommendations based on the following preferences:\n\n"
+              f"Genres: {genres}\n"
+              f"Years: {years}\n"
+              f"Runtimes: {runtime}\n"
+              f"Age Ratings: {rating}\n"
+              f"Liked movies: {likes}\n"
+              f"Disliked movies: {dislikes}\n\n"
+              f"Ensure that the movies fall within the specified preferences and that the movies are not in the list of liked or disliked movies.\n"
+              f"| Movie Title | Year | Age Rating |\n"
+              f"| ----------- | ---- | ---------- |")
+
+    api_key = OPENAI_API_KEY
+
+    openai.api_key = api_key
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=prompt,
+        temperature=0.7,
+        max_tokens=1500,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0)
+
+    return response.choices[0].text
+
+def parse_gpt_output(gpt_output, user):
+    # Split the response into lines
+    lines = gpt_output.strip().split('\n')
+
+    # Extract the table rows by filtering lines starting with '|'
+    table_rows = [line.strip() for line in lines if line.startswith('|')]
+
+    # Parse the table rows and store the movie information in a list
+    movies = []
+            
+    for row in table_rows[1:]:  # Skip the header row
+        # Split the row into columns and remove the '|' separator
+        columns = [col.strip() for col in row.split('|') if col.strip()]
+
+        # Extract movie title and age rating from the columns
+        movie_title = columns[0]
+        movie_year = int(columns[1])
+        age_rating = columns[2]
+
+        # Query the database for the movie information
+        try:
+            movie = Movie.objects.get(title=movie_title, year=movie_year)
+            year = movie.year
+            runtime = movie.runtime
+            genres = [mg.genre.genre for mg in MovieGenre.objects.filter(movie=movie)]
+            movie_id = movie.id
+
+            # Add the movie to the list
+            movies.append({
+                'movie_title': movie_title,
+                'year': year,
+                'runtime': runtime,
+                'age_rating': age_rating,
+                'genres': genres,
+                'movie_id': movie_id
+            })
+
+            #Create user rec entry and save to database
+            user_rec = UserRec(user=user, movie=movie)
+            user_rec.save()
+        except Movie.DoesNotExist:
+            print(f"Movie '{movie_title} {movie_year}' not found in the database.")
+
+
+    return movies
+
+#Helper function for updating user movie ratings with like or dislike
+def update_user_movie_rating(user, movie_id, rating):
+    # Create or update the UserMovie entry
+    user_movie, created = UserMovie.objects.update_or_create(
+        user=user, movie_id=movie_id, defaults={'rating': rating}
+    )
+
+    # Remove the corresponding entry in the UserRec table
+    UserRec.objects.filter(user=user, movie_id=movie_id).delete()
+
+    return JsonResponse({"status": "success"}, status=200)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def like_movie(request, movie_id):
+    return update_user_movie_rating(request.user, movie_id, 1)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def dislike_movie(request, movie_id):
+    return update_user_movie_rating(request.user, movie_id, 0)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def movielikesdislikes_list(request):
+    movieliked = UserMovie.objects.filter(user_id=request.user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
+    moviedisliked = UserMovie.objects.filter(user_id=request.user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
+
+    response = {'likedMovies': movieliked, 'dislikedMovies': moviedisliked}
+
+    return Response(response)
