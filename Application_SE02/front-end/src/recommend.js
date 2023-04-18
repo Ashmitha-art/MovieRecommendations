@@ -20,9 +20,9 @@ function SelectionSequence() {
     const preferences = { genre, year, runtime, age };
     console.log(preferences);
 
-    fetch("api/get_movie_recommendations", {
+    fetch("api/get_movie_recommendations/", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": `Token ${localStorage.getItem("token")}` },
       body: JSON.stringify(preferences),
     })
       .then((res) => {

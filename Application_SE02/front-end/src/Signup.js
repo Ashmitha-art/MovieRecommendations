@@ -41,7 +41,7 @@ class SignUpForm extends Component {
       };
       */
 
-      fetch("api/register", {
+      fetch("api/register/", {
         method: "POST",
         body: form_data,
       })

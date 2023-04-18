@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.utils.decorators import method_decorator
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import generics
@@ -10,15 +10,15 @@ from rest_framework import permissions
 from django.shortcuts import render
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.db.models import Q
 from .models import *
 from .serializers import *
-from django.shortcuts import render
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
-from rest_framework.authentication import TokenAuthentication
 from knox.models import AuthToken
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
+from knox.auth import TokenAuthentication
 import openai
 from .settings import OPENAI_API_KEY
     
@@ -79,17 +79,18 @@ class LoginAPI(KnoxLoginView):
         user = serializer.validated_data['user']
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)
-"""
+
 @api_view(['POST'])
 @csrf_exempt
 @permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def get_movie_recommendations(request):
     if request.method == 'POST':
         data = request.data
-        genres = data['genres']
-        years = data['years']
+        genres = data['genre']
+        years = data['year']
         runtime = data['runtime']
-        rating = data['rating']
+        rating = data['age']
         user = request.user
         likes = UserMovie.objects.filter(user_id=user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
         dislikes = UserMovie.objects.filter(user_id=user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
@@ -152,7 +153,7 @@ def parse_gpt_output(gpt_output, user):
 
         # Query the database for the movie information
         try:
-            movie = Movie.objects.get(title=movie_title, year=movie_year)
+            movie = Movie.objects.get(Q(title=movie_title) | Q(alt_title=movie_title), year=movie_year)
             year = movie.year
             runtime = movie.runtime
             genres = [mg.genre.genre for mg in MovieGenre.objects.filter(movie=movie)]
