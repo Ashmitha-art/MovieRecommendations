@@ -8,6 +8,19 @@ function Navbar() {
     navigate(path);
   };
 
+  const logout = () => {
+    fetch("api/logout/", {
+      method: "POST",
+    })
+      .then((res) => {
+        if (!res.ok) throw Error("Could not fetch data.");
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <nav className="navbar">
       <button
@@ -32,6 +45,7 @@ function Navbar() {
       {localStorage.getItem("token") && (
         <button
           onClick={() => {
+            logout();
             localStorage.removeItem("token");
             window.location.reload();
           }}
