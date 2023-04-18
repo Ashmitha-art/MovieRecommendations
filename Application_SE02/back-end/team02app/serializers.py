@@ -8,12 +8,6 @@ from rest_framework import status
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
-"""
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email', 'password')
-"""
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
@@ -71,33 +65,3 @@ class RegisterSerializer(serializers.ModelSerializer):
         password = validated_data['password']
         user = User.objects.create_user(username, email, password)
         return user
-    
-"""
-class LoginSerializer(serializers.Serializer):
-    
-    This serializer defines two fields for authentication:
-        * username
-        * password
-    It will try to authenticate the user with when validated
-    
-
-    username = serializers.CharField(label="Username", write_only=True)
-    password = serializers.CharField(label="Password", write_only=True)
-
-    def validate(self, attrs):
-        username = attrs.get('username')
-        password = attrs.get('password')
-
-        if username and password:
-            user = authenticate(request=self.context.get('request'), username=username, password=password)
-
-            if not user:
-                msg = 'Username or password is incorrect'
-                raise serializers.ValidationError(msg, code='authorization')
-        else:
-            msg = 'Both username and password are required'
-            raise serializers.ValidationError(msg, code='authorization')
-        
-        attrs['user'] = user
-        return attrs
-"""
