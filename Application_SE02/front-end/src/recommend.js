@@ -25,6 +25,8 @@ function SelectionSequence() {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token ${localStorage.getItem("token")}`,
+        // Include the CSRF token in the headers
+        "X-CSRFToken": (document.cookie.match('(^|;)\\s*' + 'csrftoken' + '\\s*=\\s*([^;]+)')?.pop() || ''),
       },
       body: JSON.stringify(preferences),
     })

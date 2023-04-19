@@ -34,6 +34,10 @@ class SignUpForm extends Component {
       fetch("api/register/", {
         method: "POST",
         body: form_data,
+        headers: {
+          // Include the CSRF token in the headers
+          "X-CSRFToken": (document.cookie.match('(^|;)\\s*' + 'csrftoken' + '\\s*=\\s*([^;]+)')?.pop() || ''),
+        },
       })
         .then((res) => {
           if (!res.ok) throw Error("Could not fetch data.");
