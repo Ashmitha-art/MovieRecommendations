@@ -11,6 +11,9 @@ function Navbar() {
   const logout = () => {
     fetch("api/logout/", {
       method: "POST",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
     })
       .then((res) => {
         if (!res.ok) throw Error("Could not fetch data.");
