@@ -24,7 +24,7 @@ class SignUpForm extends Component {
   handleSubmit = (event) => {
     // let navigate = useNavigate();
     event.preventDefault();
-    if (this.SignupValidation()) {
+    if (true) {
       let form_data = new FormData();
 
       form_data.append("email", this.state.email);
