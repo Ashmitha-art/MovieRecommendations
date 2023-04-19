@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import {Navigate} from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
@@ -8,6 +9,7 @@ class SignUpForm extends Component {
     password: "",
     confirmpassword: "",
     InfoErrors: {},
+    isLoggedin: false,
   };
 
   //EEj23`~ull1
@@ -20,7 +22,7 @@ class SignUpForm extends Component {
 
   // Post Request
   handleSubmit = (event) => {
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
     event.preventDefault();
     if (this.SignupValidation()) {
       let form_data = new FormData();
@@ -39,7 +41,8 @@ class SignUpForm extends Component {
         })
         .then((data) => {
           localStorage.setItem("token", data.token);
-          navigate("/");
+          this.setState({isLoggedin: true});
+          // navigate("/");
         })
         .catch((err) => {
           console.log(err.message);
@@ -110,12 +113,15 @@ class SignUpForm extends Component {
   };
 
   render() {
-    const { username, email, password, confirmpassword } = this.state;
+    const { username, email, password, confirmpassword, isLoggedin } = this.state;
+    if (isLoggedin){
+      return <Navigate to="/" />
+    }
 
     return (
       <div className="SignUp_Main_Div">
         <h1 className="heading">Register</h1>
-        <form name="Signup_Form" onSubmit={this.handleSubmit}>
+        <form name="Signup_Form" >
           <div className="SignUp_Container">
             <label className="SignUp_Email">Email</label>
             <input
@@ -174,7 +180,7 @@ class SignUpForm extends Component {
               {this.state.InfoErrors.confirmpassword}
             </div>
             <br />
-            <input type="submit" className="SignUp_Button" value="Sign Up" />
+            <button onClick={this.handleSubmit} className="SignUp_Button" value="Sign up">Sign up</button>
           </div>
         </form>
       </div>
