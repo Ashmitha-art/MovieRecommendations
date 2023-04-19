@@ -28,6 +28,10 @@ from .settings import OPENAI_API_KEY
 def index(request):
     return render(request, 'index.html')
 
+@ensure_csrf_cookie
+def react(request, path):
+    return render(request, 'index.html')
+
 @api_view(['GET'])
 def movies_list(request):
     movies = Movie.objects.all()

@@ -24,6 +24,7 @@ from knox import views as knox_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name = 'index'),
+    path('<path:path>', views.react, name='catch-all'),
     path('api/movies/', views.movies_list, name = 'movies_list'),
     path('api/usermovies/', views.usermovies_list, name = 'usermovies_list'),
     path('api/userrecs/', views.userrecs_list, name = 'userrecs_list'),
