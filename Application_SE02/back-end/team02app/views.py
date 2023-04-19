@@ -103,7 +103,6 @@ def get_movie_recommendations(request):
 
         gpt_response = query_gpt(genres, years, runtime, rating, likes, dislikes)
         parsed_results = parse_gpt_output(gpt_response, user)
-
         return JsonResponse(parsed_results, safe=False)
     else:
         return JsonResponse({"error": "Invalid request method"}, status=400)

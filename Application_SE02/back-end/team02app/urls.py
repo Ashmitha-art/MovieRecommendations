@@ -24,7 +24,6 @@ from knox import views as knox_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name = 'index'),
-    path('<path:path>', views.react, name='catch-all'),
     path('api/movies/', views.movies_list, name = 'movies_list'),
     path('api/usermovies/', views.usermovies_list, name = 'usermovies_list'),
     path('api/userrecs/', views.userrecs_list, name = 'userrecs_list'),
@@ -38,4 +37,5 @@ urlpatterns = [
     path('api/get_movie_recommendations/', views.get_movie_recommendations, name = 'get_movie_recommendations'),
     path('api/movies/<int:movie_id>/like/', views.like_movie, name='like_movie'),
     path('api/movies/<int:movie_id>/dislike/', views.dislike_movie, name='dislike_movie'),
+    path('<path:path>', views.react, name='catch-all'),
 ]
