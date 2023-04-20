@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'team02app',
+    'back-end.team02app',
     'knox',
     #'userauth.apps.AuthConfig'
 ]
