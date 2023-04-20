@@ -67,7 +67,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-ROOT_URLCONF = 'team02app.urls'
+ROOT_URLCONF = 'back-end.team02app.urls'
 
 TEMPLATES = [
     {
