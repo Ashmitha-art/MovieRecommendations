@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import User as AuthUser
 
 
 class Genre(models.Model):
@@ -35,7 +36,24 @@ class MovieGenre(models.Model):
         managed = False
         db_table = 'movie_genre'
 
+class UserMovie(models.Model):
+    movie = models.ForeignKey(Movie, models.DO_NOTHING)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    rating = models.IntegerField()
 
+    class Meta:
+        managed = False
+        db_table = 'user_movie'
+
+class UserRec(models.Model):
+    movie = models.ForeignKey(Movie, models.DO_NOTHING)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'user_rec'
+
+"""
 class User(models.Model):
     username = models.CharField(unique=True, max_length=255)
     email = models.CharField(max_length=255)
@@ -46,9 +64,10 @@ class User(models.Model):
         db_table = 'user'
 
 
+
 class UserMovie(models.Model):
     movie = models.ForeignKey(Movie, models.DO_NOTHING)
-    user = models.ForeignKey(User, models.DO_NOTHING)
+    user = models.ForeignKey(settings.AUTH_USER, models.DO_NOTHING)
     rating = models.IntegerField()
 
     class Meta:
@@ -63,3 +82,4 @@ class UserRec(models.Model):
     class Meta:
         managed = True
         db_table = 'user_rec'
+"""
