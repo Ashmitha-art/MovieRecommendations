@@ -1,6 +1,6 @@
 CSC648-spring23-04-team02 Repository
 
-Application URL: http://13.52.61.95/
+Application URL: http://54.241.156.230/
 
 
 | Student Name         | Student Email         | GitHub Username | Student's role |
