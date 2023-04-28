@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'back-end.team02app',
+    # remember to uncomment this later
+    #'back-end.team02app',
+    'team02app',
     'knox',
     #'userauth.apps.AuthConfig'
 ]
@@ -67,7 +69,9 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-ROOT_URLCONF = 'back-end.team02app.urls'
+# this one too
+#ROOT_URLCONF = 'back-end.team02app.urls'
+ROOT_URLCONF = 'team02app.urls'
 
 TEMPLATES = [
     {
