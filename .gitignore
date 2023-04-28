@@ -1,2 +1,4 @@
+node_modules/*
+!node_modules/.cache/
 *.pyc
 Application_SE02/.env

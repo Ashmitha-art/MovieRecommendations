@@ -24,7 +24,7 @@ class SignUpForm extends Component {
   handleSubmit = (event) => {
     // let navigate = useNavigate();
     event.preventDefault();
-    if (true) {
+    if (this.SignupValidation()) {
       // Fix later.
       let form_data = new FormData();
 
@@ -97,12 +97,12 @@ class SignUpForm extends Component {
     } else if (this.state.password) {
       if (
         !this.state.password.match(
-          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/
         )
       ) {
         ValidAccountInfo = false;
         InfoErrors["password"] =
-          "Password must be at least 8 characters and contain 1 letter, 1 number and a symbol.";
+          "Password must be at least 8 characters and contain 1 letter, 1 number, and a symbol.";
       }
     }
 
@@ -124,7 +124,7 @@ class SignUpForm extends Component {
     const { username, email, password, confirmpassword, isLoggedin } =
       this.state;
     if (isLoggedin) {
-      return <Navigate to="/" />;
+      //return <Navigate to="/" />;
     }
 
     return (
@@ -135,6 +135,7 @@ class SignUpForm extends Component {
             <label className="SignUp_Email">Email</label>
             <input
               className="LoginRegisterInputFields"
+              data-testid="email"
               type="email"
               id="email"
               placeholder="Email"
@@ -149,6 +150,7 @@ class SignUpForm extends Component {
             <label className="SignUp_Username">Username</label>
             <input
               className="LoginRegisterInputFields"
+              data-testid="username"
               type="text"
               id="Username"
               placeholder="Username"
@@ -163,6 +165,7 @@ class SignUpForm extends Component {
             <label className="SignUp_Password">Password</label>
             <input
               className="LoginRegisterInputFields"
+              data-testid="confirmpassword"
               type="password"
               id="Password"
               placeholder="Password"
@@ -177,6 +180,7 @@ class SignUpForm extends Component {
             <label className="SignUp_ConfirmPassword">Confirm Password</label>
             <input
               className="LoginRegisterInputFields"
+              data-testid="password"
               type="password"
               id="ConfirmPassword"
               placeholder="Confirm Password"
@@ -191,6 +195,7 @@ class SignUpForm extends Component {
             <br />
             <button
               onClick={this.handleSubmit}
+              data-testid="submit"
               className="SignUp_Button"
               value="Sign up"
             >
