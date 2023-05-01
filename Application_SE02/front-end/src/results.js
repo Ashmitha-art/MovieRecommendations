@@ -23,6 +23,7 @@ const Results = ({ data, error }) => {
           data.map((movie) => (
             <div key={movie.movie_title} className="movie-container">
               <p className="movie-title">{movie.movie_title}</p>
+              <br />
               <p className="movie-desc">
                 {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
               </p>
