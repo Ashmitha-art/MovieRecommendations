@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse, resolve
 from rest_framework.test import APIClient
 
-from team02app.views import index, RegisterAPI
+from team02app.views import index, RegisterAPI, LoginAPI
 
 class TestURLs(TestCase):
     
@@ -15,6 +15,10 @@ class TestURLs(TestCase):
     def test_register(self):
         url = reverse('register')
         self.assertEquals(resolve(url).func.view_class, RegisterAPI)
+    
+    def test_login(self):
+        url = reverse('login')
+        self.assertEquals(resolve(url).func.view_class, LoginAPI)
 
 class TestViews(TestCase):
     
