@@ -19,5 +19,5 @@ jobs:
       - name: Install Jest
         run: npm install --save-dev jest
       - name: Run Jest tests
-        working-directory: ${{ github.workspace }}\Application_SE02\front-end\src\__test__
+        working-directory: ${{ github.workspace }}/Application_SE02/front-end/src/__test__
         run: npm test -- --testPathPattern=".*" && exit 0
