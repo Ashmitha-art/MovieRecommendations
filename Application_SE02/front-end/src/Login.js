@@ -88,48 +88,44 @@ export class LoginForm extends Component {
       return <Navigate to="/" />;
     }
 
-      return (
-          <div className="Login_Main_Div">
-            <h1 className="heading">Login</h1>
-            <form name="Login_Form" onSubmit={this.handleSubmit}>
-              <div className="Login_Container">
-                <label className="Login_Username">Username</label>
-                <input
-                    className="LoginRegisterInputFields"
-                    data-testid="username"
-                    type="text"
-                    id="Username"
-                    placeholder="Username"
-                    name="username"
-                    value={username}
-                    onChange={this.handleChange}
-                />
-                <div className="ErrorMessage">{this.state.InfoErrors.username}</div>
+    return (
+      <div className="Login_Main_Div">
+        <h1 className="heading">Login</h1>
+        <form name="Login_Form" onSubmit={this.handleSubmit}>
+          <div className="Login_Container">
+            <label className="Login_Username">Username</label>
+            <input
+              className="LoginRegisterInputFields"
+              data-testid="username"
+              type="text"
+              id="Username"
+              placeholder="Username"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            />
+            <div className="ErrorMessage">{this.state.InfoErrors.username}</div>
 
-                <label className="Login_Password">Password</label>
-                <input
-                    className="LoginRegisterInputFields"
-                    data-testid="password"
-                    type="password"
-                    id="Password"
-                    placeholder="Password"
-                    name="password"
-                    value={password}
-                    onChange={this.handleChange}
-                />
-                <div className="ErrorMessage">{this.state.InfoErrors.password}</div>
-                {/*
-            <a className="Forgot_Password" href="/">
-              Forgot Password?
-            </a>
-            */}
-                <button 
-                  onClick={this.handleSubmit} 
-                  data-testid="submit" 
-                  className="Login_Button" 
-                  value="Log In">Log In</button>
-              </div>
-            </form>
+            <label className="Login_Password">Password</label>
+            <input
+              className="LoginRegisterInputFields"
+              data-testid="password"
+              type="password"
+              id="Password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            <div className="ErrorMessage">{this.state.InfoErrors.password}</div>
+            <button
+              onClick={this.handleSubmit}
+              data-testid="submit"
+              className="Login_Button"
+              value="Log In"
+            >
+              Log In
+            </button>
           </div>
         </form>
       </div>
