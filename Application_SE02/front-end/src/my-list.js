@@ -9,7 +9,7 @@ function MyList() {
       runtime: "170 Minutes",
       rating: "R",
       liked: false,
-      disliked: false,
+      disliked: false
     },
     {
       title: "John Wick: Chapter 3 - Parabellum",
@@ -18,7 +18,7 @@ function MyList() {
       runtime: "131 Minutes",
       rating: "R",
       liked: false,
-      disliked: false,
+      disliked: false
     },
     {
       title: "John Wick: Chapter 2",
@@ -27,7 +27,7 @@ function MyList() {
       runtime: "122 Minutes",
       rating: "R",
       liked: false,
-      disliked: false,
+      disliked: false
     },
     {
       title: "John Wick",
@@ -36,8 +36,8 @@ function MyList() {
       runtime: "101 Minutes",
       rating: "R",
       liked: false,
-      disliked: false,
-    },
+      disliked: false
+    }
   ]);
 
   const handle_click = (movie, rating) => {

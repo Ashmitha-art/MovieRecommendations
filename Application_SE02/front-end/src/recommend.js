@@ -29,9 +29,9 @@ function SelectionSequence() {
         "X-CSRFToken":
           document.cookie
             .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
-            ?.pop() || "",
+            ?.pop() || ""
       },
-      body: JSON.stringify(preferences),
+      body: JSON.stringify(preferences)
     })
       .then((res) => {
         return res.json();

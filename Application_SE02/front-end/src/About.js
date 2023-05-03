@@ -20,33 +20,33 @@ function About() {
     {
       title: "Ashmitha Pais: Team Lead",
       photo: ashmitha_photo,
-      route: "ashmitha",
+      route: "ashmitha"
     },
     {
       title: "Steve Betts: Scrum Master",
       photo: steve_photo,
-      route: "steve",
+      route: "steve"
     },
     {
       title: "Preet Dhaliwal: Github Master",
       photo: preet_photo,
-      route: "preet",
+      route: "preet"
     },
     {
       title: "Chris Farnsworth: Back-End Lead",
       photo: chris_photo,
-      route: "chris",
+      route: "chris"
     },
     {
       title: "Abdul Barrie: Front-End Lead",
       photo: abdul_photo,
-      route: "abdul",
+      route: "abdul"
     },
     {
       title: "Nathan Loo: Product Owner",
       photo: nathan_photo,
-      route: "nathan",
-    },
+      route: "nathan"
+    }
   ];
 
   // Create a member template for each member in the list above.

@@ -4,7 +4,7 @@ import {
   fireEvent,
   render,
   screen,
-  waitFor,
+  waitFor
 } from "@testing-library/react";
 
 import Signup from "../Signup";
@@ -41,7 +41,7 @@ describe("Test the Register Component", () => {
       fireEvent.change(username, { target: { value: "test" } });
       fireEvent.change(password, { target: { value: "Password1!" } });
       fireEvent.change(confirmpassword, {
-        target: { value: "Password1!" },
+        target: { value: "Password1!" }
       });
       fireEvent.click(submit);
     });
@@ -68,7 +68,7 @@ describe("Test the Register Component", () => {
       fireEvent.change(username, { target: { value: "test" } });
       fireEvent.change(password, { target: { value: "Password1" } });
       fireEvent.change(confirmpassword, {
-        target: { value: "Password1" },
+        target: { value: "Password1" }
       });
       fireEvent.click(submit);
     });

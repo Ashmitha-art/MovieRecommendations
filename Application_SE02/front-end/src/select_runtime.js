@@ -7,28 +7,28 @@ function SelectRuntime({ element, set_element }) {
     {
       runtime: "Short",
       desc: "Under 90",
-      state: false,
+      state: false
     },
     {
       runtime: "Reasonable",
       desc: "90 to 120",
-      state: false,
+      state: false
     },
     {
       runtime: "Long",
       desc: "120 to 150",
-      state: false,
+      state: false
     },
     {
       runtime: "Epic",
       desc: "150 to 180",
-      state: false,
+      state: false
     },
     {
       runtime: "Eternity",
       desc: "Over 180",
-      state: false,
-    },
+      state: false
+    }
   ]);
 
   function handle_click(runtime) {
