@@ -1,9 +1,9 @@
-import Home from "./home";
-import About from "./about";
-import Navbar from "./navbar";
-import Member from "./member";
-import Login from "./login";
-import SignUp from "./signup";
+import Home from "./Home";
+import About from "./About";
+import Navbar from "./Navbar";
+import Member from "./Member";
+import Login from "./Login";
+import SignUp from "./Signup";
 import Recommend from "./recommend";
 import MyList from "./my-list";
 

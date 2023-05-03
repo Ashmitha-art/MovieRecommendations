@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { useNavigate } from "react-router-dom";
-import {Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
@@ -24,7 +24,8 @@ class SignUpForm extends Component {
   handleSubmit = (event) => {
     // let navigate = useNavigate();
     event.preventDefault();
-    if (true) {
+    if (this.SignupValidation()) {
+      // Fix later.
       let form_data = new FormData();
 
       form_data.append("email", this.state.email);
@@ -36,7 +37,10 @@ class SignUpForm extends Component {
         body: form_data,
         headers: {
           // Include the CSRF token in the headers
-          "X-CSRFToken": (document.cookie.match('(^|;)\\s*' + 'csrftoken' + '\\s*=\\s*([^;]+)')?.pop() || ''),
+          "X-CSRFToken":
+            document.cookie
+              .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
+              ?.pop() || "",
         },
       })
         .then((res) => {
@@ -45,7 +49,7 @@ class SignUpForm extends Component {
         })
         .then((data) => {
           localStorage.setItem("token", data.token);
-          this.setState({isLoggedin: true});
+          this.setState({ isLoggedin: true });
           // navigate("/");
         })
         .catch((err) => {
@@ -93,12 +97,12 @@ class SignUpForm extends Component {
     } else if (this.state.password) {
       if (
         !this.state.password.match(
-          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/
         )
       ) {
         ValidAccountInfo = false;
         InfoErrors["password"] =
-          "Password must be at least 8 characters and contain 1 letter, 1 number and a symbol.";
+          "Password must be at least 8 characters and contain 1 letter, 1 number, and a symbol.";
       }
     }
 
@@ -117,19 +121,21 @@ class SignUpForm extends Component {
   };
 
   render() {
-    const { username, email, password, confirmpassword, isLoggedin } = this.state;
-    if (isLoggedin){
-      return <Navigate to="/" />
+    const { username, email, password, confirmpassword, isLoggedin } =
+      this.state;
+    if (isLoggedin) {
+      //return <Navigate to="/" />;
     }
 
     return (
       <div className="SignUp_Main_Div">
         <h1 className="heading">Register</h1>
-        <form name="Signup_Form" >
+        <form name="Signup_Form">
           <div className="SignUp_Container">
             <label className="SignUp_Email">Email</label>
             <input
               className="LoginRegisterInputFields"
+              data-testid="email"
               type="email"
               id="email"
               placeholder="Email"
@@ -144,6 +150,7 @@ class SignUpForm extends Component {
             <label className="SignUp_Username">Username</label>
             <input
               className="LoginRegisterInputFields"
+              data-testid="username"
               type="text"
               id="Username"
               placeholder="Username"
@@ -158,6 +165,7 @@ class SignUpForm extends Component {
             <label className="SignUp_Password">Password</label>
             <input
               className="LoginRegisterInputFields"
+              data-testid="confirmpassword"
               type="password"
               id="Password"
               placeholder="Password"
@@ -172,6 +180,7 @@ class SignUpForm extends Component {
             <label className="SignUp_ConfirmPassword">Confirm Password</label>
             <input
               className="LoginRegisterInputFields"
+              data-testid="password"
               type="password"
               id="ConfirmPassword"
               placeholder="Confirm Password"
@@ -184,7 +193,14 @@ class SignUpForm extends Component {
               {this.state.InfoErrors.confirmpassword}
             </div>
             <br />
-            <button onClick={this.handleSubmit} className="SignUp_Button" value="Sign up">Sign up</button>
+            <button
+              onClick={this.handleSubmit}
+              data-testid="submit"
+              className="SignUp_Button"
+              value="Sign up"
+            >
+              Sign up
+            </button>
           </div>
         </form>
       </div>
