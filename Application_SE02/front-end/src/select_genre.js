@@ -6,52 +6,52 @@ function SelectGenre({ element, set_element }) {
   const [genres, set_genres] = useState([
     {
       genre: "Action",
-      state: false,
+      state: false
     },
     {
       genre: "Adventure",
-      state: false,
+      state: false
     },
     {
       genre: "Comedy",
-      state: false,
+      state: false
     },
     {
       genre: "Drama",
-      state: false,
+      state: false
     },
     {
       genre: "Horror",
-      state: false,
+      state: false
     },
     {
       genre: "Thriller",
-      state: false,
+      state: false
     },
     {
       genre: "Mystery",
-      state: false,
+      state: false
     },
     {
       genre: "Crime",
-      state: false,
+      state: false
     },
     {
       genre: "Animation",
-      state: false,
+      state: false
     },
     {
       genre: "Sci-Fi",
-      state: false,
+      state: false
     },
     {
       genre: "Fantasy",
-      state: false,
+      state: false
     },
     {
       genre: "Romance",
-      state: false,
-    },
+      state: false
+    }
   ]);
 
   function handle_click(genre) {
