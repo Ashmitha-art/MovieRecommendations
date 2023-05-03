@@ -13,7 +13,7 @@ class Genre(models.Model):
     genre = models.CharField(max_length=255)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'genre'
 
 
@@ -24,7 +24,7 @@ class Movie(models.Model):
     runtime = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'movie'
 
 
@@ -33,7 +33,7 @@ class MovieGenre(models.Model):
     genre = models.ForeignKey(Genre, models.DO_NOTHING)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'movie_genre'
 
 class UserMovie(models.Model):
@@ -42,7 +42,7 @@ class UserMovie(models.Model):
     rating = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'user_movie'
 
 class UserRec(models.Model):
@@ -50,7 +50,7 @@ class UserRec(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'user_rec'
 
 """
