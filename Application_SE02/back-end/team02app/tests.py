@@ -18,7 +18,6 @@ class TestCases(TestCase):
         }
 
         login_response = self.client.post('/api/login/', data=login_input_payload)
-        print(login_response.json())
         self.assertEqual(login_response.status_code, 400)
 
     def test_get_movie_rec_valid(self):
@@ -28,13 +27,11 @@ class TestCases(TestCase):
         }
 
         response = self.client.post('/api/login/', data=input_payload)
-        print(response.json())
 
         headers = {'HTTP_Authorization': 'Token ' + response.json()['token']}
 
         reverse_url = reverse('get_movie_recommendations')
-        input_payload = {"genre": ["Adventure"], "year": ["1960 to 1980"], "runtime": ["120 to 150"], "age": ["PG-13"]}
+        input_payload = {"genre": ["Adventure"], "year": ["2000 to 2020"], "runtime": ["120 to 150"], "age": ["PG-13"]}
         response = self.client.post(reverse_url, input_payload, format='json',
                                     HTTP_AUTHORIZATION='Token ' + response.json()['token'])
-        print(response.json())
         self.assertEqual(response.status_code, 200)
