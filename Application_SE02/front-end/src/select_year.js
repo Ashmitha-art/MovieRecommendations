@@ -7,28 +7,28 @@ function SelectYear({ element, set_element }) {
     {
       year: "Prehistoric",
       desc: "1920 to 1940",
-      state: false,
+      state: false
     },
     {
       year: "Vintage",
       desc: "1940 to 1960",
-      state: false,
+      state: false
     },
     {
       year: "Classic",
       desc: "1960 to 1980",
-      state: false,
+      state: false
     },
     {
       year: "Retro",
       desc: "1980 to 2000",
-      state: false,
+      state: false
     },
     {
       year: "Recent",
       desc: "2000 to 2020",
-      state: false,
-    },
+      state: false
+    }
   ]);
 
   function handle_click(year) {

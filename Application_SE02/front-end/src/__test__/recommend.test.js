@@ -4,7 +4,7 @@ import {
   fireEvent,
   render,
   screen,
-  waitFor,
+  waitFor
 } from "@testing-library/react";
 
 import Recommend from "../recommend";
@@ -45,8 +45,8 @@ describe("Test the Recommendation Component", () => {
         movie_title: "movie",
         year: "1234",
         runtime: "567",
-        age_rating: "a",
-      },
+        age_rating: "a"
+      }
     ];
 
     render(<Results data={results} error={null} />);
