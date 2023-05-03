@@ -9,28 +9,28 @@ function SelectAge({ element, set_element }) {
     {
       age: "G",
       desc: "Recommended for Young Children",
-      state: false,
+      state: false
     },
     {
       age: "PG",
       desc: "Recommended for Children",
-      state: false,
+      state: false
     },
     {
       age: "PG-13",
       desc: "Recommended for Teens",
-      state: false,
+      state: false
     },
     {
       age: "R",
       desc: "Recommended for Adults",
-      state: false,
+      state: false
     },
     {
       age: "NC-17",
       desc: "Adults Only",
-      state: false,
-    },
+      state: false
+    }
   ]);
 
   /* --- Functions --- */

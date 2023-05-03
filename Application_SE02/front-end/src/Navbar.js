@@ -13,8 +13,11 @@ function Navbar() {
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,
-        "X-CSRFToken": (document.cookie.match('(^|;)\\s*' + 'csrftoken' + '\\s*=\\s*([^;]+)')?.pop() || ''),
-      },
+        "X-CSRFToken":
+          document.cookie
+            .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
+            ?.pop() || ""
+      }
     })
       .then((res) => {
         if (!res.ok) throw Error("Could not fetch data.");

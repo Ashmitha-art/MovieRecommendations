@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import {Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export class LoginForm extends Component {
   state = {
     username: "",
     password: "",
     InfoErrors: {},
-    isLoggedin: false,
+    isLoggedin: false
   };
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   };
 
@@ -27,20 +27,23 @@ export class LoginForm extends Component {
         body: form_data,
         headers: {
           // Include the CSRF token in the headers
-          "X-CSRFToken": (document.cookie.match('(^|;)\\s*' + 'csrftoken' + '\\s*=\\s*([^;]+)')?.pop() || ''),
-        },
+          "X-CSRFToken":
+            document.cookie
+              .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
+              ?.pop() || ""
+        }
       })
-          .then((res) => {
-            if (!res.ok) throw Error("Could not fetch data.");
-            return res.json();
-          })
-          .then((data) => {
-            localStorage.setItem("token", data.token);
-            this.setState({isLoggedin: true});
-          })
-          .catch((err) => {
-            console.log(err.message);
-          });
+        .then((res) => {
+          if (!res.ok) throw Error("Could not fetch data.");
+          return res.json();
+        })
+        .then((data) => {
+          localStorage.setItem("token", data.token);
+          this.setState({ isLoggedin: true });
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     }
   };
 
@@ -51,12 +54,12 @@ export class LoginForm extends Component {
     if (!this.state.username.match(/^[A-Za-z][A-Za-z0-9]+$/)) {
       ValidCredentials = false;
       InfoErrors["username"] =
-          "Username must begin with an alphanumeric character.";
+        "Username must begin with an alphanumeric character.";
     } else {
       if (!this.state.username.match(/^[A-Za-z]\w{2,20}$/)) {
         ValidCredentials = false;
         InfoErrors["username"] =
-            "Username must contain at least 3 alphanumeric characters.";
+          "Username must contain at least 3 alphanumeric characters.";
       }
     }
 
@@ -65,24 +68,24 @@ export class LoginForm extends Component {
       InfoErrors["password"] = "Please enter a valid password.";
     } else if (this.state.password) {
       if (
-          !this.state.password.match(
-              /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
-          )
+        !this.state.password.match(
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
+        )
       ) {
         ValidCredentials = false;
         InfoErrors["password"] =
-            "Password must be at least 8 characters and contain 1 letter, 1 number and a symbol.";
+          "Password must be at least 8 characters and contain 1 letter, 1 number and a symbol.";
       }
     }
 
-    this.setState({InfoErrors});
+    this.setState({ InfoErrors });
     return ValidCredentials;
   };
 
   render() {
-    const {username, password, isLoggedin} = this.state;
+    const { username, password, isLoggedin } = this.state;
     if (isLoggedin) {
-      return <Navigate to="/"/>
+      return <Navigate to="/" />;
     }
 
       return (
@@ -128,7 +131,9 @@ export class LoginForm extends Component {
               </div>
             </form>
           </div>
-      );
-    }
+        </form>
+      </div>
+    );
   }
+}
 export default LoginForm;

@@ -9,14 +9,14 @@ export class SignUpForm extends Component {
     password: "",
     confirmpassword: "",
     InfoErrors: {},
-    isLoggedin: false,
+    isLoggedin: false
   };
 
   //EEj23`~ull1
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   };
 
@@ -40,8 +40,8 @@ export class SignUpForm extends Component {
           "X-CSRFToken":
             document.cookie
               .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
-              ?.pop() || "",
-        },
+              ?.pop() || ""
+        }
       })
         .then((res) => {
           if (!res.ok) throw Error("Could not fetch data.");
