@@ -78,7 +78,7 @@ class TestCases(TestCase):
                                     HTTP_AUTHORIZATION='Token ' + response.json()['token'])
         self.assertEqual(response.status_code, 200)
 
-     def test_logout(self):
+    def test_logout(self):
         login_input_payload = {
             "username": self.username,
             "password": self.password
