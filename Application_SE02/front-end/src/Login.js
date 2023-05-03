@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Navigate} from "react-router-dom";
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
   state = {
     username: "",
     password: "",
@@ -93,8 +93,9 @@ class LoginForm extends Component {
                 <label className="Login_Username">Username</label>
                 <input
                     className="LoginRegisterInputFields"
+                    data-testid="username"
                     type="text"
-                    id="username"
+                    id="Username"
                     placeholder="Username"
                     name="username"
                     value={username}
@@ -105,8 +106,9 @@ class LoginForm extends Component {
                 <label className="Login_Password">Password</label>
                 <input
                     className="LoginRegisterInputFields"
+                    data-testid="password"
                     type="password"
-                    id="password"
+                    id="Password"
                     placeholder="Password"
                     name="password"
                     value={password}
@@ -118,7 +120,11 @@ class LoginForm extends Component {
               Forgot Password?
             </a>
             */}
-                <button onClick={this.handleSubmit} className="Login_Button" value="Log In">Log In</button>
+                <button 
+                  onClick={this.handleSubmit} 
+                  data-testid="submit" 
+                  className="Login_Button" 
+                  value="Log In">Log In</button>
               </div>
             </form>
           </div>
