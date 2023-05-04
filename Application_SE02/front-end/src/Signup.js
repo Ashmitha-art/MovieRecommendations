@@ -7,7 +7,7 @@ import { Navigate } from "react-router-dom";
 A component for rendering and handling sign-up form.
 @extends {Component}
 */
-class SignUpForm extends Component {
+export class SignUpForm extends Component {
   state = {
     username: "",
     email: "",

@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 A class component for a Login Form.
 @extends Component
 */
-class LoginForm extends Component {
+export class LoginForm extends Component {
   /**
   Initial state of the component.
   @property {string} username - The username input value.
