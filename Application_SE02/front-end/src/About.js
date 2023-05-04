@@ -1,3 +1,7 @@
+/**
+ * @module About
+ * @desc This module represents the About page of the web application.
+ */
 import ashmitha_photo from "./photos/ashmitha.jpg";
 import steve_photo from "./photos/steve.png";
 import preet_photo from "./photos/preet.jpg";
@@ -7,9 +11,17 @@ import nathan_photo from "./photos/nathan.jpg";
 
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Renders the About page component.
+ * @returns {JSX.Element} JSX Element representing the About page.
+ */
 function About() {
   let navigate = useNavigate();
 
+    /**
+   * Function to handle route change on member click.
+   * @param {string} name - The name of the member to be routed to.
+   */
   const routeChange = (name) => {
     let path = "/" + name;
     navigate(path);

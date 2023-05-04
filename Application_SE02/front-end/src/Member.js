@@ -5,6 +5,13 @@ import chris_photo from "./photos/chris.jpg";
 import abdul_photo from "./photos/abdul.jpg";
 import nathan_photo from "./photos/nathan.jpg";
 
+/**
+
+Returns information about a team member.
+@param {string} name - The name of the team member.
+@returns {object} - An object containing the team member's photo and text information.
+@throws {Error} - Throws an error if the provided name is not one of the team members.
+*/
 function Member({ name }) {
   let ashmitha_text =
     "Hey! I'm Ashmitha Pais, an MS student at SFSU. I've always been fascinated by computers, data and their intricacy. I enjoy reading and fixing problems. \n In my free time, I listen to a lot of music. I would like to work on real issues and help develop products that make people's lives easier." +

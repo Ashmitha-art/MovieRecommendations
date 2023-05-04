@@ -5,6 +5,11 @@ import SelectRuntime from "./select_runtime";
 import SelectAge from "./select_age";
 import Results from "./results";
 
+/**
+
+A component that allows users to select preferences for movie recommendations and generates the recommendations.
+@returns {JSX.Element} The SelectionSequence component.
+*/
 function SelectionSequence() {
   const [current, set_current] = useState("genre");
 
@@ -16,6 +21,10 @@ function SelectionSequence() {
   const [results, set_results] = useState([]);
   const [error, set_error] = useState("");
 
+  /**
+
+  Sends the user's preferences to the server to generate movie recommendations.
+  */
   const generate_results = () => {
     const preferences = { genre, year, runtime, age };
     console.log(preferences);

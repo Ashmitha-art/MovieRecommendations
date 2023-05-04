@@ -1,5 +1,13 @@
 import { useState } from "react";
 
+/**
+
+A React component for selecting an age range.
+@param {Object} props - The props object.
+@param {Array} props.element - An array of selected age ratings.
+@param {function} props.set_element - A function to set the selected age ratings.
+@returns {JSX.Element} - A JSX object representing the age selection component.
+*/
 function SelectAge({ element, set_element }) {
   /* --- Variables --- */
   const age_limit = 2; // Limit of how many age ratings the user can choose.
@@ -35,16 +43,30 @@ function SelectAge({ element, set_element }) {
 
   /* --- Functions --- */
 
-  // Handle onClick events for each button on the selection page.
-  function handle_click(age) {
-    // Add element from button clicked to global variable in 'selection_sequence.js'
-    function add_age(x) {
+  /**
+
+  Handles the onClick event for each age button on the selection page.
+  @param {string} age - The age rating of the button clicked.
+  @returns {void}
+  */
+  function handle_click(age) { // Handle onClick events for each button on the selection page.
+    /*
+    Adds the selected age rating to the global 'element' state and increments 'age_num'.
+    @param {string} x - The age rating to be added.
+    @returns {void}
+    */
+    function add_age(x) { // Add element from button clicked to global variable in 'selection_sequence.js'
       set_element((element) => [...element, x]);
       set_age_num(age_num + 1);
     }
 
-    // Remove element from global variable in 'selection_sequence.js'
-    function remove_age(x) {
+    /**
+
+    Removes the selected age rating from the global 'element' state and decrements 'age_num'.
+    @param {string} x - The age rating to be removed.
+    @returns {void}
+    */
+    function remove_age(x) { // Remove element from global variable in 'selection_sequence.js'
       set_element(
         element.filter((age) => {
           return age != x;

@@ -1,7 +1,19 @@
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 
-export class LoginForm extends Component {
+/**
+
+A class component for a Login Form.
+@extends Component
+*/
+class LoginForm extends Component {
+  /**
+  Initial state of the component.
+  @property {string} username - The username input value.
+  @property {string} password - The password input value.
+  @property {Object} InfoErrors - Object with error messages for input fields.
+  @property {boolean} isLoggedin - Flag to indicate if the user is logged in.
+  */
   state = {
     username: "",
     password: "",
@@ -9,12 +21,23 @@ export class LoginForm extends Component {
     isLoggedin: false
   };
 
+  /**
+
+  Handles changes in input fields.
+  @param {Object} event - The event object.
+  */
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
 
+  /**
+
+  Handles the submission of the login form.
+
+  @param {Object} event - The event object.
+  */
   handleSubmit = (event) => {
     event.preventDefault();
     if (true) {
@@ -47,6 +70,11 @@ export class LoginForm extends Component {
     }
   };
 
+  /**
+
+  Validates the input fields for the login form.
+  @returns {boolean} - A flag indicating if the inputs are valid.
+  */
   LoginValidation = () => {
     let InfoErrors = {};
     let ValidCredentials = true;
@@ -82,6 +110,11 @@ export class LoginForm extends Component {
     return ValidCredentials;
   };
 
+  /**
+
+  Renders the login form component.
+  @returns {JSX.Element} - The rendered component.
+  */
   render() {
     const { username, password, isLoggedin } = this.state;
     if (isLoggedin) {

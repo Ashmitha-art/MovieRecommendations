@@ -2,7 +2,12 @@ import React, { Component } from "react";
 // import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-export class SignUpForm extends Component {
+/**
+
+A component for rendering and handling sign-up form.
+@extends {Component}
+*/
+class SignUpForm extends Component {
   state = {
     username: "",
     email: "",
@@ -12,15 +17,23 @@ export class SignUpForm extends Component {
     isLoggedin: false
   };
 
-  //EEj23`~ull1
+  /**
 
+  Handles changes in the form input fields.
+  @param {Event} event - The input event object.
+  */
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
 
-  // Post Request
+  /**
+
+  Handles form submission by making a POST request to the server with user's input data.
+
+  @param {Event} event - The form submit event object.
+  */
   handleSubmit = (event) => {
     // let navigate = useNavigate();
     event.preventDefault();
@@ -58,6 +71,11 @@ export class SignUpForm extends Component {
     }
   };
 
+  /**
+
+  Validates user input data and updates the component state with error messages, if any.
+  @returns {boolean} - Returns true if the input data is valid, false otherwise.
+  */
   SignupValidation = () => {
     let InfoErrors = {};
     let ValidAccountInfo = true;
@@ -120,6 +138,12 @@ export class SignUpForm extends Component {
     return ValidAccountInfo;
   };
 
+  /**
+
+  Render the sign-up form for users to create an account
+  @function
+  @returns {JSX.Element} - The rendered sign-up form
+  */
   render() {
     const { username, email, password, confirmpassword, isLoggedin } =
       this.state;
