@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Signup.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Signup.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from "react";
+// import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
+/**
+
+A component for rendering and handling sign-up form.
+@extends {Component}
+*/
+class SignUpForm extends Component {
+  state = {
+    username: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+    InfoErrors: {},
+    isLoggedin: false
+  };
+
+  /**
+
+  Handles changes in the form input fields.
+  @param {Event} event - The input event object.
+  */
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  /**
+
+  Handles form submission by making a POST request to the server with user's input data.
+
+  @param {Event} event - The form submit event object.
+  */
+  handleSubmit = (event) => {
+    // let navigate = useNavigate();
+    event.preventDefault();
+    if (this.SignupValidation()) {
+      // Fix later.
+      let form_data = new FormData();
+
+      form_data.append("email", this.state.email);
+      form_data.append("username", this.state.username);
+      form_data.append("password", this.state.password);
+
+      fetch("api/register/", {
+        method: "POST",
+        body: form_data,
+        headers: {
+          // Include the CSRF token in the headers
+          "X-CSRFToken":
+            document.cookie
+              .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
+              ?.pop() || ""
+        }
+      })
+        .then((res) => {
+          if (!res.ok) throw Error("Could not fetch data.");
+          return res.json();
+        })
+        .then((data) => {
+          localStorage.setItem("token", data.token);
+          this.setState({ isLoggedin: true });
+          // navigate("/");
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  };
+
+  /**
+
+  Validates user input data and updates the component state with error messages, if any.
+  @returns {boolean} - Returns true if the input data is valid, false otherwise.
+  */
+  SignupValidation = () => {
+    let InfoErrors = {};
+    let ValidAccountInfo = true;
+
+    if (!this.state.email) {
+      ValidAccountInfo = false;
+      InfoErrors["email"] = "Please enter a valid email.";
+    } else if (this.state.email) {
+      if (
+        !this.state.email.match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/)
+      ) {
+        ValidAccountInfo = false;
+        InfoErrors["email"] = "Email is not valid (must be ex. x@y.com).";
+      }
+    }
+
+    if (!this.state.username) {
+      ValidAccountInfo = false;
+      InfoErrors["username"] = "Please enter a valid username.";
+    } else if (this.state.username) {
+      if (!this.state.username.match(/^[A-Za-z][A-Za-z0-9]+$/)) {
+        ValidAccountInfo = false;
+        InfoErrors["username"] =
+          "Username must begin with an alphanumeric character.";
+      } else {
+        if (!this.state.username.match(/^[A-Za-z]\w{2,20}$/)) {
+          ValidAccountInfo = false;
+          InfoErrors["username"] =
+            "Username must contain at least 3 alphanumeric characters.";
+        }
+      }
+    }
+
+    if (!this.state.password) {
+      ValidAccountInfo = false;
+      InfoErrors["password"] = "Please enter a valid password.";
+    } else if (this.state.password) {
+      if (
+        !this.state.password.match(
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/
+        )
+      ) {
+        ValidAccountInfo = false;
+        InfoErrors["password"] =
+          "Password must be at least 8 characters and contain 1 letter, 1 number, and a symbol.";
+      }
+    }
+
+    if (!this.state.confirmpassword) {
+      ValidAccountInfo = false;
+      InfoErrors["confirmpassword"] = "Please confirm your password.";
+    } else if (this.state.confirmpassword) {
+      if (this.state.confirmpassword !== this.state.password) {
+        ValidAccountInfo = false;
+        InfoErrors["confirmpassword"] = "Passwords do not match.";
+      }
+    }
+
+    this.setState({ InfoErrors });
+    return ValidAccountInfo;
+  };
+
+  /**
+
+  Render the sign-up form for users to create an account
+  @function
+  @returns {JSX.Element} - The rendered sign-up form
+  */
+  render() {
+    const { username, email, password, confirmpassword, isLoggedin } =
+      this.state;
+    if (isLoggedin) {
+      //return &lt;Navigate to="/" />;
+    }
+
+    return (
+      &lt;div className="SignUp_Main_Div">
+        &lt;h1 className="heading">Register&lt;/h1>
+        &lt;form name="Signup_Form">
+          &lt;div className="SignUp_Container">
+            &lt;label className="SignUp_Email">Email&lt;/label>
+            &lt;input
+              className="LoginRegisterInputFields"
+              data-testid="email"
+              type="email"
+              id="email"
+              placeholder="Email"
+              required
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+            />
+            &lt;div className="ErrorMessage">{this.state.InfoErrors.email}&lt;/div>
+            &lt;br />
+
+            &lt;label className="SignUp_Username">Username&lt;/label>
+            &lt;input
+              className="LoginRegisterInputFields"
+              data-testid="username"
+              type="text"
+              id="Username"
+              placeholder="Username"
+              required
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            />
+            &lt;div className="ErrorMessage">{this.state.InfoErrors.username}&lt;/div>
+            &lt;br />
+
+            &lt;label className="SignUp_Password">Password&lt;/label>
+            &lt;input
+              className="LoginRegisterInputFields"
+              data-testid="password"
+              type="password"
+              id="Password"
+              placeholder="Password"
+              required
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            &lt;div className="ErrorMessage">{this.state.InfoErrors.password}&lt;/div>
+            &lt;br />
+
+            &lt;label className="SignUp_ConfirmPassword">Confirm Password&lt;/label>
+            &lt;input
+              className="LoginRegisterInputFields"
+              data-testid="confirmpassword"
+              type="password"
+              id="ConfirmPassword"
+              placeholder="Confirm Password"
+              required
+              name="confirmpassword"
+              value={confirmpassword}
+              onChange={this.handleChange}
+            />
+            &lt;div className="ErrorMessage">
+              {this.state.InfoErrors.confirmpassword}
+            &lt;/div>
+            &lt;br />
+            &lt;button
+              onClick={this.handleSubmit}
+              data-testid="submit"
+              className="SignUp_Button"
+              value="Sign up"
+            >
+              Sign up
+            &lt;/button>
+          &lt;/div>
+        &lt;/form>
+      &lt;/div>
+    );
+  }
+}
+
+export default SignUpForm;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-About.html">About</a></li></ul><h3>Classes</h3><ul><li><a href="LoginForm.html">LoginForm</a></li><li><a href="SignUpForm.html">SignUpForm</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Member">Member</a></li><li><a href="global.html#MyList">MyList</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Results">Results</a></li><li><a href="global.html#SelectAge">SelectAge</a></li><li><a href="global.html#SelectGenre">SelectGenre</a></li><li><a href="global.html#SelectRuntime">SelectRuntime</a></li><li><a href="global.html#SelectYear">SelectYear</a></li><li><a href="global.html#SelectionSequence">SelectionSequence</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#routeChange">routeChange</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed May 03 2023 20:01:52 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
