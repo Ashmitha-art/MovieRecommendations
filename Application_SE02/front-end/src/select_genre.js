@@ -1,5 +1,12 @@
 import { useState } from "react";
 
+/**
+
+A component to display and handle selection of genres.
+@param {Array} element - An array of selected genres.
+@param {Function} set_element - A function to set the selected genres.
+@returns {JSX.Element} A JSX Element that displays the genres and allows selection of up to 3 genres.
+*/
 function SelectGenre({ element, set_element }) {
   const genre_limit = 3;
   const [genre_num, set_genre_num] = useState(0);
@@ -54,7 +61,19 @@ function SelectGenre({ element, set_element }) {
     }
   ]);
 
+  /**
+
+  Handles the click event for the genre buttons.
+  @param {String} genre - The genre that was clicked.
+  @returns {void}
+  */
   function handle_click(genre) {
+    /**
+     
+    Removes a genre from the selected genres array.
+    @param {String} x - The genre to remove.
+    @returns {void}
+    */
     function remove_genre(x) {
       set_element(
         element.filter((genre) => {
@@ -64,6 +83,11 @@ function SelectGenre({ element, set_element }) {
       set_genre_num(genre_num - 1);
     }
 
+    /*
+    * Adds a genre to the selected genres array.
+    * @param {String} x - The genre to add.
+    * @returns {void}
+    */
     function add_genre(x) {
       set_element((element) => [...element, x]);
       set_genre_num(genre_num + 1);

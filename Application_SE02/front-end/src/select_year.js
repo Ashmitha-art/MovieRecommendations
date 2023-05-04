@@ -1,5 +1,13 @@
 import { useState } from "react";
 
+/**
+
+React component that renders a year selection interface.
+@param {Object} param - Component parameters.
+@param {Array} param.element - Array of selected years.
+@param {Function} param.set_element - Function to update the array of selected years.
+@returns {JSX.Element} - JSX element that renders the year selection interface.
+*/
 function SelectYear({ element, set_element }) {
   const year_limit = 2;
   const [year_num, set_year_num] = useState(0);
@@ -31,7 +39,18 @@ function SelectYear({ element, set_element }) {
     }
   ]);
 
+  /**
+
+  Callback function that handles a year button click event.
+  @param {string} year - The year range description associated with the clicked button.
+  @returns {void}
+  */
   function handle_click(year) {
+    /**
+
+    Removes the selected year from the selected years array
+    @param {string} x - The year range description to be removed
+    */
     function remove_year(x) {
       set_element(
         element.filter((year) => {
@@ -41,6 +60,11 @@ function SelectYear({ element, set_element }) {
       set_year_num(year_num - 1);
     }
 
+    /**
+
+    Adds the selected year to the selected years array
+    @param {string} x - The year range description to be added
+    */
     function add_year(x) {
       set_element((element) => [...element, x]);
       set_year_num(year_num + 1);

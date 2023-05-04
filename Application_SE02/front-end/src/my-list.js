@@ -1,6 +1,16 @@
 import { useState } from "react";
 
+/**
+
+A React component that displays a list of movies and allows the user to rate them.
+@component
+*/
 function MyList() {
+  /**
+
+  State hook for storing the list of movies.
+  @type {[Array]}
+  */
   const [movies, set_movies] = useState([
     {
       title: "John Wick: Chapter 4",
@@ -40,6 +50,12 @@ function MyList() {
     }
   ]);
 
+  /**
+
+  Handles the click event of a rating checkbox and updates the corresponding movie's rating.
+  @param {Object} movie - The movie object to update.
+  @param {String} rating - The rating to apply ("like" or "dislike").
+  */
   const handle_click = (movie, rating) => {
     const new_movies = movies.map((x) => {
       if (x.title === movie) {

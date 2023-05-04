@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Login.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Login.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from "react";
+import { Navigate } from "react-router-dom";
+
+/**
+
+A class component for a Login Form.
+@extends Component
+*/
+class LoginForm extends Component {
+  /**
+  Initial state of the component.
+  @property {string} username - The username input value.
+  @property {string} password - The password input value.
+  @property {Object} InfoErrors - Object with error messages for input fields.
+  @property {boolean} isLoggedin - Flag to indicate if the user is logged in.
+  */
+  state = {
+    username: "",
+    password: "",
+    InfoErrors: {},
+    isLoggedin: false
+  };
+
+  /**
+
+  Handles changes in input fields.
+  @param {Object} event - The event object.
+  */
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  /**
+
+  Handles the submission of the login form.
+
+  @param {Object} event - The event object.
+  */
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (true) {
+      let form_data = new FormData();
+      form_data.append("username", this.state.username);
+      form_data.append("password", this.state.password);
+
+      fetch("api/login/", {
+        method: "POST",
+        body: form_data,
+        headers: {
+          // Include the CSRF token in the headers
+          "X-CSRFToken":
+            document.cookie
+              .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
+              ?.pop() || ""
+        }
+      })
+        .then((res) => {
+          if (!res.ok) throw Error("Could not fetch data.");
+          return res.json();
+        })
+        .then((data) => {
+          localStorage.setItem("token", data.token);
+          this.setState({ isLoggedin: true });
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  };
+
+  /**
+
+  Validates the input fields for the login form.
+  @returns {boolean} - A flag indicating if the inputs are valid.
+  */
+  LoginValidation = () => {
+    let InfoErrors = {};
+    let ValidCredentials = true;
+
+    if (!this.state.username.match(/^[A-Za-z][A-Za-z0-9]+$/)) {
+      ValidCredentials = false;
+      InfoErrors["username"] =
+        "Username must begin with an alphanumeric character.";
+    } else {
+      if (!this.state.username.match(/^[A-Za-z]\w{2,20}$/)) {
+        ValidCredentials = false;
+        InfoErrors["username"] =
+          "Username must contain at least 3 alphanumeric characters.";
+      }
+    }
+
+    if (!this.state.password) {
+      ValidCredentials = false;
+      InfoErrors["password"] = "Please enter a valid password.";
+    } else if (this.state.password) {
+      if (
+        !this.state.password.match(
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
+        )
+      ) {
+        ValidCredentials = false;
+        InfoErrors["password"] =
+          "Password must be at least 8 characters and contain 1 letter, 1 number and a symbol.";
+      }
+    }
+
+    this.setState({ InfoErrors });
+    return ValidCredentials;
+  };
+
+  /**
+
+  Renders the login form component.
+  @returns {JSX.Element} - The rendered component.
+  */
+  render() {
+    const { username, password, isLoggedin } = this.state;
+    if (isLoggedin) {
+      return &lt;Navigate to="/" />;
+    }
+
+    return (
+      &lt;div className="Login_Main_Div">
+        &lt;h1 className="heading">Login&lt;/h1>
+        &lt;form name="Login_Form" onSubmit={this.handleSubmit}>
+          &lt;div className="Login_Container">
+            &lt;label className="Login_Username">Username&lt;/label>
+            &lt;input
+              className="LoginRegisterInputFields"
+              data-testid="username"
+              type="text"
+              id="Username"
+              placeholder="Username"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            />
+            &lt;div className="ErrorMessage">{this.state.InfoErrors.username}&lt;/div>
+
+            &lt;label className="Login_Password">Password&lt;/label>
+            &lt;input
+              className="LoginRegisterInputFields"
+              data-testid="password"
+              type="password"
+              id="Password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            &lt;div className="ErrorMessage">{this.state.InfoErrors.password}&lt;/div>
+            &lt;button
+              onClick={this.handleSubmit}
+              data-testid="submit"
+              className="Login_Button"
+              value="Log In"
+            >
+              Log In
+            &lt;/button>
+          &lt;/div>
+        &lt;/form>
+      &lt;/div>
+    );
+  }
+}
+export default LoginForm;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-About.html">About</a></li></ul><h3>Classes</h3><ul><li><a href="LoginForm.html">LoginForm</a></li><li><a href="SignUpForm.html">SignUpForm</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Member">Member</a></li><li><a href="global.html#MyList">MyList</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Results">Results</a></li><li><a href="global.html#SelectAge">SelectAge</a></li><li><a href="global.html#SelectGenre">SelectGenre</a></li><li><a href="global.html#SelectRuntime">SelectRuntime</a></li><li><a href="global.html#SelectYear">SelectYear</a></li><li><a href="global.html#SelectionSequence">SelectionSequence</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#routeChange">routeChange</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed May 03 2023 20:01:52 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

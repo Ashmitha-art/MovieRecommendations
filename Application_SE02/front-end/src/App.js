@@ -9,6 +9,14 @@ import MyList from "./my-list";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+/**
+
+The main App component.
+
+@function
+
+@returns {JSX.Element} The rendered App component.
+*/
 function App() {
   return (
     <Router>

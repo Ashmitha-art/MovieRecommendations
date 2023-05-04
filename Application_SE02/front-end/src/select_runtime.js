@@ -1,8 +1,20 @@
 import { useState } from "react";
 
+/**
+
+SelectRuntime component that displays a list of runtime options to select from.
+@param {Object} element - The state of the selected runtime options.
+@param {Function} set_element - The function to update the state of the selected runtime options.
+@returns {JSX.Element} - The JSX code to render the SelectRuntime component.
+*/
 function SelectRuntime({ element, set_element }) {
   const runtime_limit = 2;
   const [runtime_num, set_runtime_num] = useState(0);
+  /**
+
+  An array of runtime options with their name, description, and selection state.
+  @type {Object[]}
+  */
   const [runtimes, set_runtimes] = useState([
     {
       runtime: "Short",
@@ -31,12 +43,27 @@ function SelectRuntime({ element, set_element }) {
     }
   ]);
 
+  /**
+
+  The function to handle the clicking of a runtime option.
+  @param {string} runtime - The name of the runtime option that was clicked.
+  */
   function handle_click(runtime) {
+    /**
+    
+    * The function to add a runtime option to the selected options.
+    * @param {string} x - The name of the runtime option to add.
+    */
     function add_runtime(x) {
       set_element((element) => [...element, x]);
       set_runtime_num(runtime_num + 1);
     }
 
+    /**
+    
+    * The function to remove a runtime option from the selected options.
+    * @param {string} x - The name of the runtime option to remove.
+    */
     function remove_runtime(x) {
       set_element(
         element.filter((runtime) => {
@@ -46,6 +73,11 @@ function SelectRuntime({ element, set_element }) {
       set_runtime_num(runtime_num - 1);
     }
 
+    /**
+     
+    * The updated array of runtime options with the selected state modified.
+    * @type {Object[]}
+    */
     const new_runtimes = runtimes.map((x) => {
       if (x.desc === runtime) {
         if (x.state) {
