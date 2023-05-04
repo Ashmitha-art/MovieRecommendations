@@ -1,3 +1,11 @@
+/**
+
+Renders the component to display the recommended movies based on user preferences.
+@param {Object} props - The props object that contains data and error.
+@param {Array} props.data - The list of movie objects with details such as title, year, runtime, and age rating.
+@param {Object} props.error - The error object, if any error occurred.
+@returns {JSX.Element} - Returns the JSX component with movie recommendations.
+*/
 const Results = ({ data, error }) => {
   /*
   {
