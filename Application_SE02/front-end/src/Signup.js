@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-class SignUpForm extends Component {
+export class SignUpForm extends Component {
   state = {
     username: "",
     email: "",
@@ -165,7 +165,7 @@ class SignUpForm extends Component {
             <label className="SignUp_Password">Password</label>
             <input
               className="LoginRegisterInputFields"
-              data-testid="confirmpassword"
+              data-testid="password"
               type="password"
               id="Password"
               placeholder="Password"
@@ -180,7 +180,7 @@ class SignUpForm extends Component {
             <label className="SignUp_ConfirmPassword">Confirm Password</label>
             <input
               className="LoginRegisterInputFields"
-              data-testid="password"
+              data-testid="confirmpassword"
               type="password"
               id="ConfirmPassword"
               placeholder="Confirm Password"
