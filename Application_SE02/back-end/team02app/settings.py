@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-g=@=g$9*&n=9egqg&nn@hh^8rbm8fc-7930+ph0o(8*bhrs)kf
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['django', '127.0.0.1']
 
@@ -76,7 +76,7 @@ ROOT_URLCONF = 'back-end.team02app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../front-end/build')],
+        'DIRS': [os.path.join(BASE_DIR, '../front-end/build'),os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
