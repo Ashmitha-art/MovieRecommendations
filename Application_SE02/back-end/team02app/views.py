@@ -125,8 +125,8 @@ def query_gpt(genres, years, runtime, rating, likes, dislikes):
               f"Additonal Notes:\n"
               f"Ensure that the movies fall within the specified preferences and that the movies are not in the list of liked or disliked movies.\n"
               f"For remakes, do not include the date in parentheses in the movie title. For example, The Lion King (2019) should just be The Lion King.\n\n"
-              f"| Movie Title | Year | Age Rating |\n"
-              f"| ----------- | ---- | ---------- |")
+              f"| Movie Title | Year | Age Rating | IMDB Link |\n"
+              f"| ----------- | ---- | ---------- | --------- |\n")
 
     api_key = OPENAI_API_KEY
 
@@ -160,6 +160,7 @@ def parse_gpt_output(gpt_output, user):
         movie_title = columns[0]
         movie_year = int(columns[1])
         age_rating = columns[2]
+        imdb_link = columns[3]
 
         # Query the database for the movie information
         try:
@@ -176,6 +177,7 @@ def parse_gpt_output(gpt_output, user):
                 'runtime': runtime,
                 'age_rating': age_rating,
                 'genres': genres,
+                'imdb_link': imdb_link,
                 'movie_id': movie_id
             })
 
