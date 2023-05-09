@@ -15,6 +15,7 @@ from .models import *
 from .serializers import *
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
+from rest_framework import status
 from knox.models import AuthToken
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
@@ -90,20 +91,24 @@ class LoginAPI(KnoxLoginView):
 @authentication_classes([TokenAuthentication])
 def get_movie_recommendations(request):
     if request.method == 'POST':
-        data = request.data
-        genres = data['genre']
-        years = data['year']
-        runtime = data['runtime']
-        rating = data['age']
-        user = request.user
-        likes = UserMovie.objects.filter(user_id=user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
-        dislikes = UserMovie.objects.filter(user_id=user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
-        #likes = "Wife Number Two"
-        #dislikes = "King of the Circus"
+        try:
+            data = request.data
+            genres = data['genre']
+            years = data['year']
+            runtime = data['runtime']
+            rating = data['age']
+            user = request.user
+            likes = UserMovie.objects.filter(user_id=user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
+            dislikes = UserMovie.objects.filter(user_id=user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
+            #likes = "Wife Number Two"
+            #dislikes = "King of the Circus"
 
-        gpt_response = query_gpt(genres, years, runtime, rating, likes, dislikes)
-        parsed_results = parse_gpt_output(gpt_response, user)
-        return JsonResponse(parsed_results, safe=False)
+            gpt_response = query_gpt(genres, years, runtime, rating, likes, dislikes)
+            parsed_results = parse_gpt_output(gpt_response, user)
+            return JsonResponse(parsed_results, safe=False)
+        except Exception as e:
+            print("Error in get_movie_recommendations:", str(e))
+            return JsonResponse({"error": "An internal server error occurred."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
         return JsonResponse({"error": "Invalid request method"}, status=400)
 
@@ -117,7 +122,9 @@ def query_gpt(genres, years, runtime, rating, likes, dislikes):
               f"Age Ratings: {rating}\n"
               f"Liked movies: {likes}\n"
               f"Disliked movies: {dislikes}\n\n"
+              f"Additonal Notes:\n"
               f"Ensure that the movies fall within the specified preferences and that the movies are not in the list of liked or disliked movies.\n"
+              f"For remakes, do not include the date in parentheses in the movie title. For example, The Lion King (2019) should just be The Lion King.\n\n"
               f"| Movie Title | Year | Age Rating |\n"
               f"| ----------- | ---- | ---------- |")
 
@@ -176,7 +183,7 @@ def parse_gpt_output(gpt_output, user):
             user_rec = UserRec(user=user, movie=movie)
             user_rec.save()
         except Movie.DoesNotExist:
-            print(f"Movie '{movie_title} {movie_year}' not found in the database.")
+            print(f"Movie '{movie_title} | {movie_year}' not found in the database.")
 
 
     return movies
