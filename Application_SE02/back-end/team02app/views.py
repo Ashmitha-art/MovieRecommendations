@@ -182,7 +182,7 @@ def parse_gpt_output(gpt_output, user):
             })
 
             #Create user rec entry and save to database
-            user_rec = UserRec(user=user, movie=movie)
+            user_rec = UserRec(user=user, movie=movie, movie_link=imdb_link)
             user_rec.save()
         except Movie.DoesNotExist:
             print(f"Movie '{movie_title} | {movie_year}' not found in the database.")
