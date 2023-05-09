@@ -216,10 +216,11 @@ def movielikesdislikes_list(request):
 
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def displayMovieRec(request):
     try:
         movie_ids = UserRec.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__id', flat=True).distinct()
+        movie_links = UserRec.objects.filter(movie_id__in=movie_ids).values('movie_link', 'movie_id')
 
         movie_details = MovieGenre.objects.filter(movie_id__in=movie_ids).select_related('genre').select_related('movie').\
             values('movie_id', genres=F('genre__genre'),
@@ -230,8 +231,10 @@ def displayMovieRec(request):
 
         for each_movie in movie_details:
             d = next(filter(lambda d: d.get('movie_id') == each_movie['movie_id'], movie_recs), None)
+            movie_link = next(filter(lambda d: d.get('movie_id') == each_movie['movie_id'], movie_links), None)
             if not d:
                 each_movie['genres'] = [each_movie['genres']]
+                each_movie['movie_link'] = movie_link['movie_link']
                 movie_recs.append(each_movie)
             else:
                 d['genres'].append(each_movie['genres'])
