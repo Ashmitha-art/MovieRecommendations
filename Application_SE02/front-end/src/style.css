@@ -27,10 +27,12 @@ code {
 }
   
 /* Navbar */
-.navbar{
+.navbar {
   background-color: var(--theme);
   width: 100%;
   padding: 0.75rem 0rem 0.75rem 0rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.8);
 }
 
 .navbar-button{
@@ -53,16 +55,19 @@ code {
 }
 
 /* Heading */
-.heading{
+.heading {
   margin: 2rem auto 2rem auto;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
+  font-weight: 500;
+  text-shadow: 0px 0px 1px rgba(255, 0, 0, 1);
 }
 
-.heading-2{
+.heading-2 {
   margin: 2rem auto 2rem auto;
   font-size: 1.5rem;
   text-align: center;
+  text-shadow: 0px 0px 2px rgb(120 120 120);
 }
 
 /* Home */
@@ -72,10 +77,11 @@ code {
   margin: auto;
   padding: 0.5em 1em 0.5em 1em;
   border: none;
-  border-radius: 50px;
   color: white;
   background-color: var(--theme);
   transition-duration: 0.2s;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 185px;
 }
 
 .get-started:hover{
@@ -90,6 +96,27 @@ code {
   gap: 2.5em;
 }
 
+/*.LoginTicket, .RegisterTicket {
+  box-sizing: border-box;
+  position: relative;
+  width: 432px;
+  height: 720px;
+  border: 1px solid #000000;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.LoginTicket {
+  left: 436px;
+  top: 293px;
+
+}
+
+.RegisterTicket {
+  left: 1052px;
+  top: 293px;
+
+}
+*/
 /* About Page */
 .member-container{
   display: grid;
@@ -375,25 +402,62 @@ code {
 
 /* Signup/Login CSS */
 .Login_Container, .SignUp_Container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2em auto;
-  padding: 2em 1em 2em 1em;
-  width: 25%;
-  border: 1px solid white;
-  border-radius: 25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2em auto;
+    padding: 2em 1em 2em 1em;
+    max-width: 20%;
+    border: 1px solid white;
+    border-radius: 25px;
+    /* background: #FFFFFF; */
+    box-shadow: inset 0px 4px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    background: linear-gradient(white, white) padding-box, 
+                linear-gradient( rgba(255, 255, 255, 1), rgba(255, 215, 0, 1)) border-box;
+    border-width: 0px 3px 5px 3px;
+    border-style: solid;
+    border-color: transparent;
 }
 
-.Login_Username, .SignUp_Username, .Login_Password, .SignUp_Password, .SignUp_ConfirmPassword, .SignUp_Email{
+
+/*.LoginTicket, .RegisterTicket {
+  box-sizing: border-box;
+  position: relative;
+  width: 432px;
+  height: 720px;
+  border: 1px solid #000000;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.LoginTicket {
+  left: 436px;
+  top: 293px;
+
+}
+
+.RegisterTicket {
+  left: 1052px;
+  top: 293px;
+
+}
+*/
+
+.Login_Username, .SignUp_Username, .Login_Password, .SignUp_Password, .SignUp_ConfirmPassword, .SignUp_Email {
   font-size: 1.5em;
-  margin: 0.5em 0.5em 0.25em 0.5em,;
-} 
+  text-align: center;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  color: #000000;
+}
 
 .LoginRegisterInputFields {
   font-size: 1.5rem;
   width: 75%;
+  background: #FFFFFF;
+  border: 2px solid #000000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .Login_Button, .SignUp_Button {
@@ -405,6 +469,8 @@ code {
   border: none;
   background-color: var(--theme);
   transition-duration: 0.2s;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 185px;
 }
 
 .Login_Button:hover, .SignUp_Button:hover{
@@ -414,10 +480,11 @@ code {
 
 .ErrorMessage {
   text-align: center;
-  min-height: 4em;
+  max-height: 20px;
   padding: 0.25em;
   margin: 0.25em;
   color: red;
   font-size: 1em;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
 }
 

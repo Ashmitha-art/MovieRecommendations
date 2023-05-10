@@ -24,7 +24,7 @@ function Home() {
 
       {!localStorage.getItem("token") && (
         <div className="home-page-container">
-          <div>
+          <div className="LoginTicket">
             <p className="heading-2">Not logged in?</p>
             <button
               className="get-started"
@@ -35,7 +35,7 @@ function Home() {
               Login
             </button>
           </div>
-          <div>
+          <div className="RegisterTicket">
             <p className="heading-2">Not signed up?</p>
             <button
               className="get-started"
