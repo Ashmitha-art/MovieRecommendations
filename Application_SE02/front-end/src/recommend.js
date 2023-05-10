@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SelectGenre from "./select_genre";
 import SelectYear from "./select_year";
 import SelectRuntime from "./select_runtime";
@@ -18,8 +18,53 @@ function SelectionSequence() {
   const [runtime, set_runtime] = useState([]);
   const [age, set_age] = useState([]);
 
-  const [results, set_results] = useState([]);
+  const [data, set_data] = useState([]);
+  const [loading, set_loading] = useState(true);
   const [error, set_error] = useState("");
+
+  /*
+  const fetch_recommendations = () => {
+    const [data, set_data] = useState([]);
+    const [loading, set_loading] = useState(true);
+    const [error, set_error] = useState(null);
+
+    useEffect(() => {
+      const abort_controller = new AbortController();
+
+      fetch("api/get_movie_recommendations/", {
+        signal: abort_controller.signal,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${localStorage.getItem("token")}`,
+          // Include the CSRF token in the headers
+          "X-CSRFToken":
+            document.cookie
+              .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
+              ?.pop() || ""
+        },
+        body: JSON.stringify(preferences)
+          .then((res) => {
+            if (!res.ok) throw Error("Could not fetch data.");
+            return res.json();
+          })
+          .then((data) => {
+            set_data(data);
+            set_loading(false);
+            set_error(null);
+          })
+          .catch((err) => {
+            if (err.name === "AbortError") console.log("Fetch was aborted.");
+            else {
+              set_loading(false);
+              set_error(err.message);
+            }
+          })
+      });
+      return () => abort_controller.abort(); // Abort fetch if component is derendered.
+    }, []);
+    return;
+  };*/
 
   /**
 
@@ -27,9 +72,11 @@ function SelectionSequence() {
   */
   const generate_results = () => {
     const preferences = { genre, year, runtime, age };
-    console.log(preferences);
+
+    const abort_controller = new AbortController();
 
     fetch("api/get_movie_recommendations/", {
+      signal: abort_controller.signal,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,16 +90,23 @@ function SelectionSequence() {
       body: JSON.stringify(preferences)
     })
       .then((res) => {
+        if (!res.ok) throw Error("Could not fetch data.");
         return res.json();
       })
       .then((data) => {
-        set_results(data);
+        set_data(data);
+        set_loading(false);
+        set_error(null);
       })
       .catch((err) => {
-        console.log(err.message);
-        set_error(err);
+        if (err.name === "AbortError") console.log("Fetch was aborted.");
+        else {
+          set_error(err);
+          set_loading(false);
+        }
       });
     set_current("results");
+    return () => abort_controller.abort();
   };
 
   return (
@@ -69,7 +123,9 @@ function SelectionSequence() {
       )}
       {current === "age" && <SelectAge element={age} set_element={set_age} />}
 
-      {current === "results" && <Results data={results} error={error} />}
+      {current === "results" && (
+        <Results data={data} loading={loading} error={error} />
+      )}
 
       {/* Genre Page Next Button */}
       {genre.length != 0 && current === "genre" && (
