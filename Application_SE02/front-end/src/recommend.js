@@ -22,50 +22,6 @@ function SelectionSequence() {
   const [loading, set_loading] = useState(true);
   const [error, set_error] = useState("");
 
-  /*
-  const fetch_recommendations = () => {
-    const [data, set_data] = useState([]);
-    const [loading, set_loading] = useState(true);
-    const [error, set_error] = useState(null);
-
-    useEffect(() => {
-      const abort_controller = new AbortController();
-
-      fetch("api/get_movie_recommendations/", {
-        signal: abort_controller.signal,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${localStorage.getItem("token")}`,
-          // Include the CSRF token in the headers
-          "X-CSRFToken":
-            document.cookie
-              .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
-              ?.pop() || ""
-        },
-        body: JSON.stringify(preferences)
-          .then((res) => {
-            if (!res.ok) throw Error("Could not fetch data.");
-            return res.json();
-          })
-          .then((data) => {
-            set_data(data);
-            set_loading(false);
-            set_error(null);
-          })
-          .catch((err) => {
-            if (err.name === "AbortError") console.log("Fetch was aborted.");
-            else {
-              set_loading(false);
-              set_error(err.message);
-            }
-          })
-      });
-      return () => abort_controller.abort(); // Abort fetch if component is derendered.
-    }, []);
-    return;
-  };*/
-
   /**
 
   Sends the user's preferences to the server to generate movie recommendations.
