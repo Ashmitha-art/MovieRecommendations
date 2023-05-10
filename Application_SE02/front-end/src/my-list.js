@@ -5,7 +5,7 @@ import { useState } from "react";
 A React component that displays a list of movies and allows the user to rate them.
 @component
 */
-function MyList() {
+const MyList = () => {
   /**
 
   State hook for storing the list of movies.
@@ -112,6 +112,6 @@ function MyList() {
       </div>
     </div>
   );
-}
+};
 
 export default MyList;
