@@ -8,7 +8,7 @@ SelectRuntime component that displays a list of runtime options to select from.
 @returns {JSX.Element} - The JSX code to render the SelectRuntime component.
 */
 function SelectRuntime({ element, set_element }) {
-  const runtime_limit = 2;
+  const runtime_limit = 5;
   const [runtime_num, set_runtime_num] = useState(0);
   /**
 

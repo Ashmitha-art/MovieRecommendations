@@ -10,7 +10,7 @@ A React component for selecting an age range.
 */
 function SelectAge({ element, set_element }) {
   /* --- Variables --- */
-  const age_limit = 2; // Limit of how many age ratings the user can choose.
+  const age_limit = 5; // Limit of how many age ratings the user can choose.
   const [age_num, set_age_num] = useState(0); // Sets the current number of selected age ratings.
   const [ages, set_ages] = useState([
     // Descriptions of age ratings
@@ -49,13 +49,15 @@ function SelectAge({ element, set_element }) {
   @param {string} age - The age rating of the button clicked.
   @returns {void}
   */
-  function handle_click(age) { // Handle onClick events for each button on the selection page.
+  function handle_click(age) {
+    // Handle onClick events for each button on the selection page.
     /*
     Adds the selected age rating to the global 'element' state and increments 'age_num'.
     @param {string} x - The age rating to be added.
     @returns {void}
     */
-    function add_age(x) { // Add element from button clicked to global variable in 'selection_sequence.js'
+    function add_age(x) {
+      // Add element from button clicked to global variable in 'selection_sequence.js'
       set_element((element) => [...element, x]);
       set_age_num(age_num + 1);
     }
@@ -66,7 +68,8 @@ function SelectAge({ element, set_element }) {
     @param {string} x - The age rating to be removed.
     @returns {void}
     */
-    function remove_age(x) { // Remove element from global variable in 'selection_sequence.js'
+    function remove_age(x) {
+      // Remove element from global variable in 'selection_sequence.js'
       set_element(
         element.filter((age) => {
           return age != x;

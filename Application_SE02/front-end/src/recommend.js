@@ -71,7 +71,7 @@ function SelectionSequence() {
 
       {current === "results" && <Results data={results} error={error} />}
 
-      {/* Next Buttons */}
+      {/* Genre Page Next Button */}
       {genre.length != 0 && current === "genre" && (
         <button
           className="next-button"
@@ -82,36 +82,84 @@ function SelectionSequence() {
           Next
         </button>
       )}
-      {year.length != 0 && current === "year" && (
-        <button
-          className="next-button"
-          onClick={() => {
-            set_current("runtime");
-          }}
-        >
-          Next
-        </button>
-      )}
-      {runtime.length != 0 && current === "runtime" && (
-        <button
-          className="next-button"
-          onClick={() => {
-            set_current("age");
-          }}
-        >
-          Next
-        </button>
-      )}
-      {age.length != 0 && current === "age" && (
-        <button
-          className="next-button"
-          onClick={() => {
-            generate_results();
-          }}
-        >
-          Generate Recommendations
-        </button>
-      )}
+
+      {/* Year Page Back & Next Buttons */}
+      <div className="home-page-container">
+        {current === "year" && (
+          <button
+            className="next-button"
+            onClick={() => {
+              set_current("genre");
+              set_genre([]);
+              set_year([]);
+            }}
+          >
+            Back
+          </button>
+        )}
+        {year.length != 0 && current === "year" && (
+          <button
+            className="next-button"
+            onClick={() => {
+              set_current("runtime");
+            }}
+          >
+            Next
+          </button>
+        )}
+      </div>
+
+      {/* Runtime Page Back & Next Buttons */}
+      <div className="home-page-container">
+        {current === "runtime" && (
+          <button
+            className="next-button"
+            onClick={() => {
+              set_current("year");
+              set_year([]);
+              set_runtime([]);
+            }}
+          >
+            Back
+          </button>
+        )}
+        {runtime.length != 0 && current === "runtime" && (
+          <button
+            className="next-button"
+            onClick={() => {
+              set_current("age");
+            }}
+          >
+            Next
+          </button>
+        )}
+      </div>
+
+      {/* Age Rating Page Back & Next Buttons*/}
+      <div>
+        {current === "age" && (
+          <button
+            className="next-button"
+            onClick={() => {
+              set_current("runtime");
+              set_runtime([]);
+              set_age([]);
+            }}
+          >
+            Back
+          </button>
+        )}
+        {age.length != 0 && current === "age" && (
+          <button
+            className="next-button"
+            onClick={() => {
+              generate_results();
+            }}
+          >
+            Generate Recommendations
+          </button>
+        )}
+      </div>
 
       {/* Testing... */}
 

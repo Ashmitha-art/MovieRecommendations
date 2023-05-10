@@ -153,7 +153,7 @@ export class SignUpForm extends Component {
 
     return (
       <div className="SignUp_Main_Div">
-        <h1 className="heading">Register</h1>
+        <h1 className="heading">Signup</h1>
         <form name="Signup_Form">
           <div className="SignUp_Container">
             <label className="SignUp_Email">Email</label>

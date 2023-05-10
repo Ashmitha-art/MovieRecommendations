@@ -9,7 +9,7 @@ React component that renders a year selection interface.
 @returns {JSX.Element} - JSX element that renders the year selection interface.
 */
 function SelectYear({ element, set_element }) {
-  const year_limit = 2;
+  const year_limit = 5;
   const [year_num, set_year_num] = useState(0);
   const [years, set_years] = useState([
     {

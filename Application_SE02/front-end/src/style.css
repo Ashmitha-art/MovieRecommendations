@@ -4,6 +4,12 @@
   font-family: 'Quicksand';
 }
 
+:root {
+  --theme: rgb(196,30,58);
+  --theme-hover: rgb(120, 20, 37);
+  --background: rgb(30,30,30);
+}
+
 /* index.css */
 body {
   margin: 0;
@@ -12,7 +18,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(30,30,30);
+  background-color: var(--background);
   color: white;
 }
 
@@ -22,7 +28,7 @@ code {
   
 /* Navbar */
 .navbar{
-  background-color:rgb(196,30,58);
+  background-color: var(--theme);
   width: 100%;
   padding: 0.75rem 0rem 0.75rem 0rem;
 }
@@ -32,13 +38,13 @@ code {
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 0.25rem 0.5rem 0.25rem 0.5rem;
   color: white;
-  background-color: rgb(196,30,58);
+  background-color: var(--theme);
   border: none;
   border-radius: 50px;
   transition-duration: 0.2s;
 }
 .navbar-button:hover{
-  background-color:rgb(159, 26, 49);
+  background-color:var(--theme-hover);
   cursor: pointer;
 }
 
@@ -68,13 +74,20 @@ code {
   border: none;
   border-radius: 50px;
   color: white;
-  background-color: rgb(196,30,58);
+  background-color: var(--theme);
   transition-duration: 0.2s;
 }
 
 .get-started:hover{
   cursor: pointer;
-  background-color: rgb(159, 26, 49);
+  background-color: var(--theme-hover);
+}
+
+.home-page-container{
+  display: flex;
+  margin: auto;
+  width: fit-content;
+  gap: 2.5em;
 }
 
 /* About Page */
@@ -131,7 +144,7 @@ code {
 }   
   
 .weekly-schedule_entry-heading{
-  background-color: rgb(196,30,58);
+  background-color: var(--theme);
 }
 
 /* Individual Member Pages*/
@@ -165,13 +178,30 @@ code {
   border: none;
   border-radius: 50px;
   color: white;
-  background-color: rgb(196,30,58);
+  background-color: var(--theme);
   transition-duration: 0.2s;
 }
 
 .next-button:hover{
   cursor: pointer;
-  background-color: rgb(159, 26, 49);
+  background-color: var(--theme-hover);
+}
+
+.generate-button{
+  display: grid;
+  padding: 0.5em 2em 0.5em 2em;
+  margin: 1em auto 1em auto;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  background-color: var(--theme);
+  transition-duration: 0.2s;
+}
+
+.generate-button:hover{
+  cursor: pointer;
+  background-color: var(--theme-hover);
 }
 
 .test{
@@ -373,12 +403,12 @@ code {
   text-align: center;
   color: white;
   border: none;
-  background-color: rgb(196,30,58);
+  background-color: var(--theme);
   transition-duration: 0.2s;
 }
 
 .Login_Button:hover, .SignUp_Button:hover{
-  background-color: rgb(159, 26, 49);
+  background-color: var(--theme-hover);
   cursor: pointer;
 }
 

@@ -22,14 +22,46 @@ function Home() {
     <div>
       <h1 className="heading">Welcome to MovAI!</h1>
 
-      <button
-        className="get-started"
-        onClick={() => {
-          routeChange("recommend");
-        }}
-      >
-        Get Started!
-      </button>
+      {!localStorage.getItem("token") && (
+        <div className="home-page-container">
+          <div>
+            <p className="heading-2">Not logged in?</p>
+            <button
+              className="get-started"
+              onClick={() => {
+                routeChange("login");
+              }}
+            >
+              Login
+            </button>
+          </div>
+          <div>
+            <p className="heading-2">Not signed up?</p>
+            <button
+              className="get-started"
+              onClick={() => {
+                routeChange("signup");
+              }}
+            >
+              Signup
+            </button>
+          </div>
+        </div>
+      )}
+
+      {localStorage.getItem("token") && (
+        <div>
+          <p className="heading-2">Logged in?</p>
+          <button
+            className="get-started"
+            onClick={() => {
+              routeChange("recommend");
+            }}
+          >
+            Get Started!
+          </button>
+        </div>
+      )}
     </div>
   );
 }

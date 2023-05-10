@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 /**
-
+ * 
 React functional component representing the Navbar.
 @function Navbar
 @returns {JSX.Element} - A JSX Element containing the navbar.
@@ -55,52 +55,37 @@ function Navbar() {
       >
         Home
       </button>
-      {!localStorage.getItem("token") && (
-        <button
-          onClick={() => {
-            routeChange("login");
-            routeChange("/");
-          }}
-          className="navbar-button"
-        >
-          Login
-        </button>
-      )}
+
       {localStorage.getItem("token") && (
         <button
           onClick={() => {
             logout();
             localStorage.removeItem("token");
-            window.location.reload();
+            routeChange("");
           }}
           className="navbar-button"
+          id="about"
         >
           Logout
         </button>
       )}
-      <button
-        onClick={() => {
-          routeChange("signup");
-        }}
-        className="navbar-button"
-      >
-        Sign Up
-      </button>
-      <button
-        onClick={() => {
-          routeChange("my-list");
-        }}
-        className="navbar-button"
-      >
-        My List
-      </button>
+
+      {localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            routeChange("my-list");
+          }}
+          className="navbar-button"
+        >
+          My List
+        </button>
+      )}
 
       <button
         onClick={() => {
           routeChange("about");
         }}
         className="navbar-button"
-        id="about"
       >
         About
       </button>
