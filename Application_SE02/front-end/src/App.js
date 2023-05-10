@@ -5,7 +5,8 @@ import Member from "./Member";
 import Login from "./Login";
 import SignUp from "./Signup";
 import Recommend from "./recommend";
-import MyList from "./my-list";
+import MyRatings from "./my-ratings";
+import MyRecommendations from "./my-recommendations";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -29,8 +30,11 @@ function App() {
             <Route path="/recommend" element={<Recommend />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/login" element={<Login />}></Route>
-
-            <Route path="/my-list" element={<MyList />}></Route>
+            <Route path="/my-ratings" element={<MyRatings />}></Route>
+            <Route
+              path="/my-recommendations"
+              element={<MyRecommendations />}
+            ></Route>
             <Route
               path="/ashmitha"
               element={<Member name="Ashmitha Pais" />}

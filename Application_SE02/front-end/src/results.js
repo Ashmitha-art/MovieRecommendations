@@ -26,6 +26,10 @@ const Results = ({ data, loading, error }) => {
               <p className="movie-desc">
                 {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
               </p>
+              <br/>
+              <p className="movie-desc">
+                IMDB: {movie.imdb_link}
+              </p>
             </div>
           ))}
       </div>

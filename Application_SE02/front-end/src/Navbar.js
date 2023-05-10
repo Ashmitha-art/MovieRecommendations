@@ -73,11 +73,21 @@ function Navbar() {
       {localStorage.getItem("token") && (
         <button
           onClick={() => {
-            routeChange("my-list");
+            routeChange("my-ratings");
           }}
           className="navbar-button"
         >
-          My List
+          My Ratings
+        </button>
+      )}
+      {localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            routeChange("my-recommendations");
+          }}
+          className="navbar-button"
+        >
+          My Recommendations
         </button>
       )}
 
