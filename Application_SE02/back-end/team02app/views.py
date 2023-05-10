@@ -24,11 +24,11 @@ from .settings import OPENAI_API_KEY
     
 
 
-@ensure_csrf_cookie
+#@ensure_csrf_cookie
 def index(request):
     return render(request, 'index.html')
 
-@ensure_csrf_cookie
+#@ensure_csrf_cookie
 def react(request, path):
     return render(request, 'index.html')
 
@@ -74,15 +74,17 @@ class RegisterAPI(generics.CreateAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
-class LoginAPI(KnoxLoginView):
-    permission_classes = (permissions.AllowAny,)
+class LoginAPI(generics.GenericAPIView):
+    serializer_class = LoginSerializer
 
-    def post(self, request, format=None):
-        serializer = AuthTokenSerializer(data=request.data)
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        login(request, user)
-        return super(LoginAPI, self).post(request, format=None)
+        user = serializer.validated_data
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
 
 @api_view(['POST'])
 @csrf_exempt
