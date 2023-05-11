@@ -57,7 +57,11 @@ export class SignUpForm extends Component {
         }
       })
         .then((res) => {
-          if (!res.ok) throw Error("Could not fetch data.");
+          if (!res.ok){ 
+            console.log(res.json());
+
+             throw Error("Could not fetch data.");
+          }
           return res.json();
         })
         .then((data) => {

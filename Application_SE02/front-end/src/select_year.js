@@ -90,31 +90,52 @@ function SelectYear({ element, set_element }) {
     set_years(new_years);
   }
 
+  const clipnum = 50;
+  
+
+  
   return (
     <div>
       <h2 className="heading">2: Select a Year Range (Up to {year_limit})</h2>
       <div className="year-button-container">
-        {years.map((element, index) => (
-          <label
-            key={index}
-            className={`year-button-${element.state ? "on" : "off"}`}
-          >
-            <input
-              className="year-button-checkbox"
-              type="checkbox"
-              onClick={() => {
-                handle_click(element.desc);
-              }}
-            />
-            <p className="year-button-text">
-              {element.year}
-              <br />
-            </p>
-            <p className="year-button-desc-text">{element.desc}</p>
-          </label>
-        ))}
+        <div className="movie-film-reel">
+          <div className="movie-film-reel-2">
+            <div className="movie-film-reel-clips-top">
+            {[...Array(clipnum)].map((e, i) =>  
+              <span className="movie-individual-clips" key={i}></span>
+            )}
+            </div>
+
+
+          {years.map((element, index) => (
+            <label
+              key={index}
+              className={`year-button-${element.state ? "on" : "off"}`}
+              >
+              <input
+                className="year-button-checkbox"
+                type="checkbox"
+                onClick={() => {
+                  handle_click(element.desc);
+                }}
+              />
+              <p className="year-button-text">
+                {element.year}
+                <br />
+              </p>
+              <p className="year-button-desc-text">{element.desc}</p>
+            </label>
+          ))}
+            <div className="movie-film-reel-clips-bottom" >
+              {[...Array(clipnum)].map((e, i) =>  
+              <span className="movie-individual-clips" key={i}></span>
+              )}            
+            </div>
+        </div>
       </div>
     </div>
+    </div>
+    
   );
 }
 

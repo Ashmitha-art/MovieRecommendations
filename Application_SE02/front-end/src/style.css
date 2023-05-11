@@ -197,16 +197,18 @@ code {
 }
 
 /* Selection Pages */
-.next-button{
-  display: grid;
-  padding: 0.5em 2em 0.5em 2em;
-  margin: 1em auto 1em auto;
-  font-size: 1.5rem;
-  border: none;
-  border-radius: 50px;
+.next-button {
+  display: block;
+  margin: 20px auto 20px auto;
+  padding: 0.5em 1em 0.5em 1em;
+  font-size: 1em;
+  text-align: center;
   color: white;
+  border: none;
   background-color: var(--theme);
   transition-duration: 0.2s;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 185px;
 }
 
 .next-button:hover{
@@ -246,12 +248,19 @@ code {
   padding: 1em;
 }
 
-.genre-button-off, .genre-button-on{
+.genre-button-off, .genre-button-on {
   transition-duration: 0.2s;
   padding: 1em 2em 1em 2em;
   font-size: 1.5rem;
-  border-radius: 50px;
+  border: 1px solid white;
   margin: 0.25em;
+  background: linear-gradient(rgb(255 255 255), rgb(255 255 255)) padding-box,
+            linear-gradient(rgba(255, 0, 0, 1), rgba(255, 215, 0, 1)) border-box;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 90px;
+  border-width: 2px 2px 2px 2px;
+  border-style: solid;
+  border-color: transparent;
 }
 
 .genre-button-off{
@@ -277,31 +286,101 @@ code {
   display: none;
 }
 
-.genre-button-text{
+.genre-button-text {
   font-size: 1.5rem;
   margin: auto;
-  color: white;
+  color: black;
   text-align: center;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
 /* Select Year */
-.year-button-container, .runtime-button-container, .age-button-container{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  width: 75%;
-  margin: auto;
-  border: 1px white solid;
-  border-radius: 25px;
-  padding: 1em;
+.year-button-container, .runtime-button-container, .age-button-container {
+    display: flex;
+    max-width: 75%;
+    min-height: 400px;
+    margin: auto;
+    border: 1px white solid;
+    border-radius: 25px;
+    padding: 1em;
+    justify-content: space-between;
+    align-content: space-around;
 }
 
-.year-button-on, .year-button-off, .runtime-button-on, .runtime-button-off, .age-button-on, .age-button-off{
-  transition-duration: 0.2s;
-  padding: 5em 1em 5em 1em;
-  font-size: 1.5rem;
-  border-radius: 25px;
-  margin: 0.25em;
+.movie-film-reel {
+    display: block;
+    margin: auto;
+    width: 1080px;
+    height: 240px;
+    border: 1px solid #000000;
 }
+
+.movie-film-reel-2 {
+    display: grid;
+    position: absolute;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-content: center;
+}
+
+.movie-film-reel-clips-top, .movie-film-reel-clips-bottom {
+  position: absolute;
+  width: 1040px;
+  display: flex;
+  height: 15px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  gap: 2px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: space-around;
+  justify-items: end;
+}
+
+.movie-film-reel-clips-top {
+  height: 15px;
+  left: 22px;
+  top: 5px;
+}
+
+.movie-film-reel-clips-bottom {
+  height: 15px;
+  left: 22px;
+  top: 215px;
+}
+
+.movie-individual-clips {
+  display: block;
+  position: relative;
+  filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.5));
+  width: 20px;
+  height: 15px;
+  background: linear-gradient(0deg, #000000, #000000), linear-gradient(0deg, #000000, #000000), #000000;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  padding: 0px 0px 0px 0px;
+}
+
+
+.year-button-on, .year-button-off, .runtime-button-on, .runtime-button-off, .age-button-on, .age-button-off {
+  transition-duration: 0.2s;
+  display: grid;
+  font-size: 1.5rem;
+  margin: 1em auto;
+  width: 180px;
+  height: 180px;
+  align-content: center;
+  border: 1.5px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+}
+
+
 
 .year-button-checkbox, .runtime-button-checkbox, .age-button-checkbox{
   display: none;
@@ -311,7 +390,8 @@ code {
 }
 
 .year-button-off, .runtime-button-off, .age-button-off{
-  background-color: rgb(30,30,30);
+  background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgb(150 150 150 / 50%) 100%);
+  background-blend-mode: multiply;
 }
 
 .year-button-off:hover, .runtime-button-off:hover, .age-button-off:hover{
@@ -329,14 +409,44 @@ code {
   cursor: pointer;
 }
 
-.year-button-text, .runtime-button-text, .age-button-text{
+.year-button-text, .runtime-button-text, .age-button-text {
   margin: auto;
   color: white;
   text-align: center;
 }
 
+
 .year-button-desc-text, .runtime-button-desc-text, .age-button-desc-text{
   font-size: 0.75em;
+  text-align: center;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 1);
+}
+
+
+/*1st button*/
+.year-button-text {
+    background: linear-gradient(180deg, #AAAAAA 0%, #000000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 54px;
+    text-align: center;
+}
+
+
+.year-button-text>*:first-child {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 54px;
   text-align: center;
 }
 
@@ -402,26 +512,23 @@ code {
 
 /* Signup/Login CSS */
 .Login_Container, .SignUp_Container {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 2em auto;
-    padding: 2em 1em 2em 1em;
-    max-width: 20%;
-    border: 1px solid white;
-    border-radius: 25px;
-    /* background: #FFFFFF; */
-    box-shadow: inset 0px 4px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    background: linear-gradient(white, white) padding-box, 
-                linear-gradient( rgba(255, 255, 255, 1), rgba(255, 215, 0, 1)) border-box;
-    border-width: 0px 3px 5px 3px;
-    border-style: solid;
-    border-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2em auto;
+  padding: 2em 1em 2em 1em;
+  max-width: 20%;
+  border: 1px solid white;
+  border-radius: 25px;
+  box-shadow: inset 0px 1px 2px 2px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgb(255 255 255 / 90%), rgb(150 150 150 / 90%)) padding-box,
+              linear-gradient( rgb(255 255 255 / 80%), rgb(255 215 0 / 90%)) border-box;
+  border-width: 2px 4px 5px 4px;
+  border-style: solid;
+  border-color: transparent;
 }
-
 
 /*.LoginTicket, .RegisterTicket {
   box-sizing: border-box;
