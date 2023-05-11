@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-g=@=g$9*&n=9egqg&nn@hh^8rbm8fc-7930+ph0o(8*bhrs)kf
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['django', '127.0.0.1']
 
@@ -50,8 +50,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     # remember to uncomment this later
-    'back-end.team02app',
-    #'team02app',
+    #'back-end.team02app',
+    'team02app',
     'knox',
     #'userauth.apps.AuthConfig'
 ]
@@ -70,8 +70,8 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 # this one too
-ROOT_URLCONF = 'back-end.team02app.urls'
-#ROOT_URLCONF = 'team02app.urls'
+#ROOT_URLCONF = 'back-end.team02app.urls'
+ROOT_URLCONF = 'team02app.urls'
 
 TEMPLATES = [
     {

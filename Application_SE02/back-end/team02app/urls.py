@@ -37,5 +37,6 @@ urlpatterns = [
     path('api/get_movie_recommendations/', views.get_movie_recommendations, name = 'get_movie_recommendations'),
     path('api/movies/<int:movie_id>/like/', views.like_movie, name='like_movie'),
     path('api/movies/<int:movie_id>/dislike/', views.dislike_movie, name='dislike_movie'),
+    path('api/movies/<int:movie_id>/unrate/', views.remove_rating, name='remove_rating'),
     path('<path:path>', views.react, name='catch-all'),
 ]
