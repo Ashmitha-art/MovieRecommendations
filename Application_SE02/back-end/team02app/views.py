@@ -39,7 +39,7 @@ def movies_list(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def usermovies_list(request):
+def usermovies_list_deprecated(request):
     usermovies = UserMovie.objects.all()
     serializer = UserMovieSerializer(usermovies, many=True)
     return Response(serializer.data)
@@ -214,3 +214,14 @@ def movielikesdislikes_list(request):
     response = {'likedMovies': movieliked, 'dislikedMovies': moviedisliked}
 
     return Response(response)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def usermovie_list(request):
+    usermovies = UserMovie.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__title', 'movie__year', 'movie__runtime').distinct()
+    rating = UserMovie.objects.filter(user_id=request.user.id).values_list('rating', flat=True)
+    
+    return Response({
+        "movie"     :   usermovies,
+        "rating"    :   rating
+    })
