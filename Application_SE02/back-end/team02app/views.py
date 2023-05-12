@@ -25,11 +25,11 @@ from .settings import OPENAI_API_KEY
     
 
 
-@ensure_csrf_cookie
+#@ensure_csrf_cookie
 def index(request):
     return render(request, 'index.html')
 
-@ensure_csrf_cookie
+#@ensure_csrf_cookie
 def react(request, path):
     return render(request, 'index.html')
 
@@ -40,7 +40,7 @@ def movies_list(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def usermovies_list(request):
+def usermovies_list_deprecated(request):
     usermovies = UserMovie.objects.all()
     serializer = UserMovieSerializer(usermovies, many=True)
     return Response(serializer.data)
@@ -75,15 +75,17 @@ class RegisterAPI(generics.CreateAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
-class LoginAPI(KnoxLoginView):
-    permission_classes = (permissions.AllowAny,)
+class LoginAPI(generics.GenericAPIView):
+    serializer_class = LoginSerializer
 
-    def post(self, request, format=None):
-        serializer = AuthTokenSerializer(data=request.data)
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        login(request, user)
-        return super(LoginAPI, self).post(request, format=None)
+        user = serializer.validated_data
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
 
 @api_view(['POST'])
 @csrf_exempt
@@ -215,6 +217,7 @@ def movielikesdislikes_list(request):
     return Response(response)
 
 
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def displayMovieRec(request):
@@ -245,3 +248,15 @@ def displayMovieRec(request):
         print(e)
 
     return Response(response)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def usermovie_list(request):
+    usermovies = UserMovie.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__title', 'movie__year', 'movie__runtime').distinct()
+    rating = UserMovie.objects.filter(user_id=request.user.id).values_list('rating', flat=True)
+    
+    return Response({
+        "movie"     :   usermovies,
+        "rating"    :   rating
+    })
+

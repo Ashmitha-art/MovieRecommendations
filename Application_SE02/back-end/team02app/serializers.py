@@ -44,16 +44,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
 
-    #password = serializers.CharField(
-    #    write_only=True,
-    #    required=True,
-    #    validators=[validate_password]
-    #)
-
-    #password2 = serializers.CharField(
-    #    write_only=True, required=True
-    #)
-
     class Meta:
         model = User
         fields = ('email', 'username', 'password')
@@ -65,6 +55,16 @@ class RegisterSerializer(serializers.ModelSerializer):
         password = validated_data['password']
         user = User.objects.create_user(username, email, password)
         return user
+    
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        user = authenticate(**data)
+        if user and user.is_active:
+            return user
+        raise serializers.ValidationError("Invalid Credentials")
     
 
 
