@@ -3,11 +3,6 @@ import { useNavigate } from "react-router-dom";
 const MyRatings = () => {
   let navigate = useNavigate();
 
-  const routeChange = (route) => {
-    let path = "/" + route;
-    navigate(path);
-  };
-
   return (
     <div>
       {!localStorage.getItem("token") && (
@@ -16,11 +11,17 @@ const MyRatings = () => {
           <button
             className="get-started"
             onClick={() => {
-              routeChange("");
+              navigate("/");
             }}
           >
             Back to Home
           </button>
+        </div>
+      )}
+
+      {localStorage.getItem("token") && (
+        <div>
+          <h1 className="heading">My Ratings</h1>
         </div>
       )}
     </div>

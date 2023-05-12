@@ -1,0 +1,36 @@
+{
+  "movies": [
+    {
+      "id": 4,
+      "title": "John Wick: Chapter 4",
+      "genres": ["Action", "Thriller", "Crime"],
+      "year": 2023,
+      "runtime": "170 Minutes",
+      "rating": "R"
+    },
+    {
+      "id": 3,
+      "title": "John Wick: Chapter 3 - Parabellum",
+      "genres": ["Action", "Thriller", "Crime"],
+      "year": 2019,
+      "runtime": "131 Minutes",
+      "rating": "R"
+    },
+    {
+      "id": 2,
+      "title": "John Wick: Chapter 2",
+      "genres": ["Action", "Thriller", "Crime"],
+      "year": 2017,
+      "runtime": "122 Minutes",
+      "rating": "R"
+    },
+    {
+      "id": 1,
+      "title": "John Wick",
+      "genres": ["Action", "Thriller", "Crime"],
+      "year": 2014,
+      "runtime": "101 Minutes",
+      "rating": "R"
+    }
+  ]
+}

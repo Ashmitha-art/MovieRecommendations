@@ -26,11 +26,6 @@ const SelectionSequence = () => {
 
   let navigate = useNavigate();
 
-  const routeChange = (route) => {
-    let path = "/" + route;
-    navigate(path);
-  };
-
   /**
 
   Sends the user's preferences to the server to generate movie recommendations.
@@ -82,7 +77,7 @@ const SelectionSequence = () => {
           <button
             className="get-started"
             onClick={() => {
-              routeChange("");
+              navigate("/");
             }}
           >
             Back to Home
