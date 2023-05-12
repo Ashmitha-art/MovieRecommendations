@@ -7,6 +7,7 @@ import SignUp from "./Signup";
 import Recommend from "./recommend";
 import MyRatings from "./my-ratings";
 import MyRecommendations from "./my-recommendations";
+import MyList from "./my-list";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -25,16 +26,13 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes>
-            <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/recommend" element={<Recommend />}></Route>
-            <Route path="/about" element={<About />}></Route>
             <Route path="/login" element={<Login />}></Route>
-            <Route path="/my-ratings" element={<MyRatings />}></Route>
-            <Route
-              path="/my-recommendations"
-              element={<MyRecommendations />}
-            ></Route>
+            <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/about" element={<About />}></Route>
+
+            <Route path="my-list" element={<MyList />}></Route>
+
             <Route
               path="/ashmitha"
               element={<Member name="Ashmitha Pais" />}
@@ -58,6 +56,13 @@ function App() {
             <Route
               path="/nathan"
               element={<Member name="Nathan Loo" />}
+            ></Route>
+
+            <Route path="/recommend" element={<Recommend />}></Route>
+            <Route path="/my-ratings" element={<MyRatings />}></Route>
+            <Route
+              path="/my-recommendations"
+              element={<MyRecommendations />}
             ></Route>
           </Routes>
         </div>

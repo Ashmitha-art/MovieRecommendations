@@ -11,17 +11,6 @@ function Navbar() {
 
   /**
 
-  A function that navigates to a specified route using the useNavigate hook.
-  @function routeChange
-  @param {string} route - The route to navigate to.
-  */
-  const routeChange = (route) => {
-    let path = "/" + route;
-    navigate(path);
-  };
-
-  /**
-
   A function that logs the user out by sending a POST request to the backend server.
   @function logout
   */
@@ -49,7 +38,7 @@ function Navbar() {
     <nav className="navbar">
       <button
         onClick={() => {
-          routeChange("");
+          navigate("/");
         }}
         className="navbar-button"
       >
@@ -61,7 +50,7 @@ function Navbar() {
           onClick={() => {
             logout();
             localStorage.removeItem("token");
-            routeChange("");
+            navigate("/");
           }}
           className="navbar-button"
           id="about"
@@ -73,7 +62,7 @@ function Navbar() {
       {localStorage.getItem("token") && (
         <button
           onClick={() => {
-            routeChange("my-ratings");
+            navigate("/my-ratings");
           }}
           className="navbar-button"
         >
@@ -83,7 +72,7 @@ function Navbar() {
       {localStorage.getItem("token") && (
         <button
           onClick={() => {
-            routeChange("my-recommendations");
+            navigate("/my-recommendations");
           }}
           className="navbar-button"
         >
@@ -93,7 +82,7 @@ function Navbar() {
 
       <button
         onClick={() => {
-          routeChange("about");
+          navigate("/about");
         }}
         className="navbar-button"
       >
