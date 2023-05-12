@@ -50,7 +50,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     # remember to uncomment this later
+
     #'back-end.team02app',
+
     'team02app',
     'knox',
     #'userauth.apps.AuthConfig'
@@ -71,6 +73,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # this one too
 #ROOT_URLCONF = 'back-end.team02app.urls'
+
 ROOT_URLCONF = 'team02app.urls'
 
 TEMPLATES = [

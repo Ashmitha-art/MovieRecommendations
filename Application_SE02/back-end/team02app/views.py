@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import views
+from django.db.models import F
 from rest_framework import permissions
 from django.shortcuts import render
 from django.contrib.auth import login
@@ -15,6 +16,7 @@ from .models import *
 from .serializers import *
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
+from rest_framework import status
 from knox.models import AuthToken
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
@@ -24,11 +26,11 @@ from .settings import OPENAI_API_KEY
     
 
 
-@ensure_csrf_cookie
+#@ensure_csrf_cookie
 def index(request):
     return render(request, 'index.html')
 
-@ensure_csrf_cookie
+#@ensure_csrf_cookie
 def react(request, path):
     return render(request, 'index.html')
 
@@ -39,7 +41,7 @@ def movies_list(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def usermovies_list(request):
+def usermovies_list_deprecated(request):
     usermovies = UserMovie.objects.all()
     serializer = UserMovieSerializer(usermovies, many=True)
     return Response(serializer.data)
@@ -74,15 +76,17 @@ class RegisterAPI(generics.CreateAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
-class LoginAPI(KnoxLoginView):
-    permission_classes = (permissions.AllowAny,)
+class LoginAPI(generics.GenericAPIView):
+    serializer_class = LoginSerializer
 
-    def post(self, request, format=None):
-        serializer = AuthTokenSerializer(data=request.data)
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        login(request, user)
-        return super(LoginAPI, self).post(request, format=None)
+        user = serializer.validated_data
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
 
 @api_view(['POST'])
 @csrf_exempt
@@ -90,20 +94,24 @@ class LoginAPI(KnoxLoginView):
 @authentication_classes([TokenAuthentication])
 def get_movie_recommendations(request):
     if request.method == 'POST':
-        data = request.data
-        genres = data['genre']
-        years = data['year']
-        runtime = data['runtime']
-        rating = data['age']
-        user = request.user
-        likes = UserMovie.objects.filter(user_id=user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
-        dislikes = UserMovie.objects.filter(user_id=user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
-        #likes = "Wife Number Two"
-        #dislikes = "King of the Circus"
+        try:
+            data = request.data
+            genres = data['genre']
+            years = data['year']
+            runtime = data['runtime']
+            rating = data['age']
+            user = request.user
+            likes = UserMovie.objects.filter(user_id=user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
+            dislikes = UserMovie.objects.filter(user_id=user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
+            #likes = "Wife Number Two"
+            #dislikes = "King of the Circus"
 
-        gpt_response = query_gpt(genres, years, runtime, rating, likes, dislikes)
-        parsed_results = parse_gpt_output(gpt_response, user)
-        return JsonResponse(parsed_results, safe=False)
+            gpt_response = query_gpt(genres, years, runtime, rating, likes, dislikes)
+            parsed_results = parse_gpt_output(gpt_response, user)
+            return JsonResponse(parsed_results, safe=False)
+        except Exception as e:
+            print("Error in get_movie_recommendations:", str(e))
+            return JsonResponse({"error": "An internal server error occurred."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
         return JsonResponse({"error": "Invalid request method"}, status=400)
 
@@ -117,9 +125,11 @@ def query_gpt(genres, years, runtime, rating, likes, dislikes):
               f"Age Ratings: {rating}\n"
               f"Liked movies: {likes}\n"
               f"Disliked movies: {dislikes}\n\n"
+              f"Additonal Notes:\n"
               f"Ensure that the movies fall within the specified preferences and that the movies are not in the list of liked or disliked movies.\n"
-              f"| Movie Title | Year | Age Rating |\n"
-              f"| ----------- | ---- | ---------- |")
+              f"For remakes, do not include the date in parentheses in the movie title. For example, The Lion King (2019) should just be The Lion King.\n\n"
+              f"| Movie Title | Year | Age Rating | IMDB Link |\n"
+              f"| ----------- | ---- | ---------- | --------- |\n")
 
     api_key = OPENAI_API_KEY
 
@@ -153,6 +163,7 @@ def parse_gpt_output(gpt_output, user):
         movie_title = columns[0]
         movie_year = int(columns[1])
         age_rating = columns[2]
+        imdb_link = columns[3]
 
         # Query the database for the movie information
         try:
@@ -169,14 +180,15 @@ def parse_gpt_output(gpt_output, user):
                 'runtime': runtime,
                 'age_rating': age_rating,
                 'genres': genres,
+                'imdb_link': imdb_link,
                 'movie_id': movie_id
             })
 
             #Create user rec entry and save to database
-            user_rec = UserRec(user=user, movie=movie)
+            user_rec = UserRec(user=user, movie=movie, movie_link=imdb_link)
             user_rec.save()
         except Movie.DoesNotExist:
-            print(f"Movie '{movie_title} {movie_year}' not found in the database.")
+            print(f"Movie '{movie_title} | {movie_year}' not found in the database.")
 
 
     return movies
@@ -220,3 +232,48 @@ def movielikesdislikes_list(request):
     response = {'likedMovies': movieliked, 'dislikedMovies': moviedisliked}
 
     return Response(response)
+
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def displayMovieRec(request):
+    try:
+        movie_ids = UserRec.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__id', flat=True).distinct()
+        movie_links = UserRec.objects.filter(movie_id__in=movie_ids).values('movie_link', 'movie_id')
+
+        movie_details = MovieGenre.objects.filter(movie_id__in=movie_ids).select_related('genre').select_related('movie').\
+            values('movie_id', genres=F('genre__genre'),
+                    title=F('movie__title'), year=F('movie__year'),
+                   runtime=F('movie__runtime'))
+
+        movie_recs = []
+
+        for each_movie in movie_details:
+            d = next(filter(lambda d: d.get('movie_id') == each_movie['movie_id'], movie_recs), None)
+            movie_link = next(filter(lambda d: d.get('movie_id') == each_movie['movie_id'], movie_links), None)
+            if not d:
+                each_movie['genres'] = [each_movie['genres']]
+                each_movie['movie_link'] = movie_link['movie_link']
+                movie_recs.append(each_movie)
+            else:
+                d['genres'].append(each_movie['genres'])
+
+        response = {'movieRecommendations': movie_recs}
+
+    except Exception as e:
+        print(e)
+
+    return Response(response)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def usermovie_list(request):
+    usermovies = UserMovie.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__title', 'movie__year', 'movie__runtime').distinct()
+    rating = UserMovie.objects.filter(user_id=request.user.id).values_list('rating', flat=True)
+    
+    return Response({
+        "movie"     :   usermovies,
+        "rating"    :   rating
+    })
+
