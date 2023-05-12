@@ -217,6 +217,14 @@ def dislike_movie(request, movie_id):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
+def remove_rating(request, movie_id):
+    # Remove the corresponding entry in the UserMovie table
+    UserMovie.objects.filter(user=request.user, movie_id=movie_id).delete()
+
+    return JsonResponse({"status": "success"}, status=200)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def movielikesdislikes_list(request):
     movieliked = UserMovie.objects.filter(user_id=request.user.id, rating=1).select_related('movie').values_list('movie__title', flat=True).distinct()
     moviedisliked = UserMovie.objects.filter(user_id=request.user.id, rating=0).select_related('movie').values_list('movie__title', flat=True).distinct()
