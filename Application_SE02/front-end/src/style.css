@@ -546,6 +546,21 @@ code {
     border-radius: 50px;
 }
 
+/*.runtime-button-on, .runtime-button-off {
+    transition-duration: 0.2s;
+    display: grid;
+    font-size: 1.5rem;
+    margin: 1em auto;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}*/
+
+.runtime-button-img {
+    max-width: 100px;
+    margin: auto;
+}
+
 /* My List */
 .error{
   margin: 1em auto 1em auto;
