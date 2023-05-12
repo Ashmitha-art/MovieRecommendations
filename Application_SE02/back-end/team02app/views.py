@@ -1,3 +1,4 @@
+from sqlite3 import DatabaseError, IntegrityError
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.utils.decorators import method_decorator
@@ -19,6 +20,7 @@ from knox.models import AuthToken
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 from knox.auth import TokenAuthentication
+from django.db import IntegrityError
 import openai
 from .settings import OPENAI_API_KEY
     
@@ -31,36 +33,6 @@ def index(request):
 @ensure_csrf_cookie
 def react(request, path):
     return render(request, 'index.html')
-
-@api_view(['GET'])
-def movies_list(request):
-    movies = Movie.objects.all()
-    serializer = MovieSerializer(movies, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def usermovies_list(request):
-    usermovies = UserMovie.objects.all()
-    serializer = UserMovieSerializer(usermovies, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def userrecs_list(request):
-    userrecs = UserRec.objects.all()
-    serializer = UserRecSerializer(userrecs, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def genres_list(request):
-    genres = Genre.objects.all()
-    serializer = GenreSerializer(genres, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def moviegenres_list(request):
-    moviegenres = MovieGenre.objects.all()
-    serializer = MovieGenreSerializer(moviegenres, many=True)
-    return Response(serializer.data)
 
 class RegisterAPI(generics.CreateAPIView):
     serializer_class = RegisterSerializer
@@ -177,6 +149,8 @@ def parse_gpt_output(gpt_output, user):
             user_rec.save()
         except Movie.DoesNotExist:
             print(f"Movie '{movie_title} {movie_year}' not found in the database.")
+        except IntegrityError as e:
+            print(e)
 
 
     return movies
