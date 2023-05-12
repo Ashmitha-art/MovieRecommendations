@@ -98,12 +98,22 @@ function SelectRuntime({ element, set_element }) {
     set_runtimes(new_runtimes);
   }
 
+  const linenum = 5;
+
+
   return (
     <div>
       <h2 className="heading">
         3: Select a Runtime Range (Up to {runtime_limit})
       </h2>
       <div className="runtime-button-container">
+        <div className="runtime-timeline-background">
+          <div className="runtime-timeline-image">
+            {[...Array(linenum)].map((e, i) =>  
+              <span className="runtime-timeline-lines" key={i}></span>
+            )}
+          </div>
+
         {runtimes.map((element, index) => (
           <label
             key={index}
@@ -123,6 +133,7 @@ function SelectRuntime({ element, set_element }) {
             <p className="runtime-button-desc-text">{element.desc} Minutes</p>
           </label>
         ))}
+        </div>
       </div>
     </div>
   );
