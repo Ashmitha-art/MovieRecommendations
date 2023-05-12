@@ -48,6 +48,7 @@ class UserMovie(models.Model):
 class UserRec(models.Model):
     movie = models.ForeignKey(Movie, models.DO_NOTHING)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    movie_link = models.CharField(max_length=255)
 
     class Meta:
         managed = True

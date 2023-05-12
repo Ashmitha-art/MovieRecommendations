@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import views
+from django.db.models import F
 from rest_framework import permissions
 from django.shortcuts import render
 from django.contrib.auth import login
@@ -215,6 +216,39 @@ def movielikesdislikes_list(request):
 
     return Response(response)
 
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def displayMovieRec(request):
+    try:
+        movie_ids = UserRec.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__id', flat=True).distinct()
+        movie_links = UserRec.objects.filter(movie_id__in=movie_ids).values('movie_link', 'movie_id')
+
+        movie_details = MovieGenre.objects.filter(movie_id__in=movie_ids).select_related('genre').select_related('movie').\
+            values('movie_id', genres=F('genre__genre'),
+                    title=F('movie__title'), year=F('movie__year'),
+                   runtime=F('movie__runtime'))
+
+        movie_recs = []
+
+        for each_movie in movie_details:
+            d = next(filter(lambda d: d.get('movie_id') == each_movie['movie_id'], movie_recs), None)
+            movie_link = next(filter(lambda d: d.get('movie_id') == each_movie['movie_id'], movie_links), None)
+            if not d:
+                each_movie['genres'] = [each_movie['genres']]
+                each_movie['movie_link'] = movie_link['movie_link']
+                movie_recs.append(each_movie)
+            else:
+                d['genres'].append(each_movie['genres'])
+
+        response = {'movieRecommendations': movie_recs}
+
+    except Exception as e:
+        print(e)
+
+    return Response(response)
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def usermovie_list(request):
@@ -225,3 +259,4 @@ def usermovie_list(request):
         "movie"     :   usermovies,
         "rating"    :   rating
     })
+
