@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name = 'index'),
     path('api/movies/', views.movies_list, name = 'movies_list'),
-    path('api/usermovies/', views.usermovies_list, name = 'usermovies_list'),
+    #path('api/usermovies/', views.usermovies_list, name = 'usermovies_list'),
     path('api/userrecs/', views.userrecs_list, name = 'userrecs_list'),
     path('api/genres/', views.genres_list, name = 'genres_list'),
     path('api/moviegenres/', views.moviegenres_list, name = 'moviegenres_list'),
@@ -37,5 +37,7 @@ urlpatterns = [
     path('api/get_movie_recommendations/', views.get_movie_recommendations, name = 'get_movie_recommendations'),
     path('api/movies/<int:movie_id>/like/', views.like_movie, name='like_movie'),
     path('api/movies/<int:movie_id>/dislike/', views.dislike_movie, name='dislike_movie'),
+    path('api/list_recommendations/', views.displayMovieRec, name='display_movie_recs'),
+    path('api/ratinghistory/', views.usermovie_list, name='user'),
     path('<path:path>', views.react, name='catch-all'),
 ]

@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import views
+from django.db.models import F
 from rest_framework import permissions
 from django.shortcuts import render
 from django.contrib.auth import login
@@ -25,11 +26,11 @@ from .settings import OPENAI_API_KEY
     
 
 
-@ensure_csrf_cookie
+#@ensure_csrf_cookie
 def index(request):
     return render(request, 'index.html')
 
-@ensure_csrf_cookie
+#@ensure_csrf_cookie
 def react(request, path):
     return render(request, 'index.html')
 
@@ -40,7 +41,7 @@ def movies_list(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def usermovies_list(request):
+def usermovies_list_deprecated(request):
     usermovies = UserMovie.objects.all()
     serializer = UserMovieSerializer(usermovies, many=True)
     return Response(serializer.data)
@@ -75,15 +76,17 @@ class RegisterAPI(generics.CreateAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
-class LoginAPI(KnoxLoginView):
-    permission_classes = (permissions.AllowAny,)
+class LoginAPI(generics.GenericAPIView):
+    serializer_class = LoginSerializer
 
-    def post(self, request, format=None):
-        serializer = AuthTokenSerializer(data=request.data)
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        login(request, user)
-        return super(LoginAPI, self).post(request, format=None)
+        user = serializer.validated_data
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
 
 @api_view(['POST'])
 @csrf_exempt
@@ -221,3 +224,48 @@ def movielikesdislikes_list(request):
     response = {'likedMovies': movieliked, 'dislikedMovies': moviedisliked}
 
     return Response(response)
+
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def displayMovieRec(request):
+    try:
+        movie_ids = UserRec.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__id', flat=True).distinct()
+        movie_links = UserRec.objects.filter(movie_id__in=movie_ids).values('movie_link', 'movie_id')
+
+        movie_details = MovieGenre.objects.filter(movie_id__in=movie_ids).select_related('genre').select_related('movie').\
+            values('movie_id', genres=F('genre__genre'),
+                    title=F('movie__title'), year=F('movie__year'),
+                   runtime=F('movie__runtime'))
+
+        movie_recs = []
+
+        for each_movie in movie_details:
+            d = next(filter(lambda d: d.get('movie_id') == each_movie['movie_id'], movie_recs), None)
+            movie_link = next(filter(lambda d: d.get('movie_id') == each_movie['movie_id'], movie_links), None)
+            if not d:
+                each_movie['genres'] = [each_movie['genres']]
+                each_movie['movie_link'] = movie_link['movie_link']
+                movie_recs.append(each_movie)
+            else:
+                d['genres'].append(each_movie['genres'])
+
+        response = {'movieRecommendations': movie_recs}
+
+    except Exception as e:
+        print(e)
+
+    return Response(response)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def usermovie_list(request):
+    usermovies = UserMovie.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__title', 'movie__year', 'movie__runtime').distinct()
+    rating = UserMovie.objects.filter(user_id=request.user.id).values_list('rating', flat=True)
+    
+    return Response({
+        "movie"     :   usermovies,
+        "rating"    :   rating
+    })
+
