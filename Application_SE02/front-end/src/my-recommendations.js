@@ -13,10 +13,10 @@ const MyRecommendations = () => {
       const abort_controller = new AbortController();
 
       // npx json-server --watch data-test/db.json --port 8000
-      // actual url: api/list_recommendations
 
-      fetch("http://localhost:8000/movies", {
+      fetch("api/list_recommendations", {
         signal: abort_controller.signal,
+        body: localStorage.getItem(id),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${localStorage.getItem("token")}`,
@@ -44,7 +44,7 @@ const MyRecommendations = () => {
           }
         });
       return () => abort_controller.abort();
-    }, ["http://localhost:8000/movies"]);
+    }, ["api/list_recommendations"]);
   };
 
   const handle_rating = (id, rating) => {
@@ -107,7 +107,7 @@ const MyRecommendations = () => {
           <h1 className="heading">Recommendation History</h1>
           {data.map((movie) => {
             return (
-              <div key={movie.title} className="movie-container">
+              <div key={movie.id} className="movie-container">
                 <div className="movie-info">
                   <p className="movie-title">{movie.title}</p>
                   <div className="movie-desc">
@@ -125,7 +125,7 @@ const MyRecommendations = () => {
                 </div>
 
                 <div className="movie-rating-container">
-                  <label className={`like-${movie.liked ? "on" : "off"}`}>
+                  <label className={`like-off"}`}>
                     <input
                       className="movie-rating-checkbox"
                       type="checkbox"
@@ -136,7 +136,7 @@ const MyRecommendations = () => {
                     <span className="material-symbols-outlined">thumb_up</span>
                   </label>
 
-                  <label className={`dislike-${movie.disliked ? "on" : "off"}`}>
+                  <label className={`dislike-off"}`}>
                     <input
                       className="movie-rating-checkbox"
                       type="checkbox"

@@ -711,6 +711,18 @@ code {
   background-color: rgb(240, 128, 128);
 }
 
+.movie-remove{
+  transition-duration: 0.2s;
+  border-radius: 25px;
+  margin: 0.25em;
+  padding: 0.5em;
+}
+
+.movie-remove:hover{
+  background-color: rgb(181, 99, 99);
+  cursor: pointer;
+}
+
 .movie-rating-checkbox{
   margin: auto;
   display: none;
