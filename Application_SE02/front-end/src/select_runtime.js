@@ -1,5 +1,15 @@
 import { useState } from "react";
 
+import hourglass1_logo from "./photos/LogosandIcons/Hourglass1.png";
+import hourglass2_logo from "./photos/LogosandIcons/Hourglass2.png";
+import hourglass3_logo from "./photos/LogosandIcons/Hourglass3.png";
+import hourglass4_logo from "./photos/LogosandIcons/Hourglass4.png";
+import hourglass5_logo from "./photos/LogosandIcons/Hourglass5.png";
+
+/** Constants to define buttons and images. */
+const linenum = 5;
+
+
 /**
 
 SelectRuntime component that displays a list of runtime options to select from.
@@ -19,26 +29,31 @@ function SelectRuntime({ element, set_element }) {
     {
       runtime: "Short",
       desc: "Under 90",
+      photo: hourglass1_logo,
       state: false
     },
     {
       runtime: "Reasonable",
       desc: "90 to 120",
+      photo: hourglass2_logo,
       state: false
     },
     {
       runtime: "Long",
       desc: "120 to 150",
+      photo: hourglass3_logo,
       state: false
     },
     {
       runtime: "Epic",
       desc: "150 to 180",
+      photo: hourglass4_logo,
       state: false
     },
     {
       runtime: "Eternity",
       desc: "Over 180",
+      photo: hourglass5_logo,
       state: false
     }
   ]);
@@ -67,7 +82,7 @@ function SelectRuntime({ element, set_element }) {
     function remove_runtime(x) {
       set_element(
         element.filter((runtime) => {
-          return runtime != x;
+          return runtime !== x;
         })
       );
       set_runtime_num(runtime_num - 1);
@@ -98,7 +113,7 @@ function SelectRuntime({ element, set_element }) {
     set_runtimes(new_runtimes);
   }
 
-  const linenum = 5;
+  
 
 
   return (
@@ -109,7 +124,7 @@ function SelectRuntime({ element, set_element }) {
       <div className="runtime-button-container">
         <div className="runtime-timeline-background">
           <div className="runtime-timeline-image">
-            {[...Array(linenum)].map((e, i) =>  
+            {[...Array(linenum)].map((i) =>  
               <span className="runtime-timeline-lines" key={i}></span>
             )}
           </div>
@@ -120,17 +135,32 @@ function SelectRuntime({ element, set_element }) {
             className={`runtime-button-${element.state ? "on" : "off"}`}
           >
             <input
+              key={element.desc}
               className="runtime-button-checkbox"
               type="checkbox"
               onClick={() => {
                 handle_click(element.desc);
               }}
             />
-            <p className="runtime-button-text">
+          
+            <img 
+              key={element.photo}
+              className="runtime-button-img" 
+              src={element.photo}
+              alt={element.title}
+            />
+            
+            <p 
+              
+              className="runtime-button-text">
               {element.runtime}
               <br />
             </p>
-            <p className="runtime-button-desc-text">{element.desc} Minutes</p>
+            <p
+              key={index}
+              className="runtime-button-desc-text">
+              {element.desc} Minutes
+            </p>
           </label>
         ))}
         </div>
