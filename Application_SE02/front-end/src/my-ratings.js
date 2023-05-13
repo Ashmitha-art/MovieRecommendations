@@ -92,6 +92,21 @@ const MyRatings = () => {
                   </div>
                 </div>
                 <div className="movie-rating-container">
+                  {movie.rating === 1 && (
+                    <label className="like-on">
+                      <span className="material-symbols-outlined">
+                        thumb_up
+                      </span>
+                    </label>
+                  )}
+                  {movie.rating === 0 && (
+                    <label className="dislike-on">
+                      <span className="material-symbols-outlined">
+                        thumb_down
+                      </span>
+                    </label>
+                  )}
+
                   <label className="movie-remove">
                     <input
                       className="movie-rating-checkbox"

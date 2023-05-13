@@ -124,7 +124,7 @@ const MyRecommendations = () => {
                 </div>
 
                 <div className="movie-rating-container">
-                  <label className={`like-${movie.liked ? "on" : "off"}`}>
+                  <label className={`like-off"}`}>
                     <input
                       className="movie-rating-checkbox"
                       type="checkbox"
@@ -135,7 +135,7 @@ const MyRecommendations = () => {
                     <span className="material-symbols-outlined">thumb_up</span>
                   </label>
 
-                  <label className={`dislike-${movie.disliked ? "on" : "off"}`}>
+                  <label className={`dislike-off"}`}>
                     <input
                       className="movie-rating-checkbox"
                       type="checkbox"
