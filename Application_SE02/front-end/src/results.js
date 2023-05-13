@@ -21,15 +21,13 @@ const Results = ({ data, loading, error }) => {
         {data &&
           data.map((movie) => (
             <div key={movie.movie_title} className="movie-container">
-              <p className="movie-title">{movie.movie_title}</p>
-              <br />
-              <p className="movie-desc">
-                {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
-              </p>
-              <br/>
-              <p className="movie-desc">
-                IMDB: {movie.imdb_link}
-              </p>
+              <div className="movie-info">
+                <p className="movie-title">{movie.movie_title}</p>
+                <p className="movie-desc">
+                  {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
+                </p>
+                <p className="movie-desc">IMDB: {movie.imdb_link}</p>
+              </div>
             </div>
           ))}
       </div>

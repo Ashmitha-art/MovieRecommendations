@@ -13,9 +13,8 @@ const MyRecommendations = () => {
       const abort_controller = new AbortController();
 
       // npx json-server --watch data-test/db.json --port 8000
-      // actual url: api/list_recommendations
 
-      fetch("http://localhost:8000/movies", {
+      fetch("api/list_recommendations", {
         signal: abort_controller.signal,
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +43,7 @@ const MyRecommendations = () => {
           }
         });
       return () => abort_controller.abort();
-    }, ["http://localhost:8000/movies"]);
+    }, ["api/list_recommendations"]);
   };
 
   const handle_rating = (id, rating) => {
@@ -107,7 +106,7 @@ const MyRecommendations = () => {
           <h1 className="heading">Recommendation History</h1>
           {data.map((movie) => {
             return (
-              <div key={movie.title} className="movie-container">
+              <div key={movie.id} className="movie-container">
                 <div className="movie-info">
                   <p className="movie-title">{movie.title}</p>
                   <div className="movie-desc">
