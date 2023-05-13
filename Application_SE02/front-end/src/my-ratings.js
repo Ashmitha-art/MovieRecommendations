@@ -14,7 +14,7 @@ const MyRatings = () => {
 
       fetch("api/ratinghistory", {
         signal: abort_controller.signal,
-        body: "?",
+        body: localStorage.getItem(id),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${localStorage.getItem("token")}`,
