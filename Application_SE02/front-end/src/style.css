@@ -238,52 +238,76 @@ code {
 }
 
 /* Select Genre */
-.genre-button-container{
+
+.genre-theater-border, .year-theater-border, .runtime-theater-border {
+  min-width: 75%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: 75%;
+  height: 800px;
+  width: fit-content;
   margin: auto;
   border: 1px white solid;
   border-radius: 50px;
   padding: 1em;
 }
 
+.genre-button-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: auto;
+  padding: 1em;
+}
+
 .genre-button-off, .genre-button-on {
   transition-duration: 0.2s;
+  display: grid;
+  width: 150px;
+  height: 150px;
   padding: 1em 2em 1em 2em;
   font-size: 1.5rem;
-  border: 1px solid white;
   margin: 0.25em;
   background: linear-gradient(rgb(255 255 255), rgb(255 255 255)) padding-box,
-            linear-gradient(rgba(255, 0, 0, 1), rgba(255, 215, 0, 1)) border-box;
+      linear-gradient(rgba(255, 0, 0, 1), rgba(255, 215, 0, 1)) border-box;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
-  border-radius: 90px;
+  border-radius: 50%;
   border-width: 2px 2px 2px 2px;
   border-style: solid;
   border-color: transparent;
+  align-content: center;
 }
 
-.genre-button-off{
-  background-color: rgb(30,30,30);
+
+
+.genre-button-off:hover {
+  filter: drop-shadow(0 0 10px white);
+  cursor: pointer;
 }
 
-.genre-button-off:hover{
-  background-color: rgb(45, 45, 45);
+
+.genre-button-on {
+  filter: drop-shadow(0 0 10px rgb(255, 45, 45));
+}
+
+.genre-button-on:hover {
+  filter: drop-shadow(0 0 10px white);
   cursor: pointer;
 
 }
 
-.genre-button-on{
-  background-color: rgb(45, 45, 45);
-}
 
-.genre-button-on:hover{
-  background-color: rgb(60, 60, 60);
-  cursor: pointer;
-}
-
-.genre-button-checkbox{
+.genre-button-checkbox {
   display: none;
+}
+
+.genre-button-img {
+  max-width: 100px;
+  margin: auto;
+  filter: drop-shadow(0 0 0.1rem black);
+  transition-duration: 0.2s;
+}
+
+.genre-button-img:hover {
+  filter: drop-shadow(0 0 0.2rem gold);
+  cursor: pointer;
 }
 
 .genre-button-text {
@@ -296,36 +320,31 @@ code {
 
 /* Select Year */
 .year-button-container, .runtime-button-container, .age-button-container {
-  display: flex;
-  width: 1440px;
-  height: 800px;
+  display: block;
+  position: relative;
   margin: auto;
-  border: 1px white solid;
-  border-radius: 25px;
   padding: 1em;
-  justify-content: space-between;
-  align-content: space-around;
 }
 
 .movie-film-reel {
-    display: block;
-    margin: auto;
-    width: 1080px;
-    height: 240px;
-    border: 1px solid #000000;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid #000000;
 }
 
+
 .movie-film-reel-2 {
-    display: grid;
-    position: absolute;
-    box-sizing: border-box;
-    width: inherit;
-    height: inherit;
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    align-content: center;
+  display: grid;
+  position: relative;
+  box-sizing: border-box;
+  width: 1080px;
+  height: 240px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-content: center;
 }
 
 .movie-film-reel-clips-top, .movie-film-reel-clips-bottom {
@@ -366,8 +385,7 @@ code {
   padding: 0px 0px 0px 0px;
 }
 
-
-.year-button-on, .year-button-off, .runtime-button-on, .runtime-button-off, .age-button-on, .age-button-off {
+.year-button-on, .year-button-off {
   transition-duration: 0.2s;
   display: grid;
   font-size: 1.5rem;
@@ -379,6 +397,8 @@ code {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
 }
+
+
 
 .year-button-checkbox, .runtime-button-checkbox, .age-button-checkbox{
   display: none;
@@ -448,7 +468,7 @@ code {
 
 /*Select Runtime*/
 .runtime-timeline-background {
-  width: 1280px;
+  display: grid;
   height: 0px;
   margin: auto;
 }
@@ -456,19 +476,18 @@ code {
 .runtime-timeline-image {
   display: flex;
   box-sizing: border-box;
-  max-width: 1080px;
+  width: 900px;
   height: 0px;
   margin: auto;
-  left: calc(50% - 1280px/2);
-  top: calc(50% - 0px/2);
   background: #FFF4F4;
   border: 10px solid #FDFDFD;
   box-shadow: 1px 1px 3px #FF0000;
   flex-direction: row;
-  align-content: stretch;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
 }
+
 
 .runtime-timeline-lines {
   width: 72.01px;
@@ -487,18 +506,53 @@ code {
   top: calc(50% - 0px/2 + 50px);
 }
 
-.runtime-timeline-background>*:nth-child(2) {
-    position: relative;
-    width: 350px;
-    height: 175px;
-    left: calc(50% - 350px/2 - 950px);
-    top: calc(50% - 175px/2 - 210px);
-    background: linear-gradient(180deg, #FFFFFF 0%, #D2B48C 100%);
-    border: 1px solid #FFFDFD;
-    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 50px;
+
+/*General Runtime Button Styling*/
+.runtime-button-on, .runtime-button-off {
+  transition-duration: 0.2s;
+  display: grid;
+  margin: 1em auto;
+  align-content: center;
 }
 
+.runtime-button-on {
+  filter: drop-shadow(0 0 5px yellow);
+  cursor: pointer;
+}
+
+.runtime-button-off:hover, .runtime-button-on:hover {
+  filter: drop-shadow(0 0 10px white);
+  cursor: pointer;
+}
+
+
+.runtime-button-img {
+  max-width: 100px;
+  margin: auto;
+  filter: drop-shadow(0 0 0.5px black);
+  transition-duration: 0.2s;
+}
+
+.runtime-button-img:hover {
+  filter: drop-shadow(0 0 2px gold);
+  cursor: pointer;
+}
+
+
+/*1st Button*/
+.runtime-timeline-background>*:nth-child(2) {
+  position: relative;
+  width: 250px;
+  height: 125px;
+  left: calc(50% - 350px/2 - 603px);
+  top: calc(50% - 377px/2 - 102px);
+  background: linear-gradient(180deg, #FFFFFF 0%, #D2B48C 100%);
+  border: 1px solid #FFFDFD;
+  box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+}
+
+/*2nd Button*/
 .runtime-timeline-background>*:nth-child(3) {
     position: relative;
     width: 350px;
@@ -511,40 +565,60 @@ code {
     border-radius: 50px;
 }
 
+/*2nd Button*/
+.runtime-timeline-background>*:nth-child(3) {
+    position: relative;
+    width: 250px;
+    height: 125px;
+    left: calc(50% - 350px/2 + -475px);
+    bottom: calc(50% - 175px/2 + 150px);
+    background: linear-gradient(180deg, #FFFDFD 0%, #ffea7b 100%);
+    border: 1px solid #FFFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+}
+
+/*3rd Button*/
 .runtime-timeline-background>*:nth-child(4) {
     position: relative;
-    width: 350px;
-    height: 175px;
-    left: calc(50% - 350px/2 - 460px);
-    top: calc(50% - 175px/2 - 613px);
+    width: 250px;
+    height: 125px;
+    left: calc(50% - 350px/2 - 272px);
+    top: calc(50% - 175px/2 - 520px);
     background: linear-gradient(180deg, #FFFDFD 0%, #FFE452 100%);
     border: 1px solid #FFFDFD;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
 }
 
+
+/*4th Button*/
 .runtime-timeline-background>*:nth-child(5) {
     position: relative;
-    width: 350px;
-    height: 175px;
-    left: calc(50% - 350px/2 + -217px);
-    bottom: calc(50% - 175px/2 + 636px);
+    width: 250px;
+    height: 125px;
+    left: calc(50% - 350px/2 + -77px);
+    bottom: calc(50% - 175px/2 + 468px);
     background: linear-gradient(180deg, #FFF2AE 0%, #FFFF44 100%);
     border: 1px solid #FFFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
 }
 
+
+/*5th Button*/
 .runtime-timeline-background>*:nth-child(6) {
     position: relative;
-    width: 350px;
-    height: 175px;
-    left: calc(50% - 350px/2 + 25px);
-    top: calc(50% - 175px/2 - 1016px);
+    width: 250px;
+    height: 125px;
+    left: calc(50% - 350px/2 + 57px);
+    top: calc(50% - 175px/2 - 836px);
     background: linear-gradient(180deg, #FFFFB9 0%, #FFD700 100%);
     border: 1px solid #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
 }
+
 
 /*.runtime-button-on, .runtime-button-off {
     transition-duration: 0.2s;
@@ -556,9 +630,20 @@ code {
     justify-items: center;
 }*/
 
-.runtime-button-img {
-    max-width: 100px;
-    margin: auto;
+
+
+/* Select Age*/
+.age-button-on, .age-button-off {
+  transition-duration: 0.2s;
+  display: grid;
+  font-size: 1.5rem;
+  margin: 1em auto;
+  width: 180px;
+  height: 180px;
+  align-content: center;
+  border: 1.5px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
 }
 
 /* My List */
