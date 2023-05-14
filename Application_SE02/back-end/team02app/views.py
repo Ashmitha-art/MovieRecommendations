@@ -1,3 +1,4 @@
+from sqlite3 import DatabaseError, IntegrityError
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.utils.decorators import method_decorator
@@ -21,6 +22,7 @@ from knox.models import AuthToken
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 from knox.auth import TokenAuthentication
+from django.db import IntegrityError
 import openai
 from .settings import OPENAI_API_KEY
     
@@ -33,6 +35,7 @@ def index(request):
 #@ensure_csrf_cookie
 def react(request, path):
     return render(request, 'index.html')
+
 
 @api_view(['GET'])
 def movies_list(request):
@@ -63,6 +66,7 @@ def moviegenres_list(request):
     moviegenres = MovieGenre.objects.all()
     serializer = MovieGenreSerializer(moviegenres, many=True)
     return Response(serializer.data)
+
 
 class RegisterAPI(generics.CreateAPIView):
     serializer_class = RegisterSerializer
@@ -188,6 +192,11 @@ def parse_gpt_output(gpt_output, user):
             user_rec = UserRec(user=user, movie=movie, movie_link=imdb_link)
             user_rec.save()
         except Movie.DoesNotExist:
+
+            print(f"Movie '{movie_title} {movie_year}' not found in the database.")
+        except IntegrityError as e:
+            print(e)
+
             print(f"Movie '{movie_title} | {movie_year}' not found in the database.")
 
 

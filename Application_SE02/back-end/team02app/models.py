@@ -48,6 +48,9 @@ class UserMovie(models.Model):
 class UserRec(models.Model):
     movie = models.ForeignKey(Movie, models.DO_NOTHING)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    imdb_link = models.CharField(max_length=255, blank=True, null=True)
+    justwatch_link = models.CharField(max_length=255, blank=True, null=True)
+
 
     movie_link = models.CharField(max_length=255, blank=True, null=True)
 
@@ -55,34 +58,3 @@ class UserRec(models.Model):
     class Meta:
         managed = True
         db_table = 'user_rec'
-
-"""
-class User(models.Model):
-    username = models.CharField(unique=True, max_length=255)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-
-    class Meta:
-        managed = True
-        db_table = 'user'
-
-
-
-class UserMovie(models.Model):
-    movie = models.ForeignKey(Movie, models.DO_NOTHING)
-    user = models.ForeignKey(settings.AUTH_USER, models.DO_NOTHING)
-    rating = models.IntegerField()
-
-    class Meta:
-        managed = True
-        db_table = 'user_movie'
-
-
-class UserRec(models.Model):
-    movie = models.ForeignKey(Movie, models.DO_NOTHING)
-    user = models.ForeignKey(User, models.DO_NOTHING)
-
-    class Meta:
-        managed = True
-        db_table = 'user_rec'
-"""
