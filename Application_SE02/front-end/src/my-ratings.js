@@ -10,10 +10,7 @@ const MyRatings = () => {
 
   const get_ratings = () => {
     useEffect(() => {
-      const abort_controller = new AbortController();
-
       fetch("api/ratinghistory", {
-        signal: abort_controller.signal,
         body: localStorage.getItem("id"),
         headers: {
           "Content-Type": "application/json",
@@ -41,13 +38,11 @@ const MyRatings = () => {
             set_loading(false);
           }
         });
-      return () => abort_controller.abort();
     }, ["api/ratinghistory"]);
   };
 
   const remove_rating = (id) => {
     fetch("api/movies/" + id + "unrate", {
-      signal: abort_controller.signal,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -123,6 +118,10 @@ const MyRatings = () => {
               </div>
             );
           })}
+          {error && (
+            <p className="error">Uh Oh! An Error Occured: {error.message}</p>
+          )}
+          {loading && <div className="error">Loading...</div>}
         </div>
       )}
     </div>

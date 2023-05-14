@@ -2,8 +2,8 @@ import Home from "./Home";
 import About from "./About";
 import Navbar from "./Navbar";
 import Member from "./Member";
-import Login from "./Login";
-import SignUp from "./Signup";
+import Login from "./LoginFunctional";
+import Signup from "./SignupFunctional";
 import Recommend from "./recommend";
 import MyRatings from "./my-ratings";
 import MyRecommendations from "./my-recommendations";
@@ -12,7 +12,6 @@ import MyList from "./my-list";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 /**
-
 The main App component.
 
 @function
@@ -28,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/signup" element={<Signup />}></Route>
             <Route path="/about" element={<About />}></Route>
 
             <Route path="my-list" element={<MyList />}></Route>

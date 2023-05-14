@@ -8,11 +8,10 @@ import SelectAge from "./select_age";
 import Results from "./results";
 
 /**
-
 A component that allows users to select preferences for movie recommendations and generates the recommendations.
-@returns {JSX.Element} The SelectionSequence component.
+@returns {JSX.Element} The Recommend component.
 */
-const SelectionSequence = () => {
+const Recommend = () => {
   const [current, set_current] = useState("genre");
 
   const [genre, set_genre] = useState([]);
@@ -33,10 +32,7 @@ const SelectionSequence = () => {
   const generate_results = () => {
     const preferences = { genre, year, runtime, age };
 
-    const abort_controller = new AbortController();
-
     fetch("api/get_movie_recommendations/", {
-      signal: abort_controller.signal,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +62,6 @@ const SelectionSequence = () => {
         }
       });
     set_current("results");
-    return () => abort_controller.abort();
   };
 
   return (
@@ -196,15 +191,15 @@ const SelectionSequence = () => {
           </div>
 
           {/* Testing... */}
-          
-          <p className="test">{genre + ' ' }</p>
-          <p className="test">{year + ' '}</p>
-          <p className="test">{runtime + ' '}</p>
-          <p className="test">{age + ' ' }</p>
+
+          <p className="test">{genre + " "}</p>
+          <p className="test">{year + " "}</p>
+          <p className="test">{runtime + " "}</p>
+          <p className="test">{age + " "}</p>
         </div>
       )}
     </div>
   );
 };
 
-export default SelectionSequence;
+export default Recommend;

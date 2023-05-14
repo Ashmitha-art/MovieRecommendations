@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-// import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /**
-
 A component for rendering and handling sign-up form.
 @extends {Component}
 */
@@ -18,7 +16,6 @@ export class SignUpForm extends Component {
   };
 
   /**
-
   Handles changes in the form input fields.
   @param {Event} event - The input event object.
   */
@@ -29,16 +26,13 @@ export class SignUpForm extends Component {
   };
 
   /**
-
   Handles form submission by making a POST request to the server with user's input data.
-
   @param {Event} event - The form submit event object.
   */
   handleSubmit = (event) => {
-    // let navigate = useNavigate();
+    let navigate = useNavigate();
     event.preventDefault();
     if (this.SignupValidation()) {
-      // Fix later.
       let form_data = new FormData();
 
       form_data.append("email", this.state.email);
@@ -68,11 +62,11 @@ export class SignUpForm extends Component {
           localStorage.setItem("token", data.token);
           localStorage.setItem("id", data.user.id);
           this.setState({ isLoggedin: true });
-          // navigate("/");
         })
         .catch((err) => {
           console.log(err.message);
         });
+      navigate("/");
     }
   };
 

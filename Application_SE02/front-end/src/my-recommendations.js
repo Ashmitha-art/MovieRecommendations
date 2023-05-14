@@ -10,12 +10,9 @@ const MyRecommendations = () => {
 
   const list_recommendations = () => {
     useEffect(() => {
-      const abort_controller = new AbortController();
-
       // npx json-server --watch data-test/db.json --port 8000
 
       fetch("api/list_recommendations", {
-        signal: abort_controller.signal,
         body: localStorage.getItem("id"),
         headers: {
           "Content-Type": "application/json",
@@ -48,12 +45,9 @@ const MyRecommendations = () => {
   };
 
   const handle_rating = (id, rating) => {
-    const abort_controller = new AbortController();
-
     if (rating === "like") {
       console.log("liked");
       fetch("api/movies/" + id + "like", {
-        signal: abort_controller.signal,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +62,6 @@ const MyRecommendations = () => {
     } else {
       console.log("disliked");
       fetch("api/movies/" + id + "like", {
-        signal: abort_controller.signal,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +74,6 @@ const MyRecommendations = () => {
         }
       });
     }
-    return () => abort_controller.abort();
   };
 
   list_recommendations();
@@ -156,6 +148,40 @@ const MyRecommendations = () => {
             <p className="error">Uh Oh! An Error Occured: {error.message}</p>
           )}
           {loading && <div className="error">Loading...</div>}
+          {/* test div */}
+          <div className="movie-container">
+            <div className="movie-info">
+              <p className="movie-title">John Wick Chapter 4</p>
+              <div className="movie-desc">
+                <p className="movie-genre">Action Crime Thriller </p>
+                <p className="movie-stats">| 2023 | 169 | R</p>
+              </div>
+            </div>
+
+            <div className="movie-rating-container">
+              <label className={`like-off"}`}>
+                <input
+                  className="movie-rating-checkbox"
+                  type="checkbox"
+                  onClick={() => {
+                    handle_rating(1, "like");
+                  }}
+                />
+                <span className="material-symbols-outlined">thumb_up</span>
+              </label>
+
+              <label className={`dislike-off"}`}>
+                <input
+                  className="movie-rating-checkbox"
+                  type="checkbox"
+                  onClick={() => {
+                    handle_rating(1, "dislike");
+                  }}
+                />
+                <span className="material-symbols-outlined">thumb_down</span>
+              </label>
+            </div>
+          </div>
         </div>
       )}
     </div>
