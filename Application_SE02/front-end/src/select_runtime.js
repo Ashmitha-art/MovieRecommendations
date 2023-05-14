@@ -119,48 +119,44 @@ function SelectRuntime({ element, set_element }) {
         3: Select a Runtime Range (Up to {runtime_limit})
       </h2>
       <div className="runtime-theater-border">
-      <div className="runtime-button-container">
-        <div className="runtime-timeline-background">
-          <div className="runtime-timeline-image">
-            {[...Array(linenum)].map((e, i) =>  
-              <span className="runtime-timeline-lines" key={i}></span>
-            ))}
-          </div>
+        <div className="runtime-button-container">
+          <div className="runtime-timeline-background">
+            <div className="runtime-timeline-image">
+              {[...Array(linenum)].map((e, i) => (
+                <span className="runtime-timeline-lines" key={i}></span>
+              ))}
+            </div>
 
-        {runtimes.map((element, index) => (
-          <label
-            key={index}
-            className={`runtime-button-${element.state ? "on" : "off"}`}
-          >
-            <input
-              key={index.desc}
-              className="runtime-button-checkbox"
-              type="checkbox"
-              onClick={() => {
-                handle_click(element.desc);
-              }}
-            />
-          
-            <img 
-              key={index.photo}
-              className="runtime-button-img" 
-              src={element.photo}
-              alt={element.title}
-            />
-            
-            <p 
-              
-              className="runtime-button-text">
-              {element.runtime}
-              <br />
-            </p>
-            <p
-              key={index.desc}
-              className="runtime-button-desc-text">
-              {element.desc} Minutes
-            </p>
-          </label>
-        ))}
+            {runtimes.map((element, index) => (
+              <label
+                key={index}
+                className={`runtime-button-${element.state ? "on" : "off"}`}
+              >
+                <input
+                  key={index.desc}
+                  className="runtime-button-checkbox"
+                  type="checkbox"
+                  onClick={() => {
+                    handle_click(element.desc);
+                  }}
+                />
+
+                <img
+                  key={index.photo}
+                  className="runtime-button-img"
+                  src={element.photo}
+                  alt={element.title}
+                />
+
+                <p className="runtime-button-text">
+                  {element.runtime}
+                  <br />
+                </p>
+                <p key={index.desc} className="runtime-button-desc-text">
+                  {element.desc} Minutes
+                </p>
+              </label>
+            ))}
           </div>
         </div>
       </div>
