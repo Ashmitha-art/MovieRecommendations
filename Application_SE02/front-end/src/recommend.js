@@ -196,11 +196,11 @@ const SelectionSequence = () => {
           </div>
 
           {/* Testing... */}
-
-          <p className="test">{genre}</p>
-          <p className="test">{year}</p>
-          <p className="test">{runtime}</p>
-          <p className="test">{age}</p>
+          
+          <p className="test">{genre + ' ' }</p>
+          <p className="test">{year + ' '}</p>
+          <p className="test">{runtime + ' '}</p>
+          <p className="test">{age + ' ' }</p>
         </div>
       )}
     </div>
