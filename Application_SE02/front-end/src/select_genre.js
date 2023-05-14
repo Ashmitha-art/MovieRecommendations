@@ -84,10 +84,10 @@ function SelectGenre({ element, set_element }) {
     }
 
     /*
-    * Adds a genre to the selected genres array.
-    * @param {String} x - The genre to add.
-    * @returns {void}
-    */
+     * Adds a genre to the selected genres array.
+     * @param {String} x - The genre to add.
+     * @returns {void}
+     */
     function add_genre(x) {
       set_element((element) => [...element, x]);
       set_genre_num(genre_num + 1);

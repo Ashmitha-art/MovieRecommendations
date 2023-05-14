@@ -16,7 +16,7 @@ const MyRecommendations = () => {
 
       fetch("api/list_recommendations", {
         signal: abort_controller.signal,
-        body: localStorage.getItem(id),
+        body: localStorage.getItem("id"),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${localStorage.getItem("token")}`,

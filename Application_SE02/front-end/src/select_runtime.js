@@ -9,7 +9,6 @@ import hourglass5_logo from "./photos/LogosandIcons/Hourglass5.png";
 /** Constants to define buttons and images. */
 const linenum = 5;
 
-
 /**
 
 SelectRuntime component that displays a list of runtime options to select from.
@@ -113,9 +112,6 @@ function SelectRuntime({ element, set_element }) {
     set_runtimes(new_runtimes);
   }
 
-  
-
-
   return (
     <div>
       <h2 className="heading">
@@ -124,45 +120,41 @@ function SelectRuntime({ element, set_element }) {
       <div className="runtime-button-container">
         <div className="runtime-timeline-background">
           <div className="runtime-timeline-image">
-            {[...Array(linenum)].map((i) =>  
+            {[...Array(linenum)].map((i) => (
               <span className="runtime-timeline-lines" key={i}></span>
-            )}
+            ))}
           </div>
 
-        {runtimes.map((element, index) => (
-          <label
-            key={index}
-            className={`runtime-button-${element.state ? "on" : "off"}`}
-          >
-            <input
-              key={element.desc}
-              className="runtime-button-checkbox"
-              type="checkbox"
-              onClick={() => {
-                handle_click(element.desc);
-              }}
-            />
-          
-            <img 
-              key={element.photo}
-              className="runtime-button-img" 
-              src={element.photo}
-              alt={element.title}
-            />
-            
-            <p 
-              
-              className="runtime-button-text">
-              {element.runtime}
-              <br />
-            </p>
-            <p
+          {runtimes.map((element, index) => (
+            <label
               key={index}
-              className="runtime-button-desc-text">
-              {element.desc} Minutes
-            </p>
-          </label>
-        ))}
+              className={`runtime-button-${element.state ? "on" : "off"}`}
+            >
+              <input
+                key={element.desc}
+                className="runtime-button-checkbox"
+                type="checkbox"
+                onClick={() => {
+                  handle_click(element.desc);
+                }}
+              />
+
+              <img
+                key={element.photo}
+                className="runtime-button-img"
+                src={element.photo}
+                alt={element.title}
+              />
+
+              <p className="runtime-button-text">
+                {element.runtime}
+                <br />
+              </p>
+              <p key={index} className="runtime-button-desc-text">
+                {element.desc} Minutes
+              </p>
+            </label>
+          ))}
         </div>
       </div>
     </div>
