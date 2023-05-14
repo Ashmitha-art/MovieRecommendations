@@ -60,7 +60,7 @@ code {
   font-size: 2.5rem;
   text-align: center;
   font-weight: 500;
-  text-shadow: 0px 0px 1px rgba(255, 0, 0, 1);
+  text-shadow: 0px 0px 2px rgba(255, 0, 0, 1);
 }
 
 .heading-2 {
@@ -70,7 +70,7 @@ code {
   text-shadow: 0px 0px 2px rgb(120 120 120);
 }
 
-/* Home */
+/* Home Page */
 .get-started{
   font-size: 1.5rem;
   display: grid;
@@ -96,27 +96,6 @@ code {
   gap: 2.5em;
 }
 
-/*.LoginTicket, .RegisterTicket {
-  box-sizing: border-box;
-  position: relative;
-  width: 432px;
-  height: 720px;
-  border: 1px solid #000000;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.LoginTicket {
-  left: 436px;
-  top: 293px;
-
-}
-
-.RegisterTicket {
-  left: 1052px;
-  top: 293px;
-
-}
-*/
 /* About Page */
 .member-container{
   display: grid;
@@ -152,7 +131,7 @@ code {
   text-align: center;
 }
 
-/* Weekly Schedule + Study Plan */
+/* About Page: Weekly Schedule + Study Plan */
 .weekly-schedule{
   margin: 0 auto 5em auto;
   border: rgb(196,30,58) solid 2px;
@@ -174,7 +153,7 @@ code {
   background-color: var(--theme);
 }
 
-/* Individual Member Pages*/
+/* About Page: Individual Member Pages*/
 .info-container{
   display: flex;
   flex-direction: column;
@@ -196,12 +175,12 @@ code {
   text-align: center;
 }
 
-/* Selection Pages */
+/* --- Recommendation Pages --- */
 .next-button {
   display: block;
   margin: 20px auto 20px auto;
   padding: 0.5em 1em 0.5em 1em;
-  font-size: 1em;
+  font-size: 2em;
   text-align: center;
   color: white;
   border: none;
@@ -237,19 +216,27 @@ code {
   text-align: center;
 }
 
-/* Select Genre */
-
 .genre-theater-border, .year-theater-border, .runtime-theater-border {
-  min-width: 75%;
   display: grid;
-  height: 800px;
+  height: fit-content;
   width: fit-content;
   margin: auto;
   border: 1px white solid;
   border-radius: 50px;
-  padding: 1em;
+  padding: 1em 5em 1em 5em;
 }
 
+.runtime-theater-border {
+  display: grid;
+  min-height: 25em;
+  width: fit-content;
+  margin: auto;
+  border: 1px white solid;
+  border-radius: 50px;
+  padding: 1em 5em 1em 5em;
+}
+
+/* Recommend: Select Genre */
 .genre-button-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -260,28 +247,25 @@ code {
 .genre-button-off, .genre-button-on {
   transition-duration: 0.2s;
   display: grid;
-  width: 150px;
-  height: 150px;
-  padding: 1em 2em 1em 2em;
+  width: 100px;
+  height: 100px;
+  padding: 1em 3em 1em 3em;
   font-size: 1.5rem;
   margin: 0.25em;
   background: linear-gradient(rgb(255 255 255), rgb(255 255 255)) padding-box,
       linear-gradient(rgba(255, 0, 0, 1), rgba(255, 215, 0, 1)) border-box;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
-  border-radius: 50%;
+  border-radius: 50px;
   border-width: 2px 2px 2px 2px;
   border-style: solid;
   border-color: transparent;
   align-content: center;
 }
 
-
-
 .genre-button-off:hover {
   filter: drop-shadow(0 0 10px white);
   cursor: pointer;
 }
-
 
 .genre-button-on {
   filter: drop-shadow(0 0 10px rgb(255, 45, 45));
@@ -290,9 +274,7 @@ code {
 .genre-button-on:hover {
   filter: drop-shadow(0 0 10px white);
   cursor: pointer;
-
 }
-
 
 .genre-button-checkbox {
   display: none;
@@ -307,7 +289,6 @@ code {
 
 .genre-button-img:hover {
   filter: drop-shadow(0 0 0.2rem gold);
-  cursor: pointer;
 }
 
 .genre-button-text {
@@ -318,7 +299,7 @@ code {
   text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
-/* Select Year */
+/* Recommend: Select Year */
 .year-button-container, .runtime-button-container, .age-button-container {
   display: block;
   position: relative;
@@ -327,14 +308,6 @@ code {
 }
 
 .movie-film-reel {
-  margin: auto;
-  width: fit-content;
-  height: fit-content;
-  border: 1px solid #000000;
-}
-
-
-.movie-film-reel-2 {
   display: grid;
   position: relative;
   box-sizing: border-box;
@@ -342,6 +315,7 @@ code {
   height: 240px;
   background: #FFFFFF;
   border: 1px solid #000000;
+  border-radius: 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   align-content: center;
@@ -398,8 +372,6 @@ code {
   border-radius: 25px;
 }
 
-
-
 .year-button-checkbox, .runtime-button-checkbox, .age-button-checkbox{
   display: none;
   opacity: 0;
@@ -407,8 +379,8 @@ code {
   height: 0px;
 }
 
-.year-button-off, .runtime-button-off, .age-button-off{
-  background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgb(150 150 150 / 50%) 100%);
+.year-button-off, .runtime-button-off{
+  background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgba(170, 170, 170, 0.5) 100%);
   background-blend-mode: multiply;
 }
 
@@ -433,40 +405,26 @@ code {
   text-align: center;
 }
 
-
 .year-button-desc-text, .age-button-desc-text{
-  font-size: 0.75em;
+  font-size: 1em;
   text-align: center;
-  text-shadow: 0px 1px 1px rgba(0, 0, 0, 1);
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 1);
 }
 
-.runtime-button-text, .runtime-button-desc-text {
-  margin: auto;
-  color: #000000;
-  text-align: center;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.runtime-button-desc-text {
-  font-size: 0.75em;
-}
-
-
-/*1st button*/
 .year-button-text {
-    background: linear-gradient(180deg, #AAAAAA 0%, #000000 100%);
+    background: linear-gradient(180deg, #cfcfcf 0%, #000000 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 1.25em;
     line-height: 54px;
     text-align: center;
 }
 
-/*Select Runtime*/
+/* Recommend: Select Runtime*/
 .runtime-timeline-background {
   display: grid;
   height: 0px;
@@ -487,7 +445,6 @@ code {
   align-items: center;
   flex-wrap: nowrap;
 }
-
 
 .runtime-timeline-lines {
   width: 72.01px;
@@ -525,7 +482,6 @@ code {
   cursor: pointer;
 }
 
-
 .runtime-button-img {
   max-width: 100px;
   margin: auto;
@@ -538,6 +494,16 @@ code {
   cursor: pointer;
 }
 
+.runtime-button-text, .runtime-button-desc-text {
+  margin: auto;
+  color: #000000;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.runtime-button-text{
+  font-size: 1.25em;
+}
 
 /*1st Button*/
 .runtime-timeline-background>*:nth-child(2) {
@@ -619,31 +585,29 @@ code {
     border-radius: 50px;
 }
 
-
-/*.runtime-button-on, .runtime-button-off {
-    transition-duration: 0.2s;
-    display: grid;
-    font-size: 1.5rem;
-    margin: 1em auto;
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-}*/
-
-
-
-/* Select Age*/
+/* Recommend: Select Age*/
 .age-button-on, .age-button-off {
   transition-duration: 0.2s;
   display: grid;
   font-size: 1.5rem;
-  margin: 1em auto;
-  width: 180px;
-  height: 180px;
+  margin: 1em;
+  width: 10em;
+  height: 8em;
   align-content: center;
-  border: 1.5px solid #000000;
+  border: 1px solid white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
+  background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgba(99, 98, 98, 0.5) 100%);
+  background-blend-mode: multiply;
+}
+
+.age-button-container {
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border: 1px solid white;
+  border-radius: 25px;
+  margin: auto;
+  width: fit-content;
 }
 
 /* My List */

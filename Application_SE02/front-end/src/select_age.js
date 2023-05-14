@@ -10,7 +10,6 @@ A React component for selecting an age range.
 */
 function SelectAge({ element, set_element }) {
   /* --- Variables --- */
-  const age_limit = 5; // Limit of how many age ratings the user can choose.
   const [age_num, set_age_num] = useState(0); // Sets the current number of selected age ratings.
   const [ages, set_ages] = useState([
     // Descriptions of age ratings
@@ -85,11 +84,8 @@ function SelectAge({ element, set_element }) {
           remove_age(age);
           return { ...x, state: false };
         } else {
-          if (age_num < age_limit) {
-            add_age(age);
-            return { ...x, state: true };
-          }
-          return x;
+          add_age(age);
+          return { ...x, state: true };
         }
       } else {
         return x;
@@ -102,7 +98,7 @@ function SelectAge({ element, set_element }) {
   /* --- Returned JSX object --- */
   return (
     <div>
-      <h2 className="heading">4: Select an Age Range (Up to {age_limit})</h2>
+      <h2 className="heading">4: Select an Age Range</h2>
       <div className="age-button-container">
         {ages.map((element, index) => (
           <label
@@ -116,10 +112,7 @@ function SelectAge({ element, set_element }) {
                 handle_click(element.age);
               }}
             />
-            <p className="age-button-text">
-              {element.age}
-              <br />
-            </p>
+            <p className="age-button-text">{element.age}</p>
             <p className="age-button-desc-text">{element.desc}</p>
           </label>
         ))}

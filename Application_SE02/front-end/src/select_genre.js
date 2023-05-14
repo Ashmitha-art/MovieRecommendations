@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 /** Imported photos for each genre option. */
 import action_logo from "./photos/LogosandIcons/Action Logo.png";
 import adventure_logo from "./photos/LogosandIcons/Adventure Logo.png";
@@ -14,8 +13,6 @@ import animation_logo from "./photos/LogosandIcons/Animation Logo.png";
 import scifi_logo from "./photos/LogosandIcons/Sci-Fi Logo.png";
 import fantasy_logo from "./photos/LogosandIcons/Fantasy Logo.png";
 import romance_logo from "./photos/LogosandIcons/Romance Logo.png";
-
-
 
 /**
 
@@ -146,30 +143,30 @@ function SelectGenre({ element, set_element }) {
     <div>
       <h2 className="heading">1: Select a Genre (Up to {genre_limit})</h2>
       <div className="genre-theater-border">
-      <div className="genre-button-container">
-        {genres.map((element, index) => (
-          <label
-            key={index}
-            className={`genre-button-${element.state ? "on" : "off"}`}
-          >
-            <input
-              className="genre-button-checkbox"
-              type="checkbox"
-              onClick={() => {
-                handle_click(element.genre);
-              }}
-            />
+        <div className="genre-button-container">
+          {genres.map((element, index) => (
+            <label
+              key={index}
+              className={`genre-button-${element.state ? "on" : "off"}`}
+            >
+              <input
+                className="genre-button-checkbox"
+                type="checkbox"
+                onClick={() => {
+                  handle_click(element.genre);
+                }}
+              />
 
-          <img 
-              key={index.photo}
-              className="genre-button-img" 
-              src={element.photo}
-              alt={element.title}
-            />
+              <img
+                key={index.photo}
+                className="genre-button-img"
+                src={element.photo}
+                alt={element.title}
+              />
 
-            <p className="genre-button-text">{element.genre}</p>
-          </label>
-        ))}
+              <p className="genre-button-text">{element.genre}</p>
+            </label>
+          ))}
         </div>
       </div>
     </div>

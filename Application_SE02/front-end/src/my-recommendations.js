@@ -10,10 +10,7 @@ const MyRecommendations = () => {
 
   const list_recommendations = () => {
     useEffect(() => {
-      // npx json-server --watch data-test/db.json --port 8000
-
       fetch("api/list_recommendations", {
-        body: localStorage.getItem("id"),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${localStorage.getItem("token")}`,
@@ -22,7 +19,8 @@ const MyRecommendations = () => {
             document.cookie
               .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
               ?.pop() || ""
-        }
+        },
+        body: localStorage.getItem("id")
       })
         .then((res) => {
           if (!res.ok) throw Error("Could not fetch data.");
@@ -40,7 +38,6 @@ const MyRecommendations = () => {
             set_loading(false);
           }
         });
-      return () => abort_controller.abort();
     }, ["api/list_recommendations"]);
   };
 
@@ -111,7 +108,7 @@ const MyRecommendations = () => {
                       );
                     })}
                     <p className="movie-stats">
-                      | {movie.year} | {movie.runtime} | {movie.rating}
+                      | {movie.year} | {movie.runtime} Minutes | {movie.rating}
                     </p>
                   </div>
                 </div>
@@ -154,7 +151,7 @@ const MyRecommendations = () => {
               <p className="movie-title">John Wick Chapter 4</p>
               <div className="movie-desc">
                 <p className="movie-genre">Action Crime Thriller </p>
-                <p className="movie-stats">| 2023 | 169 | R</p>
+                <p className="movie-stats">| 2023 | 169 Minutes | R</p>
               </div>
             </div>
 

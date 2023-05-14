@@ -11,14 +11,12 @@ import hourglass5_logo from "./photos/LogosandIcons/Hourglass5.png";
 const linenum = 5;
 
 /**
-
 SelectRuntime component that displays a list of runtime options to select from.
 @param {Object} element - The state of the selected runtime options.
 @param {Function} set_element - The function to update the state of the selected runtime options.
 @returns {JSX.Element} - The JSX code to render the SelectRuntime component.
 */
 function SelectRuntime({ element, set_element }) {
-  const runtime_limit = 5;
   const [runtime_num, set_runtime_num] = useState(0);
   /**
 
@@ -99,11 +97,8 @@ function SelectRuntime({ element, set_element }) {
           remove_runtime(runtime);
           return { ...x, state: false };
         } else {
-          if (runtime_num < runtime_limit) {
-            add_runtime(runtime);
-            return { ...x, state: true };
-          }
-          return x;
+          add_runtime(runtime);
+          return { ...x, state: true };
         }
       } else {
         return x;
@@ -115,9 +110,7 @@ function SelectRuntime({ element, set_element }) {
 
   return (
     <div>
-      <h2 className="heading">
-        3: Select a Runtime Range (Up to {runtime_limit})
-      </h2>
+      <h2 className="heading">3: Select a Runtime Range</h2>
       <div className="runtime-theater-border">
         <div className="runtime-button-container">
           <div className="runtime-timeline-background">

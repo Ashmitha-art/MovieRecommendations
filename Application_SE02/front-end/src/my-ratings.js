@@ -11,7 +11,6 @@ const MyRatings = () => {
   const get_ratings = () => {
     useEffect(() => {
       fetch("api/ratinghistory", {
-        body: localStorage.getItem("id"),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${localStorage.getItem("token")}`,
@@ -20,7 +19,8 @@ const MyRatings = () => {
             document.cookie
               .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
               ?.pop() || ""
-        }
+        },
+        body: localStorage.getItem("id")
       })
         .then((res) => {
           if (!res.ok) throw Error("Could not fetch data.");
