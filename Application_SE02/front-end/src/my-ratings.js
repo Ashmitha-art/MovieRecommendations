@@ -122,6 +122,55 @@ const MyRatings = () => {
             <p className="error">Uh Oh! An Error Occured: {error.message}</p>
           )}
           {loading && <div className="error">Loading...</div>}
+          <h2 className="heading-2">Test Divs:</h2>
+          <div className="movie-container">
+            <div className="movie-info">
+              <p className="movie-title">Parasite</p>
+              <div className="movie-desc">
+                <p className="movie-stats">2019</p>
+              </div>
+            </div>
+            <div className="movie-rating-container">
+              <label className="like-on">
+                <span className="material-symbols-outlined">thumb_up</span>
+              </label>
+
+              <label className="movie-remove">
+                <input
+                  className="movie-rating-checkbox"
+                  type="checkbox"
+                  onClick={() => {
+                    remove_rating(movie.id);
+                  }}
+                />
+                <span class="material-symbols-outlined">delete_forever</span>
+              </label>
+            </div>
+          </div>
+          <div className="movie-container">
+            <div className="movie-info">
+              <p className="movie-title">The Super Mario Bros. Movie</p>
+              <div className="movie-desc">
+                <p className="movie-stats">2023</p>
+              </div>
+            </div>
+            <div className="movie-rating-container">
+              <label className="dislike-on">
+                <span className="material-symbols-outlined">thumb_down</span>
+              </label>
+
+              <label className="movie-remove">
+                <input
+                  className="movie-rating-checkbox"
+                  type="checkbox"
+                  onClick={() => {
+                    remove_rating(movie.id);
+                  }}
+                />
+                <span class="material-symbols-outlined">delete_forever</span>
+              </label>
+            </div>
+          </div>
         </div>
       )}
     </div>

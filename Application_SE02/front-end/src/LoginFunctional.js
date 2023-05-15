@@ -10,6 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const [validationErrors, setValidationErrors] = useState({});
+  const [backendError, setBackendError] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -35,13 +37,21 @@ const Login = () => {
           return res.json();
         })
         .then((data) => {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("id", data.user.id);
+          if (data.non_field_errors === "Invalid Credentials") {
+            setBackendError("Invalid Credentials.");
+          } else {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("id", data.user.id);
+            setIsLoggedIn(true);
+            setBackendError(null);
+          }
         })
         .catch((err) => {
-          console.log(err.message);
+          setBackendError(err.message);
+          console.log(err);
         });
-      //navigate("/");
+
+      if (isLoggedIn) navigate("/");
     }
   };
 
@@ -130,6 +140,7 @@ const Login = () => {
           </button>
         </div>
       </form>
+      {backendError && <div className="ErrorMessage">{backendError}</div>}
     </div>
   );
 };

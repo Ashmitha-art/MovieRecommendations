@@ -114,7 +114,7 @@ const MyRecommendations = () => {
                 </div>
 
                 <div className="movie-rating-container">
-                  <label className={`like-off"}`}>
+                  <label className="like-off">
                     <input
                       className="movie-rating-checkbox"
                       type="checkbox"
@@ -125,7 +125,7 @@ const MyRecommendations = () => {
                     <span className="material-symbols-outlined">thumb_up</span>
                   </label>
 
-                  <label className={`dislike-off"}`}>
+                  <label className="dislike-off">
                     <input
                       className="movie-rating-checkbox"
                       type="checkbox"
@@ -145,18 +145,20 @@ const MyRecommendations = () => {
             <p className="error">Uh Oh! An Error Occured: {error.message}</p>
           )}
           {loading && <div className="error">Loading...</div>}
-          {/* test div */}
+
+          <h2 className="heading-2">Test Divs:</h2>
+
           <div className="movie-container">
             <div className="movie-info">
-              <p className="movie-title">John Wick Chapter 4</p>
+              <p className="movie-title">Test Title 1</p>
               <div className="movie-desc">
-                <p className="movie-genre">Action Crime Thriller </p>
-                <p className="movie-stats">| 2023 | 169 Minutes | R</p>
+                <p className="movie-genre">Action Adventure </p>
+                <p className="movie-stats">| 2022 | 120 Minutes | PG-13</p>
               </div>
             </div>
 
             <div className="movie-rating-container">
-              <label className={`like-off"}`}>
+              <label className="like-off">
                 <input
                   className="movie-rating-checkbox"
                   type="checkbox"
@@ -167,7 +169,40 @@ const MyRecommendations = () => {
                 <span className="material-symbols-outlined">thumb_up</span>
               </label>
 
-              <label className={`dislike-off"}`}>
+              <label className="dislike-off">
+                <input
+                  className="movie-rating-checkbox"
+                  type="checkbox"
+                  onClick={() => {
+                    handle_rating(1, "dislike");
+                  }}
+                />
+                <span className="material-symbols-outlined">thumb_down</span>
+              </label>
+            </div>
+          </div>
+          <div className="movie-container">
+            <div className="movie-info">
+              <p className="movie-title">Test Title 2</p>
+              <div className="movie-desc">
+                <p className="movie-genre">Action Adventure </p>
+                <p className="movie-stats">| 2023 | 120 Minutes | PG-13</p>
+              </div>
+            </div>
+
+            <div className="movie-rating-container">
+              <label className="like-off">
+                <input
+                  className="movie-rating-checkbox"
+                  type="checkbox"
+                  onClick={() => {
+                    handle_rating(1, "like");
+                  }}
+                />
+                <span className="material-symbols-outlined">thumb_up</span>
+              </label>
+
+              <label className="dislike-off">
                 <input
                   className="movie-rating-checkbox"
                   type="checkbox"

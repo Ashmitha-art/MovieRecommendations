@@ -12,6 +12,8 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [validationErrors, setValidationErrors] = useState({});
+  const [backendError, setBackendError] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -41,13 +43,20 @@ const Signup = () => {
           return res.json();
         })
         .then((data) => {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("id", data.user.id);
+          if (data.username === "This field must be unique.") {
+            setBackendError("This username is taken.");
+          } else {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("id", data.user.id);
+            setIsLoggedIn(true);
+            setBackendError(null);
+          }
         })
         .catch((err) => {
-          console.log(err.message);
+          setBackendError(err.message);
+          console.log(err);
         });
-      //navigate("/");
+      if (isLoggedIn) navigate("/");
     }
   };
 
@@ -199,6 +208,8 @@ const Signup = () => {
           </button>
         </div>
       </form>
+
+      {backendError && <div className="ErrorMessage">{backendError}</div>}
     </div>
   );
 };
