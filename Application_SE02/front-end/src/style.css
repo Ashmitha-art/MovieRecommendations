@@ -610,7 +610,7 @@ code {
   width: fit-content;
 }
 
-/* My Recommendations / My Ratings */
+/* My Recommendations / My Ratings / My List */
 .error{
   margin: 1em auto 1em auto;
   text-align: center;
@@ -650,7 +650,6 @@ code {
 
 .movie-film-reel-clips-top-2, .movie-film-reel-clips-bottom-2 {
   position: relative;
-  width: 1040px;
   margin: auto;
   display: flex;
   height: 15px;
@@ -661,11 +660,8 @@ code {
   justify-content: space-between;
   align-content: space-around;
   justify-items: end;
-  margin: 1em auto 1em auto;
-  padding: 1em;
-  border: 1px white solid;
   border-radius: 25px;
-  width: 50%;
+  width: 95%;
 }
 
 .movie-film-reel-clips-top-2 {
@@ -708,7 +704,7 @@ code {
 
 .movie-container {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   border: 1px black solid;
   border-radius: 20px;
 }
@@ -759,9 +755,8 @@ tr {
 .movie-rating-container {
   display: flex;
   position: relative;
-  margin: auto;
   flex-direction: column;
-  margin: 1em 1em 1em auto;
+  margin: auto;
 }
 
 
