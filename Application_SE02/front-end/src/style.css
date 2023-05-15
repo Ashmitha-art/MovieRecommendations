@@ -610,7 +610,7 @@ code {
   width: fit-content;
 }
 
-/* My List */
+/* My Recommendations / My Ratings */
 .error{
   margin: 1em auto 1em auto;
   text-align: center;
@@ -619,7 +619,7 @@ code {
 .movie-container{
   display: flex;
   margin: 1em auto 1em auto;
-  padding: 0.5em;
+  padding: 1em;
   border: 1px white solid;
   border-radius: 25px;
   width: 50%;
@@ -627,7 +627,7 @@ code {
 
 .movie-title{
   font-size: 2em;
-  margin: 0.5em 0em 0.5em 0em;
+  margin: 0.25em 0em 0.5em 0em;
   padding: 0em 0.5em 0em 0.5em;
 }
 .movie-desc{
@@ -641,13 +641,12 @@ code {
 
 .movie-stats{
   display: inline;
-
 }
 
 .movie-rating-container{
   display: flex;
   flex-direction: column;
-  margin: 1em 1em 1em auto;
+  margin: 0.25em 0.25em 0.25em auto;
 }
 
 .like-off, .dislike-off, .like-on, .dislike-on{
@@ -712,28 +711,6 @@ code {
   border-color: transparent;
 }
 
-/*.LoginTicket, .RegisterTicket {
-  box-sizing: border-box;
-  position: relative;
-  width: 432px;
-  height: 720px;
-  border: 1px solid #000000;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.LoginTicket {
-  left: 436px;
-  top: 293px;
-
-}
-
-.RegisterTicket {
-  left: 1052px;
-  top: 293px;
-
-}
-*/
-
 .Login_Username, .SignUp_Username, .Login_Password, .SignUp_Password, .SignUp_ConfirmPassword, .SignUp_Email {
   font-size: 1.5em;
   text-align: center;
@@ -769,7 +746,6 @@ code {
 
 .ErrorMessage {
   text-align: center;
-  max-height: 20px;
   padding: 0.25em;
   margin: 0.25em;
   color: red;
