@@ -37,37 +37,6 @@ def react(request, path):
     return render(request, 'index.html')
 
 
-@api_view(['GET'])
-def movies_list(request):
-    movies = Movie.objects.all()
-    serializer = MovieSerializer(movies, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def usermovies_list_deprecated(request):
-    usermovies = UserMovie.objects.all()
-    serializer = UserMovieSerializer(usermovies, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def userrecs_list(request):
-    userrecs = UserRec.objects.all()
-    serializer = UserRecSerializer(userrecs, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def genres_list(request):
-    genres = Genre.objects.all()
-    serializer = GenreSerializer(genres, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def moviegenres_list(request):
-    moviegenres = MovieGenre.objects.all()
-    serializer = MovieGenreSerializer(moviegenres, many=True)
-    return Response(serializer.data)
-
-
 class RegisterAPI(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
@@ -189,15 +158,13 @@ def parse_gpt_output(gpt_output, user):
             })
 
             #Create user rec entry and save to database
-            user_rec = UserRec(user=user, movie=movie, movie_link=imdb_link)
+            user_rec = UserRec(user=user, movie=movie, imdb_link=imdb_link)
             user_rec.save()
         except Movie.DoesNotExist:
 
-            print(f"Movie '{movie_title} {movie_year}' not found in the database.")
+            print(f"Movie '{movie_title} | {movie_year}' not found in the database.")
         except IntegrityError as e:
             print(e)
-
-            print(f"Movie '{movie_title} | {movie_year}' not found in the database.")
 
 
     return movies
@@ -249,7 +216,7 @@ def movielikesdislikes_list(request):
 def displayMovieRec(request):
     try:
         movie_ids = UserRec.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__id', flat=True).distinct()
-        movie_links = UserRec.objects.filter(movie_id__in=movie_ids).values('movie_link', 'movie_id')
+        movie_links = UserRec.objects.filter(movie_id__in=movie_ids).values('imdb_link', 'movie_id')
 
         movie_details = MovieGenre.objects.filter(movie_id__in=movie_ids).select_related('genre').select_related('movie').\
             values('movie_id', genres=F('genre__genre'),
@@ -263,7 +230,7 @@ def displayMovieRec(request):
             movie_link = next(filter(lambda d: d.get('movie_id') == each_movie['movie_id'], movie_links), None)
             if not d:
                 each_movie['genres'] = [each_movie['genres']]
-                each_movie['movie_link'] = movie_link['movie_link']
+                each_movie['imdb_link'] = movie_link['imdb_link']
                 movie_recs.append(each_movie)
             else:
                 d['genres'].append(each_movie['genres'])
@@ -275,7 +242,7 @@ def displayMovieRec(request):
 
     return Response(response)
 
-@api_view(['POST'])
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def usermovie_list(request):
     usermovies = UserMovie.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__title', 'movie__year', 'movie__runtime').distinct()

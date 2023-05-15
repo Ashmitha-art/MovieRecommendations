@@ -52,9 +52,6 @@ class UserRec(models.Model):
     justwatch_link = models.CharField(max_length=255, blank=True, null=True)
 
 
-    movie_link = models.CharField(max_length=255, blank=True, null=True)
-
-
     class Meta:
         managed = True
         db_table = 'user_rec'
