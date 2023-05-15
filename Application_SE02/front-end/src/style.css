@@ -715,7 +715,7 @@ code {
   position: relative;
 }
 
-tr {
+.movie-main-list {
   display: grid;
   align-items: center;
   grid-template-columns: 360px 360px 360px;

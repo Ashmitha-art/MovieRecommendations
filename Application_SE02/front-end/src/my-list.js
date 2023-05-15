@@ -103,7 +103,7 @@ const MyList = () => {
           {movies.map((movie) => (
             <table key={movie.title} className="movie-individual">
               <tbody>
-              <tr>
+              <tr className="movie-main-list">
                 <td className="movie-title">{movie.title}</td>          
                 <td className="movie-desc">
                     {movie.genres} | {movie.year} | {movie.runtime} | {movie.rating}
