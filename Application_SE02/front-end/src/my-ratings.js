@@ -8,6 +8,8 @@ const MyRatings = () => {
   const [loading, set_loading] = useState(true);
   const [error, set_error] = useState("");
 
+  const clipnum = 45;
+
   const get_ratings = () => {
     useEffect(() => {
       fetch("api/ratinghistory", {
@@ -77,99 +79,126 @@ const MyRatings = () => {
       {localStorage.getItem("token") && (
         <div>
           <h1 className="heading">My Ratings</h1>
-          {data.map((movie) => {
-            return (
-              <div key={movie.id} className="movie-container">
-                <div className="movie-info">
-                  <p className="movie-title">{movie.title}</p>
-                  <div className="movie-desc">
-                    <p className="movie-stats">{movie.year}</p>
-                  </div>
+          <div className="list-container">
+            <div className="category-container">
+              <div className="movie-film-reel-list">
+                <div className="movie-film-reel-clips-top-2">
+                  {[...Array(clipnum)].map((e, i) => (
+                    <span className="movie-individual-clips" key={i}></span>
+                  ))}
                 </div>
-                <div className="movie-rating-container">
-                  {movie.rating === 1 && (
+
+                <li className="category-list">
+                  <p className="category-title">Title</p>
+                  <p className="category-info">Info</p>
+                  <p className="category-rating">Rating</p>
+                </li>
+
+                <div className="movie-film-reel-clips-bottom-2">
+                  {[...Array(clipnum)].map((e, i) => (
+                    <span className="movie-individual-clips" key={i}></span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            {data.map((movie) => {
+              return (
+                <table key={movie.title} className="movie-individual">
+                  <tbody>
+                    <tr className="movie-main-list">
+                      <td className="movie-title">{movie.title}</td>
+                      <td className="movie-desc">{movie.year}</td>
+                      <td className="movie-rating-container">
+                        {movie.rating === 1 && (
+                          <label className="like-on">
+                            <span className="material-symbols-outlined">
+                              thumb_up
+                            </span>
+                          </label>
+                        )}
+                        {movie.rating === 0 && (
+                          <label className="dislike-on">
+                            <span className="material-symbols-outlined">
+                              thumb_down
+                            </span>
+                          </label>
+                        )}
+
+                        <label className="movie-remove">
+                          <input
+                            className="movie-rating-checkbox"
+                            type="checkbox"
+                            onClick={() => {
+                              remove_rating(movie.id);
+                            }}
+                          />
+                          <span class="material-symbols-outlined">
+                            delete_forever
+                          </span>
+                        </label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              );
+            })}
+            {error && <p className="ErrorMessage">Error: {error.message}</p>}
+            {loading && <div className="error">Loading...</div>}
+
+            <h2 className="ErrorMessage">Test Movies:</h2>
+
+            <table className="movie-individual">
+              <tbody>
+                <tr className="movie-main-list">
+                  <td className="movie-title">Parasite</td>
+                  <td className="movie-desc">2019</td>
+                  <td className="movie-rating-container">
                     <label className="like-on">
                       <span className="material-symbols-outlined">
                         thumb_up
                       </span>
                     </label>
-                  )}
-                  {movie.rating === 0 && (
+
+                    <label className="movie-remove">
+                      <input
+                        className="movie-rating-checkbox"
+                        type="checkbox"
+                        onClick={() => {
+                          remove_rating(movie.id);
+                        }}
+                      />
+                      <span class="material-symbols-outlined">
+                        delete_forever
+                      </span>
+                    </label>
+                  </td>
+                </tr>
+                <tr className="movie-main-list">
+                  <td className="movie-title">The Super Mario Bros Movie</td>
+                  <td className="movie-desc">2023</td>
+                  <td className="movie-rating-container">
                     <label className="dislike-on">
                       <span className="material-symbols-outlined">
                         thumb_down
                       </span>
                     </label>
-                  )}
 
-                  <label className="movie-remove">
-                    <input
-                      className="movie-rating-checkbox"
-                      type="checkbox"
-                      onClick={() => {
-                        remove_rating(movie.id);
-                      }}
-                    />
-                    <span class="material-symbols-outlined">
-                      delete_forever
-                    </span>
-                  </label>
-                </div>
-              </div>
-            );
-          })}
-          {error && (
-            <p className="error">Uh Oh! An Error Occured: {error.message}</p>
-          )}
-          {loading && <div className="error">Loading...</div>}
-          <h2 className="heading-2">Test Divs:</h2>
-          <div className="movie-container">
-            <div className="movie-info">
-              <p className="movie-title">Parasite</p>
-              <div className="movie-desc">
-                <p className="movie-stats">2019</p>
-              </div>
-            </div>
-            <div className="movie-rating-container">
-              <label className="like-on">
-                <span className="material-symbols-outlined">thumb_up</span>
-              </label>
-
-              <label className="movie-remove">
-                <input
-                  className="movie-rating-checkbox"
-                  type="checkbox"
-                  onClick={() => {
-                    remove_rating(movie.id);
-                  }}
-                />
-                <span class="material-symbols-outlined">delete_forever</span>
-              </label>
-            </div>
-          </div>
-          <div className="movie-container">
-            <div className="movie-info">
-              <p className="movie-title">The Super Mario Bros. Movie</p>
-              <div className="movie-desc">
-                <p className="movie-stats">2023</p>
-              </div>
-            </div>
-            <div className="movie-rating-container">
-              <label className="dislike-on">
-                <span className="material-symbols-outlined">thumb_down</span>
-              </label>
-
-              <label className="movie-remove">
-                <input
-                  className="movie-rating-checkbox"
-                  type="checkbox"
-                  onClick={() => {
-                    remove_rating(movie.id);
-                  }}
-                />
-                <span class="material-symbols-outlined">delete_forever</span>
-              </label>
-            </div>
+                    <label className="movie-remove">
+                      <input
+                        className="movie-rating-checkbox"
+                        type="checkbox"
+                        onClick={() => {
+                          remove_rating(movie.id);
+                        }}
+                      />
+                      <span class="material-symbols-outlined">
+                        delete_forever
+                      </span>
+                    </label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       )}

@@ -623,7 +623,7 @@ code {
   width: auto;
   margin: auto;
   background: #ffffff;
-  border: 1px black solid;
+  border: 2px white solid;
   border-radius: 20px;
 }
 
@@ -720,7 +720,8 @@ code {
   align-items: center;
   grid-template-columns: 360px 360px 360px;
   margin: auto;
-  border: 1px black solid;
+  border: 1px grey solid;
+  border-radius: 20px;
   grid-gap: 0px;
   height: 100px;
 }
@@ -791,6 +792,7 @@ code {
   border-radius: 25px;
   margin: 0.25em;
   padding: 0.5em;
+  color: black;
 }
 
 .movie-remove:hover{
