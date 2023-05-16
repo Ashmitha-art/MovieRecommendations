@@ -18,46 +18,37 @@ import { useNavigate } from "react-router-dom";
 function About() {
   let navigate = useNavigate();
 
-    /**
-   * Function to handle route change on member click.
-   * @param {string} name - The name of the member to be routed to.
-   */
-  const routeChange = (name) => {
-    let path = "/" + name;
-    navigate(path);
-  };
-
   // List of all current members
   const members = [
     {
       title: "Ashmitha Pais: Team Lead",
       photo: ashmitha_photo,
-      route: "ashmitha"
+      route: "/ashmitha"
     },
     {
       title: "Steve Betts: Scrum Master",
       photo: steve_photo,
-      route: "steve"
+      route: "/steve"
     },
     {
       title: "Preet Dhaliwal: Github Master",
       photo: preet_photo,
-      route: "preet"
+      route: "/preet"
     },
     {
       title: "Chris Farnsworth: Back-End Lead",
       photo: chris_photo,
-      route: "chris"
+      route: "/chris"
     },
     {
       title: "Abdul Barrie: Front-End Lead",
       photo: abdul_photo,
-      route: "abdul"
+      route: "/abdul"
     },
     {
       title: "Nathan Loo: Product Owner",
       photo: nathan_photo,
-      route: "nathan"
+      route: "/nathan"
     }
   ];
 
@@ -73,7 +64,7 @@ function About() {
             key={member.title}
             className="member"
             onClick={() => {
-              routeChange(member.route);
+              navigate(member.route);
             }}
           >
             <img

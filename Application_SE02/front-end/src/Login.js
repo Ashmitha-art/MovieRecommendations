@@ -62,6 +62,7 @@ export class LoginForm extends Component {
         })
         .then((data) => {
           localStorage.setItem("token", data.token);
+          localStorage.setItem("id", data.user.id);
           this.setState({ isLoggedin: true });
         })
         .catch((err) => {

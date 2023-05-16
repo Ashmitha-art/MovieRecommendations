@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'corsheaders',
     # remember to uncomment this later
 
+
     #'back-end.team02app',
 
     'team02app',

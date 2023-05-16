@@ -1,24 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
 /**
-
+ * 
 React functional component representing the Navbar.
 @function Navbar
 @returns {JSX.Element} - A JSX Element containing the navbar.
 */
 function Navbar() {
   let navigate = useNavigate();
-
-  /**
-
-  A function that navigates to a specified route using the useNavigate hook.
-  @function routeChange
-  @param {string} route - The route to navigate to.
-  */
-  const routeChange = (route) => {
-    let path = "/" + route;
-    navigate(path);
-  };
 
   /**
 
@@ -49,58 +38,53 @@ function Navbar() {
     <nav className="navbar">
       <button
         onClick={() => {
-          routeChange("");
+          navigate("/");
         }}
         className="navbar-button"
       >
         Home
       </button>
-      {!localStorage.getItem("token") && (
-        <button
-          onClick={() => {
-            routeChange("login");
-            routeChange("/");
-          }}
-          className="navbar-button"
-        >
-          Login
-        </button>
-      )}
+
       {localStorage.getItem("token") && (
         <button
           onClick={() => {
             logout();
             localStorage.removeItem("token");
-            window.location.reload();
+            navigate("/");
           }}
           className="navbar-button"
+          id="about"
         >
           Logout
         </button>
       )}
-      <button
-        onClick={() => {
-          routeChange("signup");
-        }}
-        className="navbar-button"
-      >
-        Sign Up
-      </button>
-      <button
-        onClick={() => {
-          routeChange("my-list");
-        }}
-        className="navbar-button"
-      >
-        My List
-      </button>
+
+      {localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            navigate("/my-ratings");
+          }}
+          className="navbar-button"
+        >
+          My Ratings
+        </button>
+      )}
+      {localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            navigate("/my-recommendations");
+          }}
+          className="navbar-button"
+        >
+          My Recommendations
+        </button>
+      )}
 
       <button
         onClick={() => {
-          routeChange("about");
+          navigate("/about");
         }}
         className="navbar-button"
-        id="about"
       >
         About
       </button>

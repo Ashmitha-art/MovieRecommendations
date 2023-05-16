@@ -6,17 +6,7 @@ Renders the component to display the recommended movies based on user preference
 @param {Object} props.error - The error object, if any error occurred.
 @returns {JSX.Element} - Returns the JSX component with movie recommendations.
 */
-const Results = ({ data, error }) => {
-  /*
-  {
-    'movie_title': movie_title,
-    'year': year,
-    'runtime': runtime,
-    'age_rating': age_rating,
-    #'genres': genres
-  }
-  */
-
+const Results = ({ data, loading, error }) => {
   return (
     <div>
       <h1 className="heading">Results</h1>
@@ -27,14 +17,17 @@ const Results = ({ data, error }) => {
         {error && (
           <div className="error">Uh Oh! An Error Occured: {error.message}</div>
         )}
+        {loading && <div className="error">Loading...</div>}
         {data &&
           data.map((movie) => (
             <div key={movie.movie_title} className="movie-container">
-              <p className="movie-title">{movie.movie_title}</p>
-              <br />
-              <p className="movie-desc">
-                {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
-              </p>
+              <div className="movie-info">
+                <p className="movie-title">{movie.movie_title}</p>
+                <p className="movie-desc">
+                  {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
+                </p>
+                <p className="movie-desc">IMDB: {movie.imdb_link}</p>
+              </div>
             </div>
           ))}
       </div>

@@ -5,7 +5,7 @@ import { useState } from "react";
 A React component that displays a list of movies and allows the user to rate them.
 @component
 */
-function MyList() {
+const MyList = () => {
   /**
 
   State hook for storing the list of movies.
@@ -70,48 +70,81 @@ function MyList() {
 
     set_movies(new_movies);
   };
+  const clipnum = 45;
 
   return (
     <div>
       <h1 className="heading">My List (Work In Progress)</h1>
-
       <div className="list-container">
-        {movies.map((movie) => (
-          <div key={movie.title} className="movie-container">
-            <div className="movie-info">
-              <p className="movie-title">{movie.title}</p>
-              <p className="movie-desc">
-                {movie.genres} | {movie.year} | {movie.runtime} | {movie.rating}
-              </p>
+        <div className="category-container">
+          <div className="movie-film-reel-list">
+            <div className="movie-film-reel-clips-top-2">
+              {[...Array(clipnum)].map((e, i) => (
+                <span className="movie-individual-clips" key={i}></span>
+              ))}
             </div>
-            <div className="movie-rating-container">
-              <label className={`like-${movie.liked ? "on" : "off"}`}>
-                <input
-                  className="movie-rating-checkbox"
-                  type="checkbox"
-                  onClick={() => {
-                    handle_click(movie.title, "like");
-                  }}
-                />
-                <span class="material-symbols-outlined">thumb_up</span>
-              </label>
 
-              <label className={`dislike-${movie.disliked ? "on" : "off"}`}>
-                <input
-                  className="movie-rating-checkbox"
-                  type="checkbox"
-                  onClick={() => {
-                    handle_click(movie.title, "dislike");
-                  }}
-                />
-                <span class="material-symbols-outlined">thumb_down</span>
-              </label>
+            <li className="category-list">
+              <p className="category-title">Title</p>
+              <p className="category-info">Info</p>
+              <p className="category-rating">Rating</p>
+            </li>
+
+            <div className="movie-film-reel-clips-bottom-2">
+              {[...Array(clipnum)].map((e, i) => (
+                <span className="movie-individual-clips" key={i}></span>
+              ))}
             </div>
           </div>
-        ))}
+        </div>
+
+        <div className="movie-container">
+          {movies.map((movie) => (
+            <table key={movie.title} className="movie-individual">
+              <tbody>
+                <tr className="movie-main-list">
+                  <td className="movie-title">{movie.title}</td>
+                  <td className="movie-desc">
+                    {movie.genres} | {movie.year} | {movie.runtime} |{" "}
+                    {movie.rating}
+                  </td>
+                  <td className="movie-rating-container">
+                    <label className={`like-${movie.liked ? "on" : "off"}`}>
+                      <input
+                        className="movie-rating-checkbox"
+                        type="checkbox"
+                        onClick={() => {
+                          handle_click(movie.title, "like");
+                        }}
+                      />
+                      <span className="material-symbols-outlined">
+                        thumb_up
+                      </span>
+                    </label>
+
+                    <label
+                      className={`dislike-${movie.disliked ? "on" : "off"}`}
+                    >
+                      <input
+                        className="movie-rating-checkbox"
+                        type="checkbox"
+                        onClick={() => {
+                          handle_click(movie.title, "dislike");
+                        }}
+                      />
+                      <span className="material-symbols-outlined">
+                        thumb_down
+                      </span>
+                    </label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          ))}
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default MyList;
