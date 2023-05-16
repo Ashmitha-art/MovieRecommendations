@@ -22,7 +22,6 @@ const MyRatings = () => {
               .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
               ?.pop() || ""
         }
-
       })
         .then((res) => {
           if (!res.ok) throw Error("Could not fetch data.");
@@ -144,61 +143,6 @@ const MyRatings = () => {
             })}
             {error && <p className="ErrorMessage">Error: {error.message}</p>}
             {loading && <div className="error">Loading...</div>}
-
-            {/*<h2 className="ErrorMessage">Test Movies:</h2>*/}
-
-            {/*<table className="movie-individual">*/}
-            {/*  <tbody>*/}
-            {/*    <tr className="movie-main-list">*/}
-            {/*      <td className="movie-title">Parasite</td>*/}
-            {/*      <td className="movie-desc">2019</td>*/}
-            {/*      <td className="movie-rating-container">*/}
-            {/*        <label className="like-on">*/}
-            {/*          <span className="material-symbols-outlined">*/}
-            {/*            thumb_up*/}
-            {/*          </span>*/}
-            {/*        </label>*/}
-
-            {/*        <label className="movie-remove">*/}
-            {/*          <input*/}
-            {/*            className="movie-rating-checkbox"*/}
-            {/*            type="checkbox"*/}
-            {/*            onClick={() => {*/}
-            {/*              /*remove_rating(movie.id);*/}
-            {/*            }}*/}
-            {/*          />*/}
-            {/*          <span class="material-symbols-outlined">*/}
-            {/*            delete_forever*/}
-            {/*          </span>*/}
-            {/*        </label>*/}
-            {/*      </td>*/}
-            {/*    </tr>*/}
-            {/*    <tr className="movie-main-list">*/}
-            {/*      <td className="movie-title">The Super Mario Bros Movie</td>*/}
-            {/*      <td className="movie-desc">2023</td>*/}
-            {/*      <td className="movie-rating-container">*/}
-            {/*        <label className="dislike-on">*/}
-            {/*          <span className="material-symbols-outlined">*/}
-            {/*            thumb_down*/}
-            {/*          </span>*/}
-            {/*        </label>*/}
-
-            {/*        <label className="movie-remove">*/}
-            {/*          <input*/}
-            {/*            className="movie-rating-checkbox"*/}
-            {/*            type="checkbox"*/}
-            {/*            onClick={() => {*/}
-            {/*              /*remove_rating(movie.id);*/}
-            {/*            }}*/}
-            {/*          />*/}
-            {/*          <span class="material-symbols-outlined">*/}
-            {/*            delete_forever*/}
-            {/*          </span>*/}
-            {/*        </label>*/}
-            {/*      </td>*/}
-            {/*    </tr>*/}
-            {/*  </tbody>*/}
-            {/*</table>*/}
           </div>
         </div>
       )}

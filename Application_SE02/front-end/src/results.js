@@ -7,29 +7,61 @@ Renders the component to display the recommended movies based on user preference
 @returns {JSX.Element} - Returns the JSX component with movie recommendations.
 */
 const Results = ({ data, loading, error }) => {
+  const clipnum = 45;
+
   return (
     <div>
       <h1 className="heading">Results</h1>
-      <h2 className="heading-2">
-        Based on your preferences, OpenAI recommended the following movies:
-      </h2>
-      <div className="results-list-container">
-        {error && (
-          <div className="error">Uh Oh! An Error Occured: {error.message}</div>
-        )}
+      <h2 className="heading-2">OpenAI recommended the following movies:</h2>
+      <div className="list-container">
+        <div className="category-container">
+          <div className="movie-film-reel-list">
+            <div className="movie-film-reel-clips-top-2">
+              {[...Array(clipnum)].map((e, i) => (
+                <span className="movie-individual-clips" key={i}></span>
+              ))}
+            </div>
+
+            <li className="category-list">
+              <p className="category-title">Title</p>
+              <p className="category-info">Info</p>
+              <p className="category-info">IMDB</p>
+            </li>
+
+            <div className="movie-film-reel-clips-bottom-2">
+              {[...Array(clipnum)].map((e, i) => (
+                <span className="movie-individual-clips" key={i}></span>
+              ))}
+            </div>
+          </div>
+        </div>
+        {error && <div className="ErrorMessage">Error: {error.message}</div>}
         {loading && <div className="error">Loading...</div>}
         {data &&
-          data.map((movie) => (
-            <div key={movie.movie_title} className="movie-container">
-              <div className="movie-info">
-                <p className="movie-title">{movie.movie_title}</p>
-                <p className="movie-desc">
-                  {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
-                </p>
-                <p className="movie-desc">IMDB: {movie.imdb_link}</p>
-              </div>
-            </div>
-          ))}
+          data.map((movie) => {
+            <table key={movie.title} className="movie-individual">
+              <tbody>
+                <tr className="movie-main-list">
+                  <td className="movie-title">{movie.title}</td>
+                  <td className="movie-desc">
+                    {movie.genres.map((genre) => {
+                      return (
+                        <p key={genre} className="movie-genre">
+                          {genre}{" "}
+                        </p>
+                      );
+                    })}
+                    <p className="movie-desc">
+                      {movie.year} | {movie.runtime} Minutes | {movie.rating}
+                    </p>
+                  </td>
+                  <td>
+                    <p className="movie-desc">{movie.imdb_link}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>;
+          })}
       </div>
     </div>
   );
