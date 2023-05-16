@@ -112,7 +112,7 @@ function SelectYear({ element, set_element }) {
                     handle_click(element.desc);
                   }}
                 />
-                <p className="year-button-text">{element.year}</p>
+                <p className="year-button-text" id={element.year}>{element.year}</p>
                 <p className="year-button-desc-text">{element.desc}</p>
               </label>
             ))}
