@@ -60,6 +60,8 @@ const MyRecommendations = () => {
               .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
               ?.pop() || ""
         }
+      }).then(() => {
+        setRerender(!rerender);
       });
     } else {
       fetch("api/movies/" + id + "/dislike/", {
@@ -73,9 +75,10 @@ const MyRecommendations = () => {
               .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
               ?.pop() || ""
         }
+      }).then(() => {
+        setRerender(!rerender);
       });
     }
-    setRerender(!rerender);
   };
 
   List_Recommendations();
@@ -137,9 +140,17 @@ const MyRecommendations = () => {
                           );
                         })}
                         <p className="movie-stats">
+                          {" "}
                           | {movie.year} | {movie.runtime} Minutes |{" "}
-                          {movie.rating}
+                          {movie.rating}{" "}
                         </p>
+                        <a
+                          className="movie-genre"
+                          href={movie.imdb_link}
+                          target="_blank"
+                        >
+                          {movie.imdb_link}
+                        </a>
                       </td>
                       <td className="movie-rating-container">
                         <label className="like-off">

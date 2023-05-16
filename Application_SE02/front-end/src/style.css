@@ -778,11 +778,7 @@ code {
 }
 
 
-.movie-genre{
-  display: inline;
-}
-
-.movie-stats{
+.movie-genre, .movie-stats{
   display: inline;
 }
 
