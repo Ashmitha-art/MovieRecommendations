@@ -41,29 +41,36 @@ const Results = ({ data, loading, error }) => {
         {data &&
           data.map((movie) => {
             return (
-            <table key={movie.movie_title} className="movie-individual">
-              <tbody>
-                <tr className="movie-main-list">
-                  <td className="movie-title">{movie.movie_title}</td>
-                  <td className="movie-desc">
-                    {movie.genres.map((genre) => {
-                      return (
-                        <p key={genre} className="movie-genre">
-                          {genre}{" "}
-                        </p>
-                      );
-                    })}
-                    <p className="movie-desc">
-                      {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
-                    </p>
-                  </td>
-                  <td>
-                    <p className="movie-desc">{movie.imdb_link}</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          );
+              <table key={movie.movie_title} className="movie-individual">
+                <tbody>
+                  <tr className="movie-main-list">
+                    <td className="movie-title">{movie.movie_title}</td>
+                    <td className="movie-desc">
+                      {movie.genres.map((genre) => {
+                        return (
+                          <p key={genre} className="movie-genre">
+                            {genre}{" "}
+                          </p>
+                        );
+                      })}
+                      <p className="movie-desc">
+                        {movie.year} | {movie.runtime} Minutes |{" "}
+                        {movie.age_rating}
+                      </p>
+                    </td>
+                    <td>
+                      <a
+                        className="movie-desc"
+                        href={movie.imdb_link}
+                        target="_blank"
+                      >
+                        {movie.imdb_link}
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            );
           })}
       </div>
     </div>

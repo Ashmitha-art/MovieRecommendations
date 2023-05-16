@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.45b64f16.css",
-    "main.js": "/static/js/main.ceff9c68.js",
+    "main.css": "/static/css/main.f151c227.css",
+    "main.js": "/static/js/main.005b951d.js",
     "static/media/nathan.jpg": "/static/media/nathan.64f0c1d9ecf02f7f9eb9.jpg",
     "static/media/steve.png": "/static/media/steve.86d491de69be863ad767.png",
     "static/media/abdul.jpg": "/static/media/abdul.1de71d3856329624910b.jpg",
     "static/media/preet.jpg": "/static/media/preet.16e94b1793dbc24d156a.jpg",
     "static/media/chris.jpg": "/static/media/chris.9fd00a1b386497b75426.jpg",
+    "static/media/MovAILogo(Transparent2).png": "/static/media/MovAILogo(Transparent2).133a672a386f500c8874.png",
     "static/media/Mystery Logo.png": "/static/media/Mystery Logo.6604b9f77729461269c1.png",
     "static/media/Horror Logo.png": "/static/media/Horror Logo.4abd5391937c503eef69.png",
     "static/media/Thriller Logo.png": "/static/media/Thriller Logo.11b56d34b6134f135e41.png",
@@ -26,11 +27,11 @@
     "static/media/Hourglass5.png": "/static/media/Hourglass5.46447ab97fa6178862d8.png",
     "static/media/Crime Logo.png": "/static/media/Crime Logo.56d29eb88ee0c6ca57fe.png",
     "index.html": "/index.html",
-    "main.45b64f16.css.map": "/static/css/main.45b64f16.css.map",
-    "main.ceff9c68.js.map": "/static/js/main.ceff9c68.js.map"
+    "main.f151c227.css.map": "/static/css/main.f151c227.css.map",
+    "main.005b951d.js.map": "/static/js/main.005b951d.js.map"
   },
   "entrypoints": [
-    "static/css/main.45b64f16.css",
-    "static/js/main.ceff9c68.js"
+    "static/css/main.f151c227.css",
+    "static/js/main.005b951d.js"
   ]
 }
