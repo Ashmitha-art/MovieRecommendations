@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import MovAI_Logo from "./photos/LogosandIcons/MovAILogo(Transparent2).png"
 
 /**
 
@@ -7,6 +8,14 @@ Renders the Home component which displays a welcome message and a button to navi
 */
 function Home() {
   let navigate = useNavigate();
+
+   // MovAI Logo
+   const logo = [
+    {
+      title: "MovAI Logo",
+      photo: MovAI_Logo
+    }
+  ];
 
   /**
 
@@ -20,6 +29,12 @@ function Home() {
 
   return (
     <div>
+      <img 
+        className="movai-logo"
+        src={MovAI_Logo}
+        alt={logo.title} 
+      />
+
       <h1 className="heading">Welcome to MovAI!</h1>
 
       {!localStorage.getItem("token") && (

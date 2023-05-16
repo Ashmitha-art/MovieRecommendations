@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import MovAI_Logo from "./photos/LogosandIcons/MovAILogo(Transparent2).png"
 
 /**
  * 
@@ -8,6 +9,14 @@ React functional component representing the Navbar.
 */
 function Navbar() {
   let navigate = useNavigate();
+
+  // MovAI Logo
+  const logo = [
+    {
+      title: "MovAI Logo",
+      photo: MovAI_Logo
+    }
+  ];
 
   /**
 
@@ -36,6 +45,12 @@ function Navbar() {
 
   return (
     <nav className="navbar">
+      <img 
+        className="navbar-movai-logo"
+        src={MovAI_Logo}
+        alt={logo.title} 
+      />
+
       <button
         onClick={() => {
           navigate("/");
@@ -44,20 +59,6 @@ function Navbar() {
       >
         Home
       </button>
-
-      {localStorage.getItem("token") && (
-        <button
-          onClick={() => {
-            logout();
-            localStorage.removeItem("token");
-            navigate("/");
-          }}
-          className="navbar-button"
-          id="about"
-        >
-          Logout
-        </button>
-      )}
 
       {localStorage.getItem("token") && (
         <button
@@ -88,6 +89,20 @@ function Navbar() {
       >
         About
       </button>
+      
+      {localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            logout();
+            localStorage.removeItem("token");
+            navigate("/");
+          }}
+          className="navbar-button"
+          id="logout"
+        >
+          Logout
+        </button>
+      )}
     </nav>
   );
 }
