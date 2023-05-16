@@ -12,7 +12,7 @@ const MyRecommendations = () => {
 
   const List_Recommendations = () => {
     useEffect(() => {
-      fetch("api/list_recommendations", {
+      fetch("api/list_recommendations/", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${localStorage.getItem("token")}`,
@@ -21,15 +21,16 @@ const MyRecommendations = () => {
             document.cookie
               .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
               ?.pop() || ""
-        },
-        body: localStorage.getItem("id")
+        }
+
       })
         .then((res) => {
           if (!res.ok) throw Error("Could not fetch data.");
           return res.json();
         })
         .then((data) => {
-          set_data(data);
+          set_data(data.movieRecommendations);
+
           set_loading(false);
           set_error(null);
         })
@@ -46,7 +47,8 @@ const MyRecommendations = () => {
   const handle_rating = (id, rating) => {
     if (rating === "like") {
       console.log("liked");
-      fetch("api/movies/" + id + "like", {
+      console.log(id);
+      fetch("api/movies/" + id + "/like/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +62,7 @@ const MyRecommendations = () => {
       });
     } else {
       console.log("disliked");
-      fetch("api/movies/" + id + "like", {
+      fetch("api/movies/" + id + "/dislike/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -118,6 +120,7 @@ const MyRecommendations = () => {
                 </div>
               </div>
             </div>
+
             {data.map((movie) => {
               return (
                 <table key={movie.title} className="movie-individual">
@@ -143,7 +146,7 @@ const MyRecommendations = () => {
                             className="movie-rating-checkbox"
                             type="checkbox"
                             onClick={() => {
-                              handle_rating(movie.id, "like");
+                              handle_rating(movie.movie_id, "like");
                             }}
                           />
                           <span className="material-symbols-outlined">
@@ -156,7 +159,7 @@ const MyRecommendations = () => {
                             className="movie-rating-checkbox"
                             type="checkbox"
                             onClick={() => {
-                              handle_rating(movie.id, "dislike");
+                              handle_rating(movie.movie_id, "dislike");
                             }}
                           />
                           <span className="material-symbols-outlined">
@@ -172,161 +175,161 @@ const MyRecommendations = () => {
             {error && <p className="ErrorMessage">Error: {error.message}</p>}
             {loading && <div className="error">Loading...</div>}
 
-            <h2 className="ErrorMessage">Test Movies:</h2>
-            <table className="movie-individual">
-              <tbody>
-                <tr className="movie-main-list">
-                  <td className="movie-title">John Wick: Chapter 4</td>
-                  <td className="movie-desc">
-                    <p className="movie-genre">Action Crime Thriller </p>
-                    <p className="movie-stats">| 2023 | 169 Minutes | R</p>
-                  </td>
-                  <td className="movie-rating-container">
-                    <label className="like-off">
-                      <input
-                        className="movie-rating-checkbox"
-                        type="checkbox"
-                        onClick={() => {
-                          handle_rating(1, "like");
-                        }}
-                      />
-                      <span className="material-symbols-outlined">
-                        thumb_up
-                      </span>
-                    </label>
+            {/*<h2 className="ErrorMessage">Test Movies:</h2>*/}
+            {/*<table className="movie-individual">*/}
+            {/*  <tbody>*/}
+            {/*    <tr className="movie-main-list">*/}
+            {/*      <td className="movie-title">John Wick: Chapter 4</td>*/}
+            {/*      <td className="movie-desc">*/}
+            {/*        <p className="movie-genre">Action Crime Thriller </p>*/}
+            {/*        <p className="movie-stats">| 2023 | 169 Minutes | R</p>*/}
+            {/*      </td>*/}
+            {/*      <td className="movie-rating-container">*/}
+            {/*        <label className="like-off">*/}
+            {/*          <input*/}
+            {/*            className="movie-rating-checkbox"*/}
+            {/*            type="checkbox"*/}
+            {/*            onClick={() => {*/}
+            {/*              handle_rating(1, "like");*/}
+            {/*            }}*/}
+            {/*          />*/}
+            {/*          <span className="material-symbols-outlined">*/}
+            {/*            thumb_up*/}
+            {/*          </span>*/}
+            {/*        </label>*/}
 
-                    <label className="dislike-off">
-                      <input
-                        className="movie-rating-checkbox"
-                        type="checkbox"
-                        onClick={() => {
-                          handle_rating(1, "dislike");
-                        }}
-                      />
-                      <span className="material-symbols-outlined">
-                        thumb_down
-                      </span>
-                    </label>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table className="movie-individual">
-              <tbody>
-                <tr className="movie-main-list">
-                  <td className="movie-title">
-                    John Wick: Chapter 3 - Parabellum
-                  </td>
-                  <td className="movie-desc">
-                    <p className="movie-genre">Action Crime Thriller </p>
-                    <p className="movie-stats">| 2019 | 131 Minutes | R</p>
-                  </td>
-                  <td className="movie-rating-container">
-                    <label className="like-off">
-                      <input
-                        className="movie-rating-checkbox"
-                        type="checkbox"
-                        onClick={() => {
-                          handle_rating(1, "like");
-                        }}
-                      />
-                      <span className="material-symbols-outlined">
-                        thumb_up
-                      </span>
-                    </label>
+            {/*        <label className="dislike-off">*/}
+            {/*          <input*/}
+            {/*            className="movie-rating-checkbox"*/}
+            {/*            type="checkbox"*/}
+            {/*            onClick={() => {*/}
+            {/*              handle_rating(1, "dislike");*/}
+            {/*            }}*/}
+            {/*          />*/}
+            {/*          <span className="material-symbols-outlined">*/}
+            {/*            thumb_down*/}
+            {/*          </span>*/}
+            {/*        </label>*/}
+            {/*      </td>*/}
+            {/*    </tr>*/}
+            {/*  </tbody>*/}
+            {/*</table>*/}
+            {/*<table className="movie-individual">*/}
+            {/*  <tbody>*/}
+            {/*    <tr className="movie-main-list">*/}
+            {/*      <td className="movie-title">*/}
+            {/*        John Wick: Chapter 3 - Parabellum*/}
+            {/*      </td>*/}
+            {/*      <td className="movie-desc">*/}
+            {/*        <p className="movie-genre">Action Crime Thriller </p>*/}
+            {/*        <p className="movie-stats">| 2019 | 131 Minutes | R</p>*/}
+            {/*      </td>*/}
+            {/*      <td className="movie-rating-container">*/}
+            {/*        <label className="like-off">*/}
+            {/*          <input*/}
+            {/*            className="movie-rating-checkbox"*/}
+            {/*            type="checkbox"*/}
+            {/*            onClick={() => {*/}
+            {/*              handle_rating(1, "like");*/}
+            {/*            }}*/}
+            {/*          />*/}
+            {/*          <span className="material-symbols-outlined">*/}
+            {/*            thumb_up*/}
+            {/*          </span>*/}
+            {/*        </label>*/}
 
-                    <label className="dislike-off">
-                      <input
-                        className="movie-rating-checkbox"
-                        type="checkbox"
-                        onClick={() => {
-                          handle_rating(1, "dislike");
-                        }}
-                      />
-                      <span className="material-symbols-outlined">
-                        thumb_down
-                      </span>
-                    </label>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table className="movie-individual">
-              <tbody>
-                <tr className="movie-main-list">
-                  <td className="movie-title">John Wick: Chapter 2</td>
-                  <td className="movie-desc">
-                    <p className="movie-genre">Action Crime Thriller </p>
-                    <p className="movie-stats">| 2017 | 122 Minutes | R</p>
-                  </td>
-                  <td className="movie-rating-container">
-                    <label className="like-off">
-                      <input
-                        className="movie-rating-checkbox"
-                        type="checkbox"
-                        onClick={() => {
-                          handle_rating(1, "like");
-                        }}
-                      />
-                      <span className="material-symbols-outlined">
-                        thumb_up
-                      </span>
-                    </label>
+            {/*        <label className="dislike-off">*/}
+            {/*          <input*/}
+            {/*            className="movie-rating-checkbox"*/}
+            {/*            type="checkbox"*/}
+            {/*            onClick={() => {*/}
+            {/*              handle_rating(1, "dislike");*/}
+            {/*            }}*/}
+            {/*          />*/}
+            {/*          <span className="material-symbols-outlined">*/}
+            {/*            thumb_down*/}
+            {/*          </span>*/}
+            {/*        </label>*/}
+            {/*      </td>*/}
+            {/*    </tr>*/}
+            {/*  </tbody>*/}
+            {/*</table>*/}
+            {/*<table className="movie-individual">*/}
+            {/*  <tbody>*/}
+            {/*    <tr className="movie-main-list">*/}
+            {/*      <td className="movie-title">John Wick: Chapter 2</td>*/}
+            {/*      <td className="movie-desc">*/}
+            {/*        <p className="movie-genre">Action Crime Thriller </p>*/}
+            {/*        <p className="movie-stats">| 2017 | 122 Minutes | R</p>*/}
+            {/*      </td>*/}
+            {/*      <td className="movie-rating-container">*/}
+            {/*        <label className="like-off">*/}
+            {/*          <input*/}
+            {/*            className="movie-rating-checkbox"*/}
+            {/*            type="checkbox"*/}
+            {/*            onClick={() => {*/}
+            {/*              handle_rating(1, "like");*/}
+            {/*            }}*/}
+            {/*          />*/}
+            {/*          <span className="material-symbols-outlined">*/}
+            {/*            thumb_up*/}
+            {/*          </span>*/}
+            {/*        </label>*/}
 
-                    <label className="dislike-off">
-                      <input
-                        className="movie-rating-checkbox"
-                        type="checkbox"
-                        onClick={() => {
-                          handle_rating(1, "dislike");
-                        }}
-                      />
-                      <span className="material-symbols-outlined">
-                        thumb_down
-                      </span>
-                    </label>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table className="movie-individual">
-              <tbody>
-                <tr className="movie-main-list">
-                  <td className="movie-title">John Wick</td>
-                  <td className="movie-desc">
-                    <p className="movie-genre">Action Crime Thriller </p>
-                    <p className="movie-stats">| 2014 | 101 Minutes | R</p>
-                  </td>
-                  <td className="movie-rating-container">
-                    <label className="like-off">
-                      <input
-                        className="movie-rating-checkbox"
-                        type="checkbox"
-                        onClick={() => {
-                          handle_rating(1, "like");
-                        }}
-                      />
-                      <span className="material-symbols-outlined">
-                        thumb_up
-                      </span>
-                    </label>
+            {/*        <label className="dislike-off">*/}
+            {/*          <input*/}
+            {/*            className="movie-rating-checkbox"*/}
+            {/*            type="checkbox"*/}
+            {/*            onClick={() => {*/}
+            {/*              handle_rating(1, "dislike");*/}
+            {/*            }}*/}
+            {/*          />*/}
+            {/*          <span className="material-symbols-outlined">*/}
+            {/*            thumb_down*/}
+            {/*          </span>*/}
+            {/*        </label>*/}
+            {/*      </td>*/}
+            {/*    </tr>*/}
+            {/*  </tbody>*/}
+            {/*</table>*/}
+            {/*<table className="movie-individual">*/}
+            {/*  <tbody>*/}
+            {/*    <tr className="movie-main-list">*/}
+            {/*      <td className="movie-title">John Wick</td>*/}
+            {/*      <td className="movie-desc">*/}
+            {/*        <p className="movie-genre">Action Crime Thriller </p>*/}
+            {/*        <p className="movie-stats">| 2014 | 101 Minutes | R</p>*/}
+            {/*      </td>*/}
+            {/*      <td className="movie-rating-container">*/}
+            {/*        <label className="like-off">*/}
+            {/*          <input*/}
+            {/*            className="movie-rating-checkbox"*/}
+            {/*            type="checkbox"*/}
+            {/*            onClick={() => {*/}
+            {/*              handle_rating(1, "like");*/}
+            {/*            }}*/}
+            {/*          />*/}
+            {/*          <span className="material-symbols-outlined">*/}
+            {/*            thumb_up*/}
+            {/*          </span>*/}
+            {/*        </label>*/}
 
-                    <label className="dislike-off">
-                      <input
-                        className="movie-rating-checkbox"
-                        type="checkbox"
-                        onClick={() => {
-                          handle_rating(1, "dislike");
-                        }}
-                      />
-                      <span className="material-symbols-outlined">
-                        thumb_down
-                      </span>
-                    </label>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            {/*        <label className="dislike-off">*/}
+            {/*          <input*/}
+            {/*            className="movie-rating-checkbox"*/}
+            {/*            type="checkbox"*/}
+            {/*            onClick={() => {*/}
+            {/*              handle_rating(1, "dislike");*/}
+            {/*            }}*/}
+            {/*          />*/}
+            {/*          <span className="material-symbols-outlined">*/}
+            {/*            thumb_down*/}
+            {/*          </span>*/}
+            {/*        </label>*/}
+            {/*      </td>*/}
+            {/*    </tr>*/}
+            {/*  </tbody>*/}
+            {/*</table>*/}
           </div>
         </div>
       )}

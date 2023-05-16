@@ -25,7 +25,11 @@ const Signup = () => {
     e.preventDefault();
 
     if (signupValidation()) {
-      const user = { email, username, password };
+      let form_data = new FormData();
+
+      form_data.append("email", email);
+      form_data.append("username", username);
+      form_data.append("password", password);
 
       fetch("api/register/", {
         method: "POST",
@@ -36,7 +40,7 @@ const Signup = () => {
               .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
               ?.pop() || ""
         },
-        body: JSON.stringify(user)
+        body: form_data
       })
         .then((res) => {
           if (!res.ok) throw Error("Could not post data.");

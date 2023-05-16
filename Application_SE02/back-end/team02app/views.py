@@ -176,6 +176,9 @@ def update_user_movie_rating(user, movie_id, rating):
         user=user, movie_id=movie_id, defaults={'rating': rating}
     )
 
+    print(user_movie)
+    print("created: ", created)
+
     # Remove the corresponding entry in the UserRec table
     UserRec.objects.filter(user=user, movie_id=movie_id).delete()
 
@@ -184,6 +187,8 @@ def update_user_movie_rating(user, movie_id, rating):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def like_movie(request, movie_id):
+    print("hehehhehe")
+    print(movie_id)
     return update_user_movie_rating(request.user, movie_id, 1)
 
 @api_view(['POST'])
@@ -245,11 +250,11 @@ def displayMovieRec(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def usermovie_list(request):
-    usermovies = UserMovie.objects.filter(user_id=request.user.id).select_related('movie').values_list('movie__title', 'movie__year', 'movie__runtime').distinct()
-    rating = UserMovie.objects.filter(user_id=request.user.id).values_list('rating', flat=True)
-    
+    usermovies = UserMovie.objects.filter(user_id=request.user.id).select_related('movie')\
+        .values('rating', title=F('movie__title'),
+                year=F('movie__year'),
+                runtime=F('movie__runtime'),
+                mid=F('movie__id'))
     return Response({
-        "movie"     :   usermovies,
-        "rating"    :   rating
+        "movie"     :   usermovies
     })
-
