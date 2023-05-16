@@ -14,10 +14,10 @@ A component that allows users to select preferences for movie recommendations an
 const Recommend = () => {
   const [current, set_current] = useState("genre");
 
-  const [genre, set_genre] = useState([]);
-  const [year, set_year] = useState([]);
-  const [runtime, set_runtime] = useState([]);
-  const [age, set_age] = useState([]);
+  const [genreList, set_genre] = useState([]);
+  const [yearList, set_year] = useState([]);
+  const [runtimeList, set_runtime] = useState([]);
+  const [ageList, set_age] = useState([]);
 
   const [data, set_data] = useState([]);
   const [loading, set_loading] = useState(true);
@@ -30,6 +30,34 @@ const Recommend = () => {
   Sends the user's preferences to the server to generate movie recommendations.
   */
   const generate_results = () => {
+    let genre = "";
+    genreList.sort();
+    genreList.map((x, i) => {
+      if (i < genreList.length - 1) genre = genre.concat(String(x), ", ");
+      else genre = genre.concat(String(x));
+    });
+
+    let year = "";
+    yearList.sort();
+    yearList.map((x, i) => {
+      if (i < yearList.length - 1) year = year.concat(String(x), ", ");
+      else year = year.concat(String(x));
+    });
+
+    let runtime = "";
+    runtimeList.sort();
+    runtimeList.map((x, i) => {
+      if (i < runtimeList.length - 1)
+        runtime = runtime.concat(String(x), " Minutes, ");
+      else runtime = runtime.concat(String(x), " Minutes");
+    });
+
+    let age = "";
+    ageList.map((x, i) => {
+      if (i < ageList.length - 1) age = age.concat(String(x), ", ");
+      else age = age.concat(String(x));
+    });
+
     const preferences = { genre, year, runtime, age };
 
     fetch("api/get_movie_recommendations/", {
@@ -84,16 +112,16 @@ const Recommend = () => {
         <div>
           {/* Selection Pages */}
           {current === "genre" && (
-            <SelectGenre element={genre} set_element={set_genre} />
+            <SelectGenre element={genreList} set_element={set_genre} />
           )}
           {current === "year" && (
-            <SelectYear element={year} set_element={set_year} />
+            <SelectYear element={yearList} set_element={set_year} />
           )}
           {current === "runtime" && (
-            <SelectRuntime element={runtime} set_element={set_runtime} />
+            <SelectRuntime element={runtimeList} set_element={set_runtime} />
           )}
           {current === "age" && (
-            <SelectAge element={age} set_element={set_age} />
+            <SelectAge element={ageList} set_element={set_age} />
           )}
 
           {current === "results" && (
@@ -101,7 +129,7 @@ const Recommend = () => {
           )}
 
           {/* Genre Page Next Button */}
-          {genre.length != 0 && current === "genre" && (
+          {genreList.length != 0 && current === "genre" && (
             <button
               className="next-button"
               onClick={() => {
@@ -126,7 +154,7 @@ const Recommend = () => {
                 Back
               </button>
             )}
-            {year.length != 0 && current === "year" && (
+            {yearList.length != 0 && current === "year" && (
               <button
                 className="next-button"
                 onClick={() => {
@@ -152,7 +180,7 @@ const Recommend = () => {
                 Back
               </button>
             )}
-            {runtime.length != 0 && current === "runtime" && (
+            {runtimeList.length != 0 && current === "runtime" && (
               <button
                 className="next-button"
                 onClick={() => {
@@ -178,7 +206,7 @@ const Recommend = () => {
                 Back
               </button>
             )}
-            {age.length != 0 && current === "age" && (
+            {ageList.length != 0 && current === "age" && (
               <button
                 className="next-button"
                 onClick={() => {
