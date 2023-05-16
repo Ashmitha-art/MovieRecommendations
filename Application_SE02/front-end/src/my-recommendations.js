@@ -8,10 +8,14 @@ const MyRecommendations = () => {
   const [loading, set_loading] = useState(true);
   const [error, set_error] = useState("");
 
+  const [rerender, setRerender] = useState(false);
+
   const clipnum = 45;
 
   const List_Recommendations = () => {
     useEffect(() => {
+      set_loading(true);
+      set_error("");
       fetch("api/list_recommendations/", {
         headers: {
           "Content-Type": "application/json",
@@ -40,13 +44,11 @@ const MyRecommendations = () => {
             set_loading(false);
           }
         });
-    }, ["api/list_recommendations"]);
+    }, [rerender]);
   };
 
   const handle_rating = (id, rating) => {
     if (rating === "like") {
-      console.log("liked");
-      console.log(id);
       fetch("api/movies/" + id + "/like/", {
         method: "POST",
         headers: {
@@ -60,7 +62,6 @@ const MyRecommendations = () => {
         }
       });
     } else {
-      console.log("disliked");
       fetch("api/movies/" + id + "/dislike/", {
         method: "POST",
         headers: {
@@ -74,6 +75,7 @@ const MyRecommendations = () => {
         }
       });
     }
+    setRerender(!rerender);
   };
 
   List_Recommendations();
@@ -172,7 +174,7 @@ const MyRecommendations = () => {
               );
             })}
             {error && <p className="ErrorMessage">Error: {error.message}</p>}
-            {loading && <div className="error">Loading...</div>}
+            {loading && <div className="error-my-list">Loading...</div>}
           </div>
         </div>
       )}

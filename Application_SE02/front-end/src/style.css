@@ -616,6 +616,13 @@ code {
   text-align: center;
 }
 
+.error-my-list{
+  margin: 0.25em;
+  padding: 0.25em;
+  color: black;
+  text-align: center;
+}
+
 .list-container {
   height: fit-content;
   min-height: 500px;

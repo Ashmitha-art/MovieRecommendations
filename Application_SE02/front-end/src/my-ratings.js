@@ -8,10 +8,14 @@ const MyRatings = () => {
   const [loading, set_loading] = useState(true);
   const [error, set_error] = useState("");
 
+  const [rerender, setRerender] = useState(false);
+
   const clipnum = 45;
 
   const Get_Ratings = () => {
     useEffect(() => {
+      set_loading(true);
+      set_error("");
       fetch("api/ratinghistory/", {
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +43,7 @@ const MyRatings = () => {
             set_loading(false);
           }
         });
-    }, ["api/ratinghistory"]);
+    }, [rerender]);
   };
 
   const remove_rating = (id) => {
@@ -55,6 +59,7 @@ const MyRatings = () => {
             ?.pop() || ""
       }
     });
+    setRerender(!rerender);
   };
 
   Get_Ratings();
@@ -131,7 +136,7 @@ const MyRatings = () => {
                               remove_rating(movie.mid);
                             }}
                           />
-                          <span class="material-symbols-outlined">
+                          <span className="material-symbols-outlined">
                             delete_forever
                           </span>
                         </label>
@@ -142,7 +147,7 @@ const MyRatings = () => {
               );
             })}
             {error && <p className="ErrorMessage">Error: {error.message}</p>}
-            {loading && <div className="error">Loading...</div>}
+            {loading && <div className="error-my-list">Loading...</div>}
           </div>
         </div>
       )}
