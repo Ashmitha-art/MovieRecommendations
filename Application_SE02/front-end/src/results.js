@@ -8,6 +8,7 @@ Renders the component to display the recommended movies based on user preference
 */
 const Results = ({ data, loading, error }) => {
   const clipnum = 45;
+  console.log(data);
 
   return (
     <div>
@@ -39,10 +40,11 @@ const Results = ({ data, loading, error }) => {
         {loading && <div className="error">Loading...</div>}
         {data &&
           data.map((movie) => {
-            <table key={movie.title} className="movie-individual">
+            return (
+            <table key={movie.movie_title} className="movie-individual">
               <tbody>
                 <tr className="movie-main-list">
-                  <td className="movie-title">{movie.title}</td>
+                  <td className="movie-title">{movie.movie_title}</td>
                   <td className="movie-desc">
                     {movie.genres.map((genre) => {
                       return (
@@ -52,7 +54,7 @@ const Results = ({ data, loading, error }) => {
                       );
                     })}
                     <p className="movie-desc">
-                      {movie.year} | {movie.runtime} Minutes | {movie.rating}
+                      {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
                     </p>
                   </td>
                   <td>
@@ -60,7 +62,8 @@ const Results = ({ data, loading, error }) => {
                   </td>
                 </tr>
               </tbody>
-            </table>;
+            </table>
+          );
           })}
       </div>
     </div>
