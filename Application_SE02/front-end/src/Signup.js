@@ -119,7 +119,7 @@ export class SignUpForm extends Component {
       ) {
         ValidAccountInfo = false;
         InfoErrors["password"] =
-          "Password must be at least 8 characters and contain 1 letter, 1 number, and a symbol.";
+          "Password must be at least 8 characters that contains at least 1 capital letter, 1 number, and a symbol.";
       }
     }
 

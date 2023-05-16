@@ -23,7 +23,6 @@ const Login = () => {
       form_data.append("username", username);
       form_data.append("password", password);
 
-
       fetch("api/login/", {
         method: "POST",
         headers: {
@@ -33,7 +32,7 @@ const Login = () => {
               .match("(^|;)\\s*" + "csrftoken" + "\\s*=\\s*([^;]+)")
               ?.pop() || ""
         },
-       body: form_data
+        body: form_data
       })
         .then((res) => {
           if (!res.ok) throw Error("Could not post data.");
@@ -86,12 +85,12 @@ const Login = () => {
     } else if (password) {
       if (
         !password.match(
-          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/
         )
       ) {
         isValid = false;
         infoErrors["password"] =
-          "Password must be at least 8 characters and contain 1 letter, 1 number and a symbol.";
+          "Password must be over 8 characters that contains at least 1 capital letter, 1 number, and a symbol.";
       }
     }
 
