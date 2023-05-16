@@ -10,7 +10,7 @@ const MyRatings = () => {
 
   const clipnum = 45;
 
-  const get_ratings = () => {
+  const Get_Ratings = () => {
     useEffect(() => {
       fetch("api/ratinghistory", {
         headers: {
@@ -58,7 +58,7 @@ const MyRatings = () => {
     });
   };
 
-  get_ratings();
+  Get_Ratings();
 
   return (
     <div>
@@ -164,7 +164,7 @@ const MyRatings = () => {
                         className="movie-rating-checkbox"
                         type="checkbox"
                         onClick={() => {
-                          remove_rating(movie.id);
+                          /*remove_rating(movie.id);*/
                         }}
                       />
                       <span class="material-symbols-outlined">
@@ -188,7 +188,7 @@ const MyRatings = () => {
                         className="movie-rating-checkbox"
                         type="checkbox"
                         onClick={() => {
-                          remove_rating(movie.id);
+                          /*remove_rating(movie.id);*/
                         }}
                       />
                       <span class="material-symbols-outlined">

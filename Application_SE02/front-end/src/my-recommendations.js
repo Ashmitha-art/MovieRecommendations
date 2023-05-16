@@ -10,7 +10,7 @@ const MyRecommendations = () => {
 
   const clipnum = 45;
 
-  const list_recommendations = () => {
+  const List_Recommendations = () => {
     useEffect(() => {
       fetch("api/list_recommendations", {
         headers: {
@@ -75,7 +75,7 @@ const MyRecommendations = () => {
     }
   };
 
-  list_recommendations();
+  List_Recommendations();
 
   return (
     <div>
