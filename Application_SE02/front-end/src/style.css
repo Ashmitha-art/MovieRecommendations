@@ -68,10 +68,8 @@ code {
   position: relative;
   max-width: 125px;
   filter: drop-shadow(0 0 0.01rem black);
-}
+  transition-duration: 0.2s;
 
-.navbar-movai-logo:hover {
-  filter: drop-shadow(0 0 0.01rem yellow);
 }
 
 
@@ -79,8 +77,17 @@ code {
   display: block;
   position: relative;
   margin: 1rem auto;
-  max-width: 320px;
-  filter: drop-shadow(0 0 0.01rem gray);
+  max-width: 480px;
+  filter: drop-shadow(0 2px 0.1rem black);
+  transition-duration: 0.2s;
+}
+
+.navbar-movai-logo:hover {
+  filter: drop-shadow(0 0 0.01rem yellow);
+}
+
+.movai-logo:hover{
+  filter: drop-shadow(0 0 0.01rem red);
 }
 
 /* Heading */
