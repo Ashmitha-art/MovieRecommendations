@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.f151c227.css",
-    "main.js": "/static/js/main.005b951d.js",
+    "main.css": "/static/css/main.39cc2565.css",
+    "main.js": "/static/js/main.0ea632bb.js",
     "static/media/nathan.jpg": "/static/media/nathan.64f0c1d9ecf02f7f9eb9.jpg",
     "static/media/steve.png": "/static/media/steve.86d491de69be863ad767.png",
     "static/media/abdul.jpg": "/static/media/abdul.1de71d3856329624910b.jpg",
@@ -27,11 +27,11 @@
     "static/media/Hourglass5.png": "/static/media/Hourglass5.46447ab97fa6178862d8.png",
     "static/media/Crime Logo.png": "/static/media/Crime Logo.56d29eb88ee0c6ca57fe.png",
     "index.html": "/index.html",
-    "main.f151c227.css.map": "/static/css/main.f151c227.css.map",
-    "main.005b951d.js.map": "/static/js/main.005b951d.js.map"
+    "main.39cc2565.css.map": "/static/css/main.39cc2565.css.map",
+    "main.0ea632bb.js.map": "/static/js/main.0ea632bb.js.map"
   },
   "entrypoints": [
-    "static/css/main.f151c227.css",
-    "static/js/main.005b951d.js"
+    "static/css/main.39cc2565.css",
+    "static/js/main.0ea632bb.js"
   ]
 }

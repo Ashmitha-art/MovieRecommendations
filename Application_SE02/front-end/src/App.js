@@ -7,7 +7,6 @@ import Signup from "./SignupFunctional";
 import Recommend from "./recommend";
 import MyRatings from "./my-ratings";
 import MyRecommendations from "./my-recommendations";
-import MyList from "./my-list";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -29,8 +28,6 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/about" element={<About />}></Route>
-
-            <Route path="my-list" element={<MyList />}></Route>
 
             <Route
               path="/ashmitha"
