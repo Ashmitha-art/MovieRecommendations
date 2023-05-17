@@ -17,7 +17,8 @@ jobs:
         with:
           node-version: '18.x'
       - name: Install dependencies
+        working-directory: ${{ github.workspace }}/Application_SE02/front-end
         run: npm install
       - name: Run Jest tests
-        working-directory: ${{ github.workspace }}/Application_SE02/front-end/src/__test__
+        working-directory: ${{ github.workspace }}/Application_SE02/front-end
         run: npm test -- --testPathPattern=".*" && exit 0
