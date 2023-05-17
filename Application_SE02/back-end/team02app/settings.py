@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 
     'back-end.team02app',
 
-    'team02app',
+    # 'team02app',
     'knox',
     #'userauth.apps.AuthConfig'
 ]
