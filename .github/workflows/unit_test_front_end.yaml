@@ -17,8 +17,8 @@ jobs:
         with:
           node-version: '14.x'
       - name: Install dependencies
-        working-directory: ${{ github.workspace }}/Application_SE02/front-end
+        working-directory: ${{ github.workspace_path }}/Application_SE02/front-end
         run: npm install --legacy-peer-deps
       - name: Run Jest tests
-        working-directory: ${{ github.workspace }}/Application_SE02/front-end
+        working-directory: ${{ github.workspace_path }}/Application_SE02/front-end
         run: npm test -- --testPathPattern=".*" && exit 0
