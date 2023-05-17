@@ -16,8 +16,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14.x'
-      - name: Install Jest
-        run: npm install react-scripts --save-dev jest
+      - name: Install dependencies
+        run: npm install
       - name: Run Jest tests
         working-directory: ${{ github.workspace }}/Application_SE02/front-end/src/__test__
         run: npm test -- --testPathPattern=".*" && exit 0
