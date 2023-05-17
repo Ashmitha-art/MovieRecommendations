@@ -7,7 +7,7 @@ import {
   waitFor
 } from "@testing-library/react";
 
-import Signup from "../Signup";
+import Signup from "../SignupFunctional";
 
 beforeEach(() => {
   fetch.resetMocks();
@@ -16,7 +16,7 @@ beforeEach(() => {
 describe("Test the Register Component", () => {
   it("Page renders correctly.", () => {
     render(<Signup />);
-    expect(screen.getByRole("heading")).toHaveTextContent("Register");
+    expect(screen.getByRole("heading")).toHaveTextContent("Signup");
 
     expect(screen.getByTestId("email")).toBeInTheDocument();
     expect(screen.getByTestId("username")).toBeInTheDocument();

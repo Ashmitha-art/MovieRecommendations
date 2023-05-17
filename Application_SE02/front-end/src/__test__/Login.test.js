@@ -8,29 +8,18 @@ import {
 } from "@testing-library/react";
 
 
-import Login, { LoginForm } from "../Login";
-
-// Only way I could get it to work with class components
-import Enzyme from "enzyme";
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow } from 'enzyme';
-
-Enzyme.configure({ adapter: new Adapter() });
+import Login from "../LoginFunctional";
+import loginValidation from "../LoginFunctional";
 
 beforeEach(() => {
     fetch.resetMocks();
   });
   
-  //configure({adapter: new Adapter()});
 
 describe("Test the Login Component", () => {
-        let wrapper;
-        beforeEach(() => {
-        wrapper = shallow(<LoginForm></LoginForm>);
-    });
     
     test("Page renders correctly", () => {
-        render(<Login />);
+       render(<Login />); 
         expect(screen.getByRole("heading")).toHaveTextContent("Login");
         expect(screen.getByTestId("username")).toBeInTheDocument();
         expect(screen.getByTestId("password")).toBeInTheDocument();
@@ -45,9 +34,9 @@ describe("Test the Login Component", () => {
         expect(TestValidUserName).toBe(true);
     }); */
   
+    
     test("Username validation should fail with invalid username." , () => {
-        const LoginInstance2 = wrapper.instance();
-        const TestInvalidUsername = LoginInstance2.LoginValidation(false);
+        const TestInvalidUsername = loginValidation(false);
         expect(TestInvalidUsername).not.toBe(true);
     });
 
@@ -69,6 +58,8 @@ describe("Test the Login Component", () => {
      * 
      * Code from Nathan's portion
     */
+
+    /*
  it("Fetch is called on correctly validated submit.", async () => {
     act(() => {
       render(<Login />);

@@ -21,22 +21,22 @@ beforeEach(() => {
 describe("Test the Recommendation Component", () => {
   it("Test 'select_genre' page.", () => {
     render(<SelectGenre />);
-    expect(screen.getByRole("heading")).toHaveTextContent("Genre");
+    expect(screen.getByRole("heading-question-one")).toHaveTextContent("Let's get started!");
   });
 
   it("Test 'select_year' page.", () => {
     render(<SelectYear />);
-    expect(screen.getByRole("heading")).toHaveTextContent("Year Range");
+    expect(screen.getByRole("heading-question-two")).toHaveTextContent("Nice! Let's continue!");
   });
 
   it("Test 'select_runtime.' page", () => {
     render(<SelectRuntime />);
-    expect(screen.getByRole("heading")).toHaveTextContent("Runtime");
+    expect(screen.getByRole("heading-question-three")).toHaveTextContent("Almost done!");
   });
 
   it("Test 'select_age' page.", () => {
     render(<SelectAge />);
-    expect(screen.getByRole("heading")).toHaveTextContent("Age Range");
+    expect(screen.getByRole("heading-question-four")).toHaveTextContent("Moment of truth!");
   });
 
   it("Test 'results' page.", () => {

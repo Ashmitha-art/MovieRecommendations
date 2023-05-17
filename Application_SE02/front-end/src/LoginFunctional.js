@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+/*import { useNavigate } from "react-router-dom";*/
 
 /**
 A component for a login form.
 @returns {JSX.Element} The Login component.
 */
-const Login = () => {
+ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,7 +13,7 @@ const Login = () => {
   const [backendError, setBackendError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const navigate = useNavigate();
+  /*const navigate = useNavigate();*/
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,7 +101,7 @@ const Login = () => {
   return (
     <div className="Login_Main_Div">
       <h1 className="heading">Login</h1>
-      <form name="Login_Form">
+      <form name="Login_Form" onSubmit={handleSubmit}>
         <div className="Login_Container">
           <label className="Login_Username">Username</label>
           <input

@@ -15,7 +15,7 @@ const Signup = () => {
   const [backendError, setBackendError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   /**
   Handles form submission by making a POST request to the server with user's input data.
