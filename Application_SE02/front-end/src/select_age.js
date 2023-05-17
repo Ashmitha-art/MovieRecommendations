@@ -71,7 +71,7 @@ function SelectAge({ element, set_element }) {
       // Remove element from global variable in 'selection_sequence.js'
       set_element(
         element.filter((age) => {
-          return age != x;
+          return age !== x;
         })
       );
       set_age_num(age_num - 1);
@@ -99,6 +99,7 @@ function SelectAge({ element, set_element }) {
   return (
     <div>
       <h2 className="heading">4: Select an Age Range</h2>
+      <div className="general-theater-border">
       <div className="age-button-container">
         {ages.map((element, index) => (
           <label
@@ -117,6 +118,7 @@ function SelectAge({ element, set_element }) {
           </label>
         ))}
       </div>
+    </div>
     </div>
   );
 }

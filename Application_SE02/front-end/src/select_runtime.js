@@ -111,6 +111,7 @@ function SelectRuntime({ element, set_element }) {
   return (
     <div>
       <h2 className="heading">3: Select a Runtime Range</h2>
+      <div className="general-theater-border">
       <div className="runtime-theater-border">
         <div className="runtime-button-container">
           <div className="runtime-timeline-background">
@@ -153,6 +154,7 @@ function SelectRuntime({ element, set_element }) {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -142,6 +142,7 @@ function SelectGenre({ element, set_element }) {
   return (
     <div>
       <h2 className="heading">1: Select a Genre (Up to {genre_limit})</h2>
+      <div className="general-theater-border">
       <div className="genre-theater-border">
         <div className="genre-button-container">
           {genres.map((element, index) => (
@@ -167,6 +168,7 @@ function SelectGenre({ element, set_element }) {
               <p className="genre-button-text">{element.genre}</p>
             </label>
           ))}
+          </div>
         </div>
       </div>
     </div>

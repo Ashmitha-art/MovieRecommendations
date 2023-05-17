@@ -252,6 +252,21 @@ code {
   text-align: center;
 }
 
+.general-theater-border {
+  display: block;
+  position: relative;
+  min-width: fit-content;
+  min-height: fit-content;
+  max-height: 1080px;
+  max-width: 90%;
+  margin: auto;
+  padding: 2em 2em 2em 2em;
+  border: 15px solid rgb(255 255 255);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgb(255 0 0);
+  filter: drop-shadow(0px 4px 4px #000000);
+}
+
 .genre-theater-border, .year-theater-border, .runtime-theater-border {
   display: grid;
   height: fit-content;
@@ -419,7 +434,7 @@ code {
   background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgba(170, 170, 170, 0.5) 100%);
 }
 
-.year-button-off:hover, .runtime-button-off:hover, .age-button-off:hover{
+.year-button-off:hover, .runtime-button-off:hover {
   background-color: rgb(0, 0, 0);
   cursor: pointer;
 }
@@ -428,7 +443,7 @@ code {
   background: radial-gradient(50% 50% at 50% 50%, #FF0000 0%, rgba(255, 255, 0, 0.5) 100%);
 }
 
-.year-button-on:hover, .runtime-button-on:hover, .age-button-on:hover{
+.year-button-on:hover, .runtime-button-on:hover {
   background-color: rgb(255, 200, 0);
   cursor: pointer;
 }
@@ -664,25 +679,37 @@ code {
   display: grid;
   font-size: 1.5rem;
   margin: 1em;
-  width: 10em;
+  width: 8em;
   height: 8em;
   align-content: center;
   border: 1px solid white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
-  background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgba(99, 98, 98, 0.5) 100%);
   background-blend-mode: multiply;
 }
 
+
+.age-button-on:hover, .age-button-off:hover {
+  background-color: rgb(255, 200, 0);
+
+}
+
+.age-button-off {
+  background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgba(99, 98, 98, 0.5) 100%);
+}
+
+.age-button-on {
+  background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgba(255, 184, 0, 1) 100%);
+}
+
 .age-button-container {
-  display: grid;
-  min-height: 25em;
+  display: flex;
   width: -moz-fit-content;
-  width: fit-content;
+  max-width: fit-content;
   margin: auto;
   border: 1px white solid;
   border-radius: 50px;
-  padding: 1em 5em 1em 5em;
+  padding: 1em 0em 1em 0em;
 }
 
 /* My Recommendations / My Ratings / My List */
