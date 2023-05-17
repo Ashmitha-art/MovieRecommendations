@@ -90,7 +90,8 @@ function SelectYear({ element, set_element }) {
 
   return (
     <div>
-      <h2 className="heading">2: Select a Year Range</h2>
+      <h2 className="heading">Nice! Let's continue!</h2>
+      <h2 className="heading-2">How old do you like your movies?</h2>
       <div className="general-theater-border">
       <div className="year-theater-border">
         <div className="year-button-container">
