@@ -37,7 +37,7 @@ const Results = ({ data, loading, error }) => {
           </div>
         </div>
         {error && <div className="ErrorMessage">Error: {error.message}</div>}
-        {loading && <div className="error">Loading...</div>}
+        {loading && <div className="error-my-list">Loading...</div>}
         {data &&
           data.map((movie) => {
             return (
