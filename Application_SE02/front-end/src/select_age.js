@@ -98,7 +98,8 @@ function SelectAge({ element, set_element }) {
   /* --- Returned JSX object --- */
   return (
     <div>
-      <h2 className="heading">4: Select an Age Range</h2>
+      <h2 className="heading">Moment of truth!</h2>
+      <h2 className="heading-2">What age range of films do you enjoy?</h2>
       <div className="general-theater-border">
       <div className="age-button-container">
         {ages.map((element, index) => (

@@ -12,8 +12,8 @@ const Results = ({ data, loading, error }) => {
 
   return (
     <div>
-      <h1 className="heading">Results</h1>
-      <h2 className="heading-2">OpenAI recommended the following movies:</h2>
+      <h1 className="heading">Done!</h1>
+      <h2 className="heading-2">Based on your choices, OpenAI recommended the following movies:</h2>
       <div className="list-container">
         <div className="category-container">
           <div className="movie-film-reel-list">
