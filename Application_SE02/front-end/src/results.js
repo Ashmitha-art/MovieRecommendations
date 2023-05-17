@@ -6,37 +6,72 @@ Renders the component to display the recommended movies based on user preference
 @param {Object} props.error - The error object, if any error occurred.
 @returns {JSX.Element} - Returns the JSX component with movie recommendations.
 */
-const Results = ({ data, error }) => {
-  /*
-  {
-    'movie_title': movie_title,
-    'year': year,
-    'runtime': runtime,
-    'age_rating': age_rating,
-    #'genres': genres
-  }
-  */
+const Results = ({ data, loading, error }) => {
+  const clipnum = 45;
+  console.log(data);
 
   return (
     <div>
-      <h1 className="heading">Results</h1>
-      <h2 className="heading-2">
-        Based on your preferences, OpenAI recommended the following movies:
-      </h2>
-      <div className="results-list-container">
-        {error && (
-          <div className="error">Uh Oh! An Error Occured: {error.message}</div>
-        )}
-        {data &&
-          data.map((movie) => (
-            <div key={movie.movie_title} className="movie-container">
-              <p className="movie-title">{movie.movie_title}</p>
-              <br />
-              <p className="movie-desc">
-                {movie.year} | {movie.runtime} Minutes | {movie.age_rating}
-              </p>
+      <h1 className="heading">Done!</h1>
+      <h2 className="heading-2">Based on your choices, OpenAI recommended the following movies:</h2>
+      <div className="list-container">
+        <div className="category-container">
+          <div className="movie-film-reel-list">
+            <div className="movie-film-reel-clips-top-2">
+              {[...Array(clipnum)].map((e, i) => (
+                <span className="movie-individual-clips" key={i}></span>
+              ))}
             </div>
-          ))}
+
+            <li className="category-list">
+              <p className="category-title">Title</p>
+              <p className="category-info">Info</p>
+              <p className="category-info">IMDB</p>
+            </li>
+
+            <div className="movie-film-reel-clips-bottom-2">
+              {[...Array(clipnum)].map((e, i) => (
+                <span className="movie-individual-clips" key={i}></span>
+              ))}
+            </div>
+          </div>
+        </div>
+        {error && <div className="ErrorMessage">Error: {error.message}</div>}
+        {loading && <div className="error">Loading...</div>}
+        {data &&
+          data.map((movie) => {
+            return (
+              <table key={movie.movie_title} className="movie-individual">
+                <tbody>
+                  <tr className="movie-main-list">
+                    <td className="movie-title">{movie.movie_title}</td>
+                    <td className="movie-desc">
+                      {movie.genres.map((genre) => {
+                        return (
+                          <p key={genre} className="movie-genre">
+                            {genre}{" "}
+                          </p>
+                        );
+                      })}
+                      <p className="movie-desc">
+                        {movie.year} | {movie.runtime} Minutes |{" "}
+                        {movie.age_rating}
+                      </p>
+                    </td>
+                    <td>
+                      <a
+                        className="movie-desc"
+                        href={movie.imdb_link}
+                        target="_blank"
+                      >
+                        {movie.imdb_link}
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            );
+          })}
       </div>
     </div>
   );
