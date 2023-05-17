@@ -10,7 +10,6 @@ A React component for selecting an age range.
 */
 function SelectAge({ element, set_element }) {
   /* --- Variables --- */
-  const age_limit = 2; // Limit of how many age ratings the user can choose.
   const [age_num, set_age_num] = useState(0); // Sets the current number of selected age ratings.
   const [ages, set_ages] = useState([
     // Descriptions of age ratings
@@ -49,13 +48,15 @@ function SelectAge({ element, set_element }) {
   @param {string} age - The age rating of the button clicked.
   @returns {void}
   */
-  function handle_click(age) { // Handle onClick events for each button on the selection page.
+  function handle_click(age) {
+    // Handle onClick events for each button on the selection page.
     /*
     Adds the selected age rating to the global 'element' state and increments 'age_num'.
     @param {string} x - The age rating to be added.
     @returns {void}
     */
-    function add_age(x) { // Add element from button clicked to global variable in 'selection_sequence.js'
+    function add_age(x) {
+      // Add element from button clicked to global variable in 'selection_sequence.js'
       set_element((element) => [...element, x]);
       set_age_num(age_num + 1);
     }
@@ -66,10 +67,11 @@ function SelectAge({ element, set_element }) {
     @param {string} x - The age rating to be removed.
     @returns {void}
     */
-    function remove_age(x) { // Remove element from global variable in 'selection_sequence.js'
+    function remove_age(x) {
+      // Remove element from global variable in 'selection_sequence.js'
       set_element(
         element.filter((age) => {
-          return age != x;
+          return age !== x;
         })
       );
       set_age_num(age_num - 1);
@@ -82,11 +84,8 @@ function SelectAge({ element, set_element }) {
           remove_age(age);
           return { ...x, state: false };
         } else {
-          if (age_num < age_limit) {
-            add_age(age);
-            return { ...x, state: true };
-          }
-          return x;
+          add_age(age);
+          return { ...x, state: true };
         }
       } else {
         return x;
@@ -99,7 +98,9 @@ function SelectAge({ element, set_element }) {
   /* --- Returned JSX object --- */
   return (
     <div>
-      <h2 className="heading">4: Select an Age Range (Up to {age_limit})</h2>
+      <h2 className="heading">Moment of truth!</h2>
+      <h2 className="heading-2">What age range of films do you enjoy?</h2>
+      <div className="general-theater-border">
       <div className="age-button-container">
         {ages.map((element, index) => (
           <label
@@ -113,14 +114,12 @@ function SelectAge({ element, set_element }) {
                 handle_click(element.age);
               }}
             />
-            <p className="age-button-text">
-              {element.age}
-              <br />
-            </p>
+            <p className="age-button-text">{element.age}</p>
             <p className="age-button-desc-text">{element.desc}</p>
           </label>
         ))}
       </div>
+    </div>
     </div>
   );
 }

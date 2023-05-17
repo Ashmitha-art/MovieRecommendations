@@ -9,7 +9,6 @@ React component that renders a year selection interface.
 @returns {JSX.Element} - JSX element that renders the year selection interface.
 */
 function SelectYear({ element, set_element }) {
-  const year_limit = 2;
   const [year_num, set_year_num] = useState(0);
   const [years, set_years] = useState([
     {
@@ -54,7 +53,7 @@ function SelectYear({ element, set_element }) {
     function remove_year(x) {
       set_element(
         element.filter((year) => {
-          return year != x;
+          return year !== x;
         })
       );
       set_year_num(year_num - 1);
@@ -76,11 +75,8 @@ function SelectYear({ element, set_element }) {
           remove_year(year);
           return { ...x, state: false };
         } else {
-          if (year_num < year_limit) {
-            add_year(year);
-            return { ...x, state: true };
-          }
-          return x;
+          add_year(year);
+          return { ...x, state: true };
         }
       } else {
         return x;
@@ -90,30 +86,47 @@ function SelectYear({ element, set_element }) {
     set_years(new_years);
   }
 
+  const clipnum = 50;
+
   return (
     <div>
-      <h2 className="heading">2: Select a Year Range (Up to {year_limit})</h2>
-      <div className="year-button-container">
-        {years.map((element, index) => (
-          <label
-            key={index}
-            className={`year-button-${element.state ? "on" : "off"}`}
-          >
-            <input
-              className="year-button-checkbox"
-              type="checkbox"
-              onClick={() => {
-                handle_click(element.desc);
-              }}
-            />
-            <p className="year-button-text">
-              {element.year}
-              <br />
-            </p>
-            <p className="year-button-desc-text">{element.desc}</p>
-          </label>
-        ))}
+      <h2 className="heading">Nice! Let's continue!</h2>
+      <h2 className="heading-2">How old do you like your movies?</h2>
+      <div className="general-theater-border">
+      <div className="year-theater-border">
+        <div className="year-button-container">
+          <div className="movie-film-reel">
+            <div className="movie-film-reel-clips-top">
+              {[...Array(clipnum)].map((e, i) => (
+                <span className="movie-individual-clips" key={i}></span>
+              ))}
+            </div>
+
+            {years.map((element, index) => (
+              <label
+                key={index}
+                className={`year-button-${element.state ? "on" : "off"}`}
+              >
+                <input
+                  className="year-button-checkbox"
+                  type="checkbox"
+                  onClick={() => {
+                    handle_click(element.desc);
+                  }}
+                />
+                <p className="year-button-text" id={element.year}>{element.year}</p>
+                <p className="year-button-desc-text">{element.desc}</p>
+              </label>
+            ))}
+            <div className="movie-film-reel-clips-bottom">
+              {[...Array(clipnum)].map((e, i) => (
+                <span className="movie-individual-clips" key={i}></span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
     </div>
   );
 }

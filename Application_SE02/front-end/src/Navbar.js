@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import MovAI_Logo from "./photos/LogosandIcons/MovAILogo(Transparent2).png"
 
 /**
-
+ * 
 React functional component representing the Navbar.
 @function Navbar
 @returns {JSX.Element} - A JSX Element containing the navbar.
@@ -9,16 +10,13 @@ React functional component representing the Navbar.
 function Navbar() {
   let navigate = useNavigate();
 
-  /**
-
-  A function that navigates to a specified route using the useNavigate hook.
-  @function routeChange
-  @param {string} route - The route to navigate to.
-  */
-  const routeChange = (route) => {
-    let path = "/" + route;
-    navigate(path);
-  };
+  // MovAI Logo
+  const logo = [
+    {
+      title: "MovAI Logo",
+      photo: MovAI_Logo
+    }
+  ];
 
   /**
 
@@ -47,63 +45,64 @@ function Navbar() {
 
   return (
     <nav className="navbar">
+      <img 
+        className="navbar-movai-logo"
+        src={MovAI_Logo}
+        alt={logo.title} 
+      />
+
       <button
         onClick={() => {
-          routeChange("");
+          navigate("/");
         }}
         className="navbar-button"
       >
         Home
       </button>
-      {!localStorage.getItem("token") && (
+
+      {localStorage.getItem("token") && (
         <button
           onClick={() => {
-            routeChange("login");
-            routeChange("/");
+            navigate("/my-ratings");
           }}
           className="navbar-button"
         >
-          Login
+          My Ratings
         </button>
       )}
       {localStorage.getItem("token") && (
         <button
           onClick={() => {
-            logout();
-            localStorage.removeItem("token");
-            window.location.reload();
+            navigate("/my-recommendations");
           }}
           className="navbar-button"
+        >
+          My Recommendations
+        </button>
+      )}
+
+      <button
+        onClick={() => {
+          navigate("/about");
+        }}
+        className="navbar-button"
+      >
+        About
+      </button>
+      
+      {localStorage.getItem("token") && (
+        <button
+          onClick={() => {
+            logout();
+            localStorage.removeItem("token");
+            navigate("/");
+          }}
+          className="navbar-button"
+          id="logout"
         >
           Logout
         </button>
       )}
-      <button
-        onClick={() => {
-          routeChange("signup");
-        }}
-        className="navbar-button"
-      >
-        Sign Up
-      </button>
-      <button
-        onClick={() => {
-          routeChange("my-list");
-        }}
-        className="navbar-button"
-      >
-        My List
-      </button>
-
-      <button
-        onClick={() => {
-          routeChange("about");
-        }}
-        className="navbar-button"
-        id="about"
-      >
-        About
-      </button>
     </nav>
   );
 }
