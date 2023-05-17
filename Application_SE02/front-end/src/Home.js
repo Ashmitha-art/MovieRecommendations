@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import MovAI_Logo from "./photos/LogosandIcons/MovAILogo(Transparent2).png"
 
 /**
 
@@ -7,6 +8,14 @@ Renders the Home component which displays a welcome message and a button to navi
 */
 function Home() {
   let navigate = useNavigate();
+
+   // MovAI Logo
+   const logo = [
+    {
+      title: "MovAI Logo",
+      photo: MovAI_Logo
+    }
+  ];
 
   /**
 
@@ -20,16 +29,54 @@ function Home() {
 
   return (
     <div>
+      <img 
+        className="movai-logo"
+        src={MovAI_Logo}
+        alt={logo.title} 
+      />
+
       <h1 className="heading">Welcome to MovAI!</h1>
 
-      <button
-        className="get-started"
-        onClick={() => {
-          routeChange("recommend");
-        }}
-      >
-        Get Started!
-      </button>
+      {!localStorage.getItem("token") && (
+        <div className="home-page-container">
+          <div className="LoginTicket">
+            <p className="heading-2">Not logged in?</p>
+            <button
+              className="get-started"
+              onClick={() => {
+                routeChange("login");
+              }}
+            >
+              Login
+            </button>
+          </div>
+          <div className="RegisterTicket">
+            <p className="heading-2">Not signed up?</p>
+            <button
+              className="get-started"
+              onClick={() => {
+                routeChange("signup");
+              }}
+            >
+              Signup
+            </button>
+          </div>
+        </div>
+      )}
+
+      {localStorage.getItem("token") && (
+        <div>
+          <p className="heading-2">Logged in?</p>
+          <button
+            className="get-started"
+            onClick={() => {
+              routeChange("recommend");
+            }}
+          >
+            Get Started!
+          </button>
+        </div>
+      )}
     </div>
   );
 }

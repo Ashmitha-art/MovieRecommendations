@@ -1,19 +1,37 @@
 {
   "files": {
-    "main.css": "/static/css/main.3a5459ec.css",
-    "main.js": "/static/js/main.bdfd73eb.js",
+    "main.css": "/static/css/main.39cc2565.css",
+    "main.js": "/static/js/main.0ea632bb.js",
     "static/media/nathan.jpg": "/static/media/nathan.64f0c1d9ecf02f7f9eb9.jpg",
     "static/media/steve.png": "/static/media/steve.86d491de69be863ad767.png",
     "static/media/abdul.jpg": "/static/media/abdul.1de71d3856329624910b.jpg",
     "static/media/preet.jpg": "/static/media/preet.16e94b1793dbc24d156a.jpg",
     "static/media/chris.jpg": "/static/media/chris.9fd00a1b386497b75426.jpg",
+    "static/media/MovAILogo(Transparent2).png": "/static/media/MovAILogo(Transparent2).133a672a386f500c8874.png",
+    "static/media/Mystery Logo.png": "/static/media/Mystery Logo.6604b9f77729461269c1.png",
+    "static/media/Horror Logo.png": "/static/media/Horror Logo.4abd5391937c503eef69.png",
+    "static/media/Thriller Logo.png": "/static/media/Thriller Logo.11b56d34b6134f135e41.png",
+    "static/media/Animation Logo.png": "/static/media/Animation Logo.ec4607505947240346d5.png",
+    "static/media/Drama Logo.png": "/static/media/Drama Logo.1beb6ffeaeab37bd4260.png",
+    "static/media/Comedy Logo.png": "/static/media/Comedy Logo.5cb05e0fc8248029ecec.png",
+    "static/media/Action Logo.png": "/static/media/Action Logo.4dcf272445391405e573.png",
+    "static/media/Adventure Logo.png": "/static/media/Adventure Logo.b8671e2d11d01dbff7d0.png",
+    "static/media/Fantasy Logo.png": "/static/media/Fantasy Logo.33fede4b9fac71142ce8.png",
+    "static/media/Romance Logo.png": "/static/media/Romance Logo.61b2e22a8c9a0e68e508.png",
     "static/media/ashmitha.jpg": "/static/media/ashmitha.1eda540f06bf1db523af.jpg",
+    "static/media/Sci-Fi Logo.png": "/static/media/Sci-Fi Logo.17990d2cc729aab8c7ca.png",
+    "static/media/Hourglass1.png": "/static/media/Hourglass1.04b9db758f090c3a425b.png",
+    "static/media/Hourglass2.png": "/static/media/Hourglass2.4dd4b2c169a37fa53df7.png",
+    "static/media/Hourglass3.png": "/static/media/Hourglass3.11a2d73795ad65f0319f.png",
+    "static/media/Hourglass4.png": "/static/media/Hourglass4.d1da407a03dafb05f25f.png",
+    "static/media/Hourglass5.png": "/static/media/Hourglass5.46447ab97fa6178862d8.png",
+    "static/media/Crime Logo.png": "/static/media/Crime Logo.56d29eb88ee0c6ca57fe.png",
     "index.html": "/index.html",
-    "main.3a5459ec.css.map": "/static/css/main.3a5459ec.css.map",
-    "main.bdfd73eb.js.map": "/static/js/main.bdfd73eb.js.map"
+    "main.39cc2565.css.map": "/static/css/main.39cc2565.css.map",
+    "main.0ea632bb.js.map": "/static/js/main.0ea632bb.js.map"
   },
   "entrypoints": [
-    "static/css/main.3a5459ec.css",
-    "static/js/main.bdfd73eb.js"
+    "static/css/main.39cc2565.css",
+    "static/js/main.0ea632bb.js"
   ]
 }
