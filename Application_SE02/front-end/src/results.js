@@ -8,12 +8,13 @@ Renders the component to display the recommended movies based on user preference
 */
 const Results = ({ data, loading, error }) => {
   const clipnum = 45;
-  console.log(data);
 
   return (
     <div>
       <h1 className="heading">Done!</h1>
-      <h2 className="heading-2">Based on your choices, OpenAI recommended the following movies:</h2>
+      <h2 className="heading-2">
+        Based on your choices, OpenAI recommended the following movies:
+      </h2>
       <div className="list-container">
         <div className="category-container">
           <div className="movie-film-reel-list">

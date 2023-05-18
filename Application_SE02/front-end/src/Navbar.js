@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import MovAI_Logo from "./photos/LogosandIcons/MovAILogo(Transparent2).png"
+import MovAI_Logo from "./photos/LogosandIcons/MovAILogo(Transparent2).png";
 
 /**
  * 
@@ -45,11 +45,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <img 
-        className="navbar-movai-logo"
-        src={MovAI_Logo}
-        alt={logo.title} 
-      />
+      <img className="navbar-movai-logo" src={MovAI_Logo} alt={logo.title} />
 
       <button
         onClick={() => {
@@ -89,7 +85,7 @@ function Navbar() {
       >
         About
       </button>
-      
+
       {localStorage.getItem("token") && (
         <button
           onClick={() => {

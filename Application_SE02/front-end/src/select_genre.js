@@ -141,8 +141,8 @@ function SelectGenre({ element, set_element }) {
 
   return (
     <div>
-      <h2 className="heading">Let's get started!</h2>
-      <h2 className="heading-2">First off, what are your favorite genres? (Pick up to {genre_limit})</h2>
+      <h2 className="heading-question-one">Let's get started!</h2>
+        <h2 className="heading-question-one-2">First off, what are your favorite genres? (Pick up to {genre_limit})</h2>
       <div className="general-theater-border">
       <div className="genre-theater-border">
         <div className="genre-button-container">
