@@ -56,11 +56,12 @@ const Signup = () => {
             setBackendError(null);
           }
         })
+        .then(() => {
+          if (isLoggedIn) navigate("/");
+        })
         .catch((err) => {
           setBackendError(err.message);
-          console.log(err);
         });
-      if (isLoggedIn) navigate("/");
     }
   };
 

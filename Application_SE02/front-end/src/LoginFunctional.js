@@ -48,12 +48,12 @@ const Login = () => {
             setBackendError(null);
           }
         })
+        .then(() => {
+          if (isLoggedIn) navigate("/");
+        })
         .catch((err) => {
           setBackendError(err.message);
-          console.log(err);
         });
-
-      if (isLoggedIn) navigate("/");
     }
   };
 
@@ -101,7 +101,7 @@ const Login = () => {
   return (
     <div className="Login_Main_Div">
       <h1 className="heading">Login</h1>
-      <form name="Login_Form">
+      <form name="Login_Form" onSubmit={handleSubmit}>
         <div className="Login_Container">
           <label className="Login_Username">Username</label>
           <input

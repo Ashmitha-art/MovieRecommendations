@@ -13,6 +13,7 @@ import SelectYear from "../select_year";
 import SelectRuntime from "../select_runtime";
 import SelectAge from "../select_age";
 import Results from "../results";
+import { BrowserRouter } from "react-router-dom";
 
 beforeEach(() => {
   fetch.resetMocks();
@@ -21,28 +22,30 @@ beforeEach(() => {
 describe("Test the Recommendation Component", () => {
   it("Test 'select_genre' page.", () => {
     render(<SelectGenre />);
-    expect(screen.getByRole("heading")).toHaveTextContent("Genre");
+    expect(screen.getByText("Let's get started!")).toBeInTheDocument();
   });
 
   it("Test 'select_year' page.", () => {
     render(<SelectYear />);
-    expect(screen.getByRole("heading")).toHaveTextContent("Year Range");
+
+    expect(screen.getByText("Nice! Let's continue!")).toBeInTheDocument();
   });
 
   it("Test 'select_runtime.' page", () => {
     render(<SelectRuntime />);
-    expect(screen.getByRole("heading")).toHaveTextContent("Runtime");
+    expect(screen.getByText("Almost done!")).toBeInTheDocument();
   });
 
   it("Test 'select_age' page.", () => {
     render(<SelectAge />);
-    expect(screen.getByRole("heading")).toHaveTextContent("Age Range");
+    expect(screen.getByText("Moment of truth!")).toBeInTheDocument();
   });
 
   it("Test 'results' page.", () => {
     const results = [
       {
         movie_title: "movie",
+        genres: ["genre 1", "genre 2", "genre 3"],
         year: "1234",
         runtime: "567",
         age_rating: "a"
@@ -52,11 +55,18 @@ describe("Test the Recommendation Component", () => {
     render(<Results data={results} error={null} />);
     expect(screen.getByText("movie")).toBeInTheDocument();
     expect(screen.getByText("1234 | 567 Minutes | a")).toBeInTheDocument();
+    expect(screen.getByText("genre 1")).toBeInTheDocument();
+    expect(screen.getByText("genre 2")).toBeInTheDocument();
+    expect(screen.getByText("genre 3")).toBeInTheDocument();
   });
 
   it("Test recommendation process", async () => {
     act(() => {
-      render(<Recommend />);
+      render(
+        <BrowserRouter>
+          <Recommend />
+        </BrowserRouter>
+      );
     });
 
     const options1 = ["Action", "Recent", "Short", "PG-13"];
