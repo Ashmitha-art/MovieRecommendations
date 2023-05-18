@@ -8,6 +8,7 @@ import {
 } from "@testing-library/react";
 
 import Signup from "../SignupFunctional";
+import { BrowserRouter } from "react-router-dom";
 
 beforeEach(() => {
   fetch.resetMocks();
@@ -15,7 +16,13 @@ beforeEach(() => {
 
 describe("Test the Register Component", () => {
   it("Page renders correctly.", () => {
-    render(<Signup />);
+    act(() => {
+      render(
+        <BrowserRouter>
+          <Signup />
+        </BrowserRouter>
+      );
+    });
     expect(screen.getByRole("heading")).toHaveTextContent("Signup");
 
     expect(screen.getByTestId("email")).toBeInTheDocument();
@@ -26,7 +33,11 @@ describe("Test the Register Component", () => {
 
   it("Fetch is called on correctly validated submit.", async () => {
     act(() => {
-      render(<Signup />);
+      render(
+        <BrowserRouter>
+          <Signup />
+        </BrowserRouter>
+      );
     });
 
     const email = screen.getByTestId("email");
@@ -53,7 +64,11 @@ describe("Test the Register Component", () => {
 
   it("Fetch is not called on unvalidated submit.", async () => {
     act(() => {
-      render(<Signup />);
+      render(
+        <BrowserRouter>
+          <Signup />
+        </BrowserRouter>
+      );
     });
 
     const email = screen.getByTestId("email");

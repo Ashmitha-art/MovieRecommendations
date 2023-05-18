@@ -1,11 +1,11 @@
 import { useState } from "react";
-/*import { useNavigate } from "react-router-dom";*/
+import { useNavigate } from "react-router-dom";
 
 /**
 A component for a login form.
 @returns {JSX.Element} The Login component.
 */
- const Login = () => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,7 +13,7 @@ A component for a login form.
   const [backendError, setBackendError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  /*const navigate = useNavigate();*/
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,12 +48,12 @@ A component for a login form.
             setBackendError(null);
           }
         })
+        .then(() => {
+          if (isLoggedIn) navigate("/");
+        })
         .catch((err) => {
           setBackendError(err.message);
-          console.log(err);
         });
-
-      if (isLoggedIn) navigate("/");
     }
   };
 
